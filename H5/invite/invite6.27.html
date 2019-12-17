@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta charset="UTF-8">
+	<title>跟我一起租玩具</title>
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+	<link rel="stylesheet" type="text/css" href="css/invite6.19.css">
+</head>
+<body>
+	<div class="wrap">
+		
+		<div class="head">
+			<img src="img/35.jpg">
+		</div>
+		<div id="divdown1"></div>
+		<div class="jieguo">
+			<!-- <p>组团成功，各延期15天哦</p> -->
+		</div>
+		<div class="invite">
+			<p>年卡特权:</p>
+			<p>
+				<span><a><img src="img/12.png"></a><a>所有玩具</a></span>
+				<span><a><img src="img/12.png"></a><a>全年免租金</a></span>
+				<span><a><img src="img/12.png"></a><a>18次免费配送</a></span>
+				<b><img src="img/13.png"></b>
+			</p>
+		</div>
+		<div class="main">
+			<div class="wrapper">
+				<p class="userbox">
+					<!-- <span><a><img src="img/userimg.png"></a><a></a><b></b></span> -->
+					
+				</p>	
+				
+			</div>
+			<div class="box1">
+				<input type='number' placeholder="输入手机号,参加团购" id="txt">
+			</div>
+		</div>
+
+		<div class="bottom">
+			<button id="teambtn">接受邀请</button>
+			<a id="bnt" style="display: none" href="itms://itunes.apple.com/cn/app/bao-bao-xiu-xiu/id789847552?mt=8">立即下载,购卡租玩具</a>
+			<p>活动说明</p>
+			<ul>
+				<li>输入手机号参团后，下载舜鑫国际旅游（北京）有限公司租赁App，使用参团手机号登录</li>
+				<li>打开舜鑫国际旅游（北京）有限公司租赁App,点击【玩具世界】即可进入玩具世界</li> 
+				<li>选择【年卡】，购买即可</li>
+				<li>购卡后，参团页面参团成员头像的右下角会显示‘已支付’状态</li>
+				<li>凡是参团购卡成功的用户，即可参与两种优惠活动，二选一</li>
+				<!-- <li style="list-style: none;text-indent: 0.6rem;">   1、年卡赠送30天延期</li>
+				<li style="list-style: none;text-indent: 0.6rem;">   2、幸运转盘，抽取福利（最高45天延期）</li> -->
+			<button id="btn">年卡赠送30天延期</button>
+			<a class="team" href='http://www.meimei.yihaoss.top/H5/invite/dial_draw.html'>幸运转盘，抽取福利(最高45天延期)</a>
+			
+		</div>
+
+		<!-- <div class="foot">
+			<a href="http://mp.weixin.qq.com/s/3SowJnlWO_aBFQkXm-nE9Q">详细规则>></a>
+		</div> -->
+		<div class="boximg">
+			<span><img src="img/15.png"></span>
+			<span><img src="img/16.png"></span>
+    	</div>
+
+		<div class="mask" style="display:none"></div>
+		<div class="tipContainer">
+            <img src="img/download_tip_1.png" alt="在浏览器中打开" width="74" height="112"/>
+            <p class="android_download_tip">戳右上角，选择“<em>在浏览器中打开</em>”即可完成下载 等你哦！</p>
+            <p class="ios_download_tip">戳右上角，选择“<em>在Safari中打开</em>”，即可下载或打开</p>
+        </div>
+        
+	</div>
+
+<script type="text/javascript" src="js/setfontsize.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+	var url = location.href;
+	var leader="";
+	var username="";
+	var userboxhtml="";
+	var luserId="";
+	var pay="";
+	var loguserid="";
+	var kkong="";
+	var host="";
+	var now="";
+	var endDate="";
+	var leftTime="";
+	var leftsecond="";
+	var day1="";
+	var hour="";
+	var minute="";
+	var second="";
+	var cc="";
+	var unpay="";
+	var jieguohtml="";
+	
+
+	function GetQueryString(name){
+	    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+	    var r = window.location.search.substr(1).match(reg);
+	    if(r!=null)return  unescape(r[2]); return null;
+	}
+	//地址中带有参数
+	if(url.indexOf("?") > 0){
+		if(GetQueryString("login_user_id")!=null && GetQueryString("login_user_id").length>-1){
+			
+			
+			leader = GetQueryString("login_user_id");
+		}
+	}
+	if(url.indexOf("?") > 0){
+		if(GetQueryString("success_ing")!=null && GetQueryString("success_ing").length>-1){
+			
+			
+			kkong = GetQueryString("success_ing");
+		}
+	}
+
+	// function ShowCountDown(year,month,day,divname) { 
+	// 	now = new Date(); 
+	// 	endDate = new Date("2017/6/19,20:00"); 
+	// 	cc = document.getElementById(divname); 
+	// 	if(now >=endDate){
+	// 		cc.innerHTML="活动结束!"
+	// 	}else{
+	// 		leftTime=endDate.getTime()-now.getTime(); 
+	// 		leftsecond = parseInt(leftTime/1000); 
+	// 		day1=Math.floor(leftsecond/(60*60*24)); 
+	// 		hour=Math.floor((leftsecond-day1*24*60*60)/3600); 
+	// 		minute=Math.floor((leftsecond-day1*24*60*60-hour*3600)/60); 
+	// 		second=Math.floor(leftsecond-day1*24*60*60-hour*3600-minute*60); 
+	// 		cc.innerHTML = "延期至"+day1+"天"+hour+"小时"+minute+"分"+second+"秒"+"结束"; 
+	// 	}
+		
+	// } 
+	// window.setInterval(function(){ShowCountDown(2017,6,19,'divdown1');}, 1000);
+
+	//渲染页面
+	$.ajax({
+		url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV77/ToysactivityS&login_user_id='+leader,
+		type:'GET',
+		async: true,
+		datatype:'json',
+		success:function(res){
+			var data=JSON.parse(res);
+			console.log(data.num);
+			var num_jieguo=data.num;
+			var shopData=data.data;
+			luserId=shopData[0].user_id;
+			if(leader==luserId){
+				for(var i in shopData){
+					host=shopData[i].is_host;
+					if(host==1){
+						pay=shopData[i].is_pay;
+						if(pay==1){
+							userboxhtml+='<span><a><img src="'+shopData[i].avatar+'" class="useraa"><img src="img/money.png" class="moneyaa"></a><a><img src="img/18.png"></a><a style="color:#FD6363;font-size:0.3rem;">'+shopData[i].nick_name+'</a></span>';
+							
+						}else if(pay==0){
+
+							userboxhtml+='<span><a class="teamyuan" vindex='+shopData[i].user_id+'><img src="'+shopData[i].avatar+'" class="useraa"></a><a><img src="img/18.png"></a><a style="color:#FD6363;font-size:0.3rem;">'+shopData[i].nick_name+'</a></span>';
+						}else{
+							userboxhtml+='<span><a class="teamyuan" vindex='+shopData[i].user_id+'><img src="'+shopData[i].avatar+'" class="useraa"></a><a><img src="img/18.png"></a><a style="color:#FD6363;font-size:0.3rem;">'+shopData[i].nick_name+'</a></span>';
+						}
+					}else{
+						pay=shopData[i].is_pay;
+						if(pay==1){
+							userboxhtml+='<span><a><img src="'+shopData[i].avatar+'" class="useraa"><img src="img/money.png" class="moneyaa"></a><a>'+shopData[i].nick_name+'</a></span>';
+							
+						}else if(pay==0){
+							userboxhtml+='<span><a class="teamyuan" vindex='+shopData[i].user_id+'><img src="'+shopData[i].avatar+'" class="useraa"></a><a>'+shopData[i].nick_name+'</a></span>';
+						}else{
+							
+							userboxhtml+='<span><a class="teamyuan" vindex='+shopData[i].user_id+'><img src="'+shopData[i].avatar+'" class="useraa"></a><a>'+shopData[i].nick_name+'</a></span>';
+						}
+					}
+
+					
+				}
+				userboxhtml+='<span><a><img src="img/userimg.png" class="useraa"></a><a></a></span><span><a><img src="img/userimg.png" class="useraa"></a><a></a></span><span><a><img src="img/userimg.png" class="useraa"></a><a></a></span>';
+				$(".userbox").html(userboxhtml)
+			}else{
+				for(var i in shopData){
+					pay=shopData[i].is_pay;
+					console.log(pay);
+					if(pay==1){
+						userboxhtml+='<span><a><img src="'+shopData[i].avatar+'" class="useraa"><img src="img/money.png" class="moneyaa"></a><a>'+shopData[i].nick_name+'</a></span>';
+					}else if(pay==0){
+						userboxhtml+='<span><a class="teamyuan" vindex='+shopData[i].user_id+'><img src="'+shopData[i].avatar+'" class="useraa"></a><a>'+shopData[i].nick_name+'</a></span>';
+					}else{
+						userboxhtml+='<span><a class="teamyuan" vindex='+shopData[i].user_id+'><img src="'+shopData[i].avatar+'" class="useraa"></a><a>'+shopData[i].nick_name+'</a></span>';
+					}
+					
+				}
+				userboxhtml+='<span><a><img src="img/userimg.png" class="useraa"></a><a></a></span><span><a><img src="img/userimg.png" class="useraa"></a><a></a></span><span><a><img src="img/userimg.png" class="useraa"></a><a></a></span>';
+				$(".userbox").html(userboxhtml)
+			}
+
+			if(num_jieguo<2){
+				console.log(num_jieguo)
+				jieguohtml="组团失败,下次加油哦!"
+				$(".jieguo").html(jieguohtml)
+			}else if(num_jieguo>=2&&num_jieguo<3){
+				console.log(num_jieguo)
+				jieguohtml+="组团成功,所有团员额外获得15天延期"
+				$(".jieguo").html(jieguohtml)
+			}else if(num_jieguo>=3&&num_jieguo<10){
+				console.log(num_jieguo)
+				jieguohtml+="组团成功,所有团员额外获得30天延期"
+				$(".jieguo").html(jieguohtml)
+			}else if(10<=num_jieguo){
+				console.log(num_jieguo)
+				jieguohtml+="组团成功,所有团员额外获得60天延期"
+				$(".jieguo").html(jieguohtml)
+			}else{
+				return false;
+			}
+			
+		}
+	})
+
+	//点击未支付团员
+	$(".userbox").on("click",".teamyuan",function(){
+		unpay=$(this).attr("vindex");
+		$.ajax({
+			url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV77/ToysactivityclicknumS&login_user_id='+unpay,
+			type:'GET',
+			datatype:'json',
+			success:function(data){
+				var res=JSON.parse(data)
+				console.log(res);
+				if(res.success==true){
+					alert("团员还未支付\n催他（她）一下");
+
+				}else{
+					alert(res.reMsg);
+				}
+			}
+		})
+	})
+
+	$(".boximg").on("click",function(){
+
+		window.location.href='http://www.meimei.yihaoss.top/download.php';
+	})
+
+	//参加团购
+	$("#teambtn").on("click",function(){
+		
+
+		txtVal = $("#txt").val();
+
+		//	判断是否输入值
+		if(txtVal && /^[0-9]{11}$/.test(txtVal)){
+			
+		}else{
+			alert("请输入正确的手机号");
+			return false;
+		}
+		if(txtVal==""){
+			alert("请输入手机号");
+			return false;
+		}
+		else{
+			$.ajax({
+				url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV77/ToysActivityaddS&login_user_id='+leader+'&mobile='+txtVal,
+				type:'GET',
+				datatype:'json',
+				success:function(data){
+					var res=JSON.parse(data)
+					console.log(res.success);
+					if(res.success==true){
+						alert("已经参团。\n下载舜鑫国际旅游（北京）有限公司租赁，购卡后才算参团成功哦！");
+						location.reload();
+						// $("#bnt").show();
+						// $("#teambtn").hide();
+					}else{
+						alert(res.reMsg)
+						location.reload();
+					}
+					
+				},
+				error:function(data){
+					var res=JSON.parse(data)
+					alert(res.reMsg);
+					
+				}
+			})
+		}	
+	})
+
+	// 组团成功
+	// $("#btn").on("click",function(){
+	// 	var str = window.prompt("验证团长身份,请输入ID","") 
+	// 	if(confirm){
+	// 		if(str==leader){
+	// 			$.ajax({
+	// 				url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV77/ToysActivityS&login_user_id='+leader+'&success_ing=1',
+	// 				type:'GET',
+	// 				datatype:'json',
+	// 				success:function(data){
+	// 					var res=JSON.parse(data)
+	// 					if(res.success==true){
+	// 						alert(res.reMsg);
+	// 						kkong=1
+	// 						window.location.href="http://www.meimei.yihaoss.top/H5/invite/aa.html?login_user_id="+leader+'&success_ing=1';
+	// 					}else{
+	// 						console.log(res);
+	// 						kkong="";
+	// 						alert("最低组团3人，您的团还未组团成功")
+	// 						location.reload();
+	// 					}
+						
+	// 				},
+	// 				error:function(){
+	// 					alert("未能提交成功，请重新提交");
+						
+	// 				}
+	// 			})
+	// 		}else{
+	// 			alert("您不是团长，没有权限哦！")
+	// 		}
+	// 	}else{
+	// 		location.reload();
+	// 	}
+		
+	// })
+
+    function isWeiXin(){
+       var ua = window.navigator.userAgent.toLowerCase();
+       if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+           return true;
+       }else{
+           return false;
+       }
+    }
+
+	$("#bnt").on("click",function(){
+		
+		window.location.href='http://www.meimei.yihaoss.top/download.php';
+
+	})
+
+	$(".invite").on("click",function(){
+
+		window.location.href="http://www.meimei.yihaoss.top/question/question.html";
+	})
+
+	$("#btn").on("click",function(){
+		alert("添加微信客服:185-1539-4818");
+	})
+
+	$.ajax({
+		url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV7/LoginUserInfo&login_user_id='+leader,
+		type:'GET',
+		datatype:'json',
+		success:function(data){
+			var data=JSON.parse(data);
+			var userdata=data.data;
+			console.log(userdata)
+		}
+	})
+
+	//弹窗除网址
+	window.alert = function(name){
+	    var iframe = document.createElement("IFRAME");
+		iframe.style.display="none";
+		iframe.setAttribute("src", 'data:text/plain,');
+		document.documentElement.appendChild(iframe);
+		window.frames[0].window.alert(name);
+		iframe.parentNode.removeChild(iframe);
+	}
+</script>
+</body>
+</html>

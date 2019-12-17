@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>会员详情</title>
+	<link rel="stylesheet" type="text/css" href="css/member_cont.css">
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+    <link rel="stylesheet" type="text/css" href="css/dropload.css">
+</head>
+<body>
+	<div class="wrap">
+	
+		<div class="top" id="top">
+			<p><input type="button" class="back" value="返回"  onclick="javascript:history.back(-1);"></p>
+			<ul>
+				<li>玩具名称</li>
+				<li>玩具id</li>
+				<li>状态</li>
+				<li>下单时间</li>
+				<li>结束时间</li>
+				<li>租期</li>
+				<li>是否使用服务次数</li>
+				<li>费用</li>
+			</ul>
+		</div>
+		<div class="middle">
+			<!-- <ul>
+				<li>蹦床</li>
+				<li>32</li>
+				<li>启用</li>
+				<li>2016.12.05</li>
+				<li>2016.12.15</li>
+				<li>fanfan</li>
+				<li>634</li>
+				<li>2</li>
+				<li>1</li>
+			</ul> -->
+		</div>
+	</div>
+<script type="text/javascript" src="js/setfontsize.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/dropload.js"></script>
+<script type="text/javascript">
+var user_id="";
+var card_id="";
+var conthtml="";
+var postTime="";
+function GetQueryString(name){
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if(r!=null)return  unescape(r[2]); return null;
+}
+if(GetQueryString("login_user_id")!=null && GetQueryString("login_user_id").length>-1){
+	user_id=GetQueryString("login_user_id");
+}
+if(GetQueryString("card_id")!=null && GetQueryString("card_id").length>-1){
+  	card_id=GetQueryString("card_id");
+}
+
+window.onscroll=function(){
+    var sl=-Math.max(document.body.scrollLeft,document.documentElement.scrollLeft);
+    document.getElementById('top').style.left=sl+'px';
+    $("#top").css({'position':'fixed','top':'0rem'});
+    $(".middle").css({'margin-top':'0.65rem'});
+};
+$('.middle').dropload({
+	    scrollArea : window,
+	    domUp : {
+	        domClass   : 'dropload-up',
+	        domRefresh : '<div class="dropload-refresh">↓下拉刷新</div>',
+	        domUpdate  : '<div class="dropload-update">↑释放更新</div>',
+	        domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中</div>'
+	    },
+	    domDown : {
+	        domClass   : 'dropload-down',
+	        domRefresh : '<div class="dropload-refresh">↑上拉加载更多</div>',
+	        domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中</div>',
+	        domNoData  : '<div class="dropload-noData">暂无数据</div>'
+	    },
+	    loadDownFn : function(me){
+	    	$.ajax({
+				url:'http://api.baobaoshowshow.com/index.php?r=WebBaoShow/getCardOrderList&login_user_id='+user_id+'&card_id='+card_id+'&post_create_time='+postTime,
+				type:'GET',
+				datatype:'json',
+				success:function(data){
+					var daTa=JSON.parse(data);
+					var contdata=daTa.data;
+					postTime=$(".middle").find("ul:last").data("posttime");
+					console.log(postTime)
+					for(var i in contdata){
+						conthtml+='<ul data-postTime='+contdata[i].post_create_time+'><li>'+contdata[i].business_title+'</li><li>'+contdata[i].business_id+'</li><li>'+contdata[i].status_name+'</li><li>'+contdata[i].create_time+'</li><li>'+contdata[i].end_time+'</li><li>'+contdata[i].rent_day+'</li><li>'+contdata[i].service_name+'</li><li>'+contdata[i].total_price+'</li></ul>';
+					}
+					$(".middle").html(conthtml);
+					me.resetload();
+				},
+	            error: function(xhr, type){
+	                me.resetload();
+	            }
+			})
+	    }
+	});
+</script>
+</body>
+</html>

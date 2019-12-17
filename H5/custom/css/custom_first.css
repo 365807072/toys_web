@@ -1,0 +1,57 @@
+html,body{
+	width: 100%;
+	height: 100%;
+}
+.wrap{
+	width: 100%;
+	height: 100%;
+}
+.head{
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	font-size: 0.1rem;
+	background-color: #fff;
+}
+header ul{
+	background-color: #6795B4;
+	display: -webkit-box;
+	color: #fff;
+}
+header ul li{
+	margin:0 0.1rem;
+	font-weight: bold;
+	padding: 0.05rem 0;
+}
+header ul li a{
+	color: #fff;
+} 
+.top{
+	padding-top: 0.1rem
+}
+.box{
+	margin-top: 117px;
+	font-size: 0.1rem;
+}
+.upload{
+	text-align: center;
+	height: 25px;
+	line-height: 25px;
+	position: fixed;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background: #fff;
+	font-size: 0.05rem;
+}
+.upload.loading span:nth-child(2){
+	display: block;
+}
+.upload span:nth-child(2),.upload.loading span:nth-child(1){
+	display: none;
+}
+.box a{
+	display: block;
+	cursor: pointer;
+}

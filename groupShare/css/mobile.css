@@ -1,0 +1,105 @@
+/* CSS Document */
+
+body,
+div,
+p,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+table,
+tr,
+td,
+form,
+input,
+select,
+textarea,
+span,
+img,
+a,
+em,
+strong,
+* {
+    margin: 0;
+    padding: 0;
+}
+
+article,
+section,
+aside,
+nav,
+header,
+footer,
+address,
+header,
+hgroup,
+blockquote,
+figure,
+figcaption {
+    display: block;
+}
+
+body {
+    color: #000000;
+    font-size: 0.16rem;
+}
+
+ul,
+ol,
+li {
+    list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 14px;
+}
+
+input,
+select,
+textarea {
+    vertical-align: middle;
+}
+
+img {
+    border: none;
+    vertical-align: middle;
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: #333333;
+}
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+}
+
+.clear {
+    zoom: 1
+}
+
+.clear:after {
+    content: '';
+    display: block;
+    clear: both
+}
+
+
+/*clear这个样式是加给浮动元素的父级，来解决高度塌陷的问题*/

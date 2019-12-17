@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>叮咚~红包开启</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <script type="text/javascript">
+        var match,
+            scale,
+            TARGET_WIDTH = 320;
+
+        if (match = navigator.userAgent.match(/Android (\d+\.\d+)/)) {
+            if (parseFloat(match[1]) < 4.4) {
+                if (TARGET_WIDTH == 320) TARGET_WIDTH++;
+                var scale = window.screen.width / TARGET_WIDTH;
+                document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=' + TARGET_WIDTH + ', initial-scale = ' + scale + ', target-densitydpi=device-dpi');
+            }
+        } else {
+            document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=' + TARGET_WIDTH);
+        }
+    </script>
+    <link rel="stylesheet" href="css/redpackets.css">
+</head>
+<body>
+	<section class="wrapper">
+		<div class="image"><img src="img/babypackethead.png" /></div>		
+		<div class="form">			
+			<input id="phoneNum" type="text" placeholder="请输入您的手机号" />
+			<div id="submit">打开红包</div>
+			<div class="prompt_mobile">
+				<p>请输入您的手机号领取红包</p>
+				<p class="list"><a href="https://api.baobaoshowshow.com/H5/business/bus_list.html"><img src="img/elsebtn.png"></a></p>
+			</div>
+		</div>
+		
+		<section class="result">
+			<div class="resultBox">
+			        <div class="result-inner-share">
+			            <!-- <div class="share-sort"><i>红包</i></div> -->
+			            <div class="share-infor">
+			                <div class="number"></div>
+			                    <div class="classify" id="cont" style="letter-spacing: 0.03rem">舜鑫国际旅游（北京）有限公司租赁现金红包补贴</div>
+			            </div>
+			        </div>
+			</div>
+		</section>
+		<div class="content-bg">
+			<div class="info">
+				<p>红包已放账户!快去使用吧,不要过期噢</p>
+				<span id="phone" style='letter-spacing: 0.01rem;font-size: 0.3rem;'></span>
+				<a href="javascript:;" id="deleCookie">更换手机</a>
+				<!-- <input id="enveuse-btn" class="combtn downloadbtn" type="button" value="去消费"> -->
+				<div id="time" style="letter-spacing: 0.02rem"></div>
+				<p class="list"><a href="https://api.baobaoshowshow.com/H5/business/bus_list.html"><img src="img/elsebtn.png"></a></p>
+        	</div>
+        	
+			<section class="rule">
+				<h4>活动规则</h4>
+				<ul>
+					<li>1.请输入您的手机号自动领取红包，系统将自动记录您的手机号，打开舜鑫国际旅游（北京）有限公司租赁后直接注册即可。</li>
+					<li>2.领取的红包只可用于半径商家使用。</li>
+				</ul>
+				<h4 class="firds">看看朋友的运气</h4>
+				<ol id="users">
+					
+				</ol>
+			</section>
+		</div>
+	</section>
+<script type="text/javascript">
+	var x = 6;
+
+	window.onload = function (){
+
+		var user_id = GetRequest().user_id;
+		var order_id = GetRequest().order_id;
+		var timer = null;
+		
+		//Ajax
+		var Ajax = function(){
+		    function request(url,opt){
+		        function fn(){}
+		        var async   = opt.async !== false,
+		            method  = opt.method    || 'GET',
+		            encode  = opt.encode    || 'UTF-8',
+		            data    = opt.data      || null,
+		            success = opt.success   || fn,
+		            failure = opt.failure   || fn;
+		            method  = method.toUpperCase();
+		        if(data && typeof data == 'object'){//对象转换成字符串键值对
+		            data = _serialize(data);
+		        }
+		        if(method == 'GET' && data){
+		            url += (url.indexOf('?') == -1 ? '?' : '&') + data;
+		            data = null;
+		        }
+		        var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+		        xhr.onreadystatechange = function(){
+		            _onStateChange(xhr,success,failure);
+		        };
+		        xhr.open(method,url,async);
+		        if(method == 'POST'){
+		            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=' + encode);
+		        }
+		        xhr.send(data);
+		        return xhr;
+		    }
+		    function _serialize(obj){
+		        var a = [];
+		        for(var k in obj){
+		            var val = obj[k];
+		            if(val.constructor == Array){
+		                for(var i=0,len=val.length;i<len;i++){
+		                    a.push(k + '=' + encodeURIComponent(val[i]));
+		                }
+		            }else{
+		                a.push(k + '=' + encodeURIComponent(val));
+		            }
+		        }
+		        return a.join('&');
+		    }
+		    function _onStateChange(xhr,success,failure){
+		        if(xhr.readyState == 4){
+		            var s = xhr.status;
+		            if(s>= 200 && s < 300){
+		                success(xhr.response);
+		            }else{
+		                failure(xhr.response);
+		            }
+		        }else{}
+		    }
+		    return {request:request};
+		}();
+
+		if(getCookie("phone") != null){
+			var cook = getCookie("phone");
+			submitFn(cook);
+		}
+		function $(o){
+	        return document.querySelector(o);
+	    }
+
+		
+		function setCookie(name,value){
+	        var Days = 30;
+	        var exdate=new Date();
+	        exdate.setDate(exdate.getDate()+exdate);
+	        document.cookie = name + "="+ escape (value) + ";expires="+exdate.toGMTString();
+	    }
+
+	    $("#deleCookie").onclick = function (){
+	    	delCookie("phone");
+	    	window.location.reload();
+	    };
+	    //读取cookies
+	    function getCookie(name){
+	        var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+	        if(arr=document.cookie.match(reg)){
+	            return unescape(arr[2]);
+	        } else {
+	            return null;
+	        }
+	    }
+
+	    //删除cookies
+	    function delCookie(name){
+	        var exp = new Date();
+	        exp.setTime(exp.getTime() - 1);
+	        var cval=getCookie(name);
+	        if(cval!=null)
+	            document.cookie= name + "="+cval+";expires="+exp.toGMTString();
+	    }
+
+	    //获取url
+		function GetRequest() { 
+			var url = location.search; //获取url中"?"符后的字串 
+			var theRequest = new Object(); 
+			if (url.indexOf("?") != -1) { 
+				var str = url.substr(1); 
+				strs = str.split("&"); 
+				for(var i = 0; i < strs.length; i ++) { 
+					theRequest[strs[i].split("=")[0]]=(strs[i].split("=")[1]); 
+				} 
+			} 
+			return theRequest; 
+		}
+
+		//判断手机号
+	    function is_phone(s) {
+	        var reg = reg = /^\d{11}$/;
+	        if(reg.test(s)){   
+	            return  true;  
+	        } else {
+	            return false;
+	        }
+	    }		
+		$("#submit").onclick=function(){
+			var num = $("#phoneNum").value;
+			setCookie("phone",num);
+			submitFn(num);
+		};
+		$("#phoneNum").onkeyup = function (){
+			if(!is_phone(this.value)){
+				$("#submit").className = "";
+			} else {
+				$("#submit").className = "active";
+			}
+		}
+
+		function redPacke(msg){
+			$("body").className = "active";
+			$("#phone").innerHTML = msg.mobile;
+			
+			
+			timer = setInterval(go, 1000);  
+
+			
+			var packet_price=msg.packet_price;
+			if(packet_price==0) {
+				$(".number").innerHTML = "<i id='num' style='line-height:50px;font-size:16px;'>您来晚了，下次尽快哦</i>";
+			} else {
+				$(".number").innerHTML = "<em class='rmb'>￥</em><i id='num'>"+packet_price+"</i>";
+			}		
+			userFn();
+		}
+		function go(){
+			x--;  
+			
+
+			if(x>0){
+				
+				$("#time").innerHTML = x+'s';
+				
+			}else{
+				clearInterval(timer);
+				window.location.href="https://api.baobaoshowshow.com/H5/business/bus_list.html";
+
+			}
+		} 
+		function userFn(){
+			Ajax.request("http://www.meimei.yihaoss.top/grabPacketList.php",{
+				data : {"send_user_id":user_id,"order_id":order_id},
+				method : "GET",
+				success : function(data){
+					var dataJson = JSON.parse(data);
+					if (dataJson.reCode==200) {
+						userList(dataJson.data);
+					}else {
+						alert("提交失败！："+dataJson.reCode);
+					}
+				},
+				failure : function(mag){
+					console.log("网络错误！："+mag);
+				}
+			})
+		};
+
+		function submitFn(num){
+			if(is_phone(num)){
+				Ajax.request("http://www.meimei.yihaoss.top/packetMobile.php",{
+					data : {"send_user_id":user_id,"mobile":num,"order_id":order_id},
+					method : "GET",
+					success : function(data){
+						var dataJson = JSON.parse(data);
+						console.log(dataJson)
+						if (dataJson.reCode==200) {
+							console.log(2)
+							redPacke(dataJson.data);
+						}else {
+							alert("提交失败！："+dataJson.reCode);
+						}
+					},
+					failure : function(mag){
+						console.log("网络错误！："+mag);
+					}
+				})
+			} else {
+				alert("手机号有误！")
+			}
+		};
+
+		function userList(data){
+			var html = "";
+			for (var i = 0; i < data.length; i++) {
+				html += '<li><dl>'
+				+"<dt><img src='"+data[i].avatar+"' ></dt>"
+				+'<dd><h3>'+data[i].nick_name+"<p id='user_p'><span>"+data[i].packet_price+"元</span>"+data[i].post_create_time+"</p></h3>"
+				+'<p>'+data[i].packet_description+'</p></dd>'
+				+'</dl></li>'
+			}
+			$("#users").innerHTML = html;
+		}
+
+		//弹窗除网址
+	    window.alert = function(name){
+	        var iframe = document.createElement("IFRAME");
+	        iframe.style.display="none";
+	        iframe.setAttribute("src", 'data:text/plain,');
+	        document.documentElement.appendChild(iframe);
+	        window.frames[0].window.alert(name);
+	        iframe.parentNode.removeChild(iframe);
+	    }
+	}
+</script>
+<script type="text/javascript" src="js/setfontsize.js"></script>
+</body>
+</html>
+
+<!-- <iframe src="meituanwaimai://waimai.meituan.com/pois" style="display: none;"></iframe> -->

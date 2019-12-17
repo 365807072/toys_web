@@ -1,0 +1,26 @@
+html,body{
+	width: 100%;
+	height: 100%;
+}
+.wrap{
+	width: 100%;
+	height: 100%;
+	font-size: 0.1rem;
+}
+header ul{
+	background-color: #6795B4;
+	display: -webkit-box;
+	color: #fff;
+}
+header ul li{
+	margin:0 0.1rem;
+	font-weight: bold;
+	padding: 0.05rem 0;
+}
+header ul li a{
+	color: #fff;
+}
+.box a{
+	display: block;
+	cursor: pointer;
+} 

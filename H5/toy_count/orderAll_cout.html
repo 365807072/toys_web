@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>总的订单详情</title>
+  <link rel="stylesheet" type="text/css" href="css/mobile.css">
+  <link rel="stylesheet" type="text/css" href="css/orderAll_cout.css">
+</head>
+<body>
+  <div class="wrap">
+    
+    <header class="head" style="display: none">
+      <p style="position: relative;">
+        <span class="back"><img src="img/back.png"></span>
+        <span>订单</span>
+        <span class="liwu"><img src="img/liwu.png"></span>
+      </p>
+      
+    </header>
+    
+    <div class="main">
+        <div class="content">
+            <div class="pic" style="display: none"></div>
+            <div class="wrapper" style="display: none">
+                <div class="addresss"></div>
+                <div class="remask"></div>
+                <div class="money"></div>
+                <div class="toy"></div>
+                <div class="bottomfoot" style="display: none"></div>
+            </div>
+        </div>
+    </div>
+          
+        
+  </div>
+<script type="text/javascript" src="js/setfontsize.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+var headHtml="";
+var orderData="";
+var addressHtml="";
+var remaskHtml="";
+var moneyHtml="";
+var alldata="";
+var toyHtml="";
+var url = location.href;
+var userId="";
+var comorderId="";
+var orderId="";
+var picHtml="";
+var remCombned="";
+var tuiCombined="";
+var payOrder="";
+var cancel="";
+var toyCout;
+var busin
+var payHtml="";
+var wrapHtml="";
+//判断链接中是否含有字段
+if(url.indexOf("?") > 0){
+  if(GetQueryString("login_user_id")!=null && GetQueryString("login_user_id").length>-1){
+    
+    userId = GetQueryString("login_user_id");
+  }
+  if(GetQueryString("combined_order_id")!=null && GetQueryString("combined_order_id").length>-1){
+    
+    comorderId = GetQueryString("combined_order_id");
+  }
+}
+function GetQueryString(name){
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if(r!=null)return  unescape(r[2]); return null;
+}
+headOrder();
+order_cout();
+
+
+$(".load").on("click",function(){
+  location.reload();
+})
+
+$(".head").on("click",".back",function(){
+  if(phoneType==1){
+    window.call.callMethodFinish();
+  }else if(phoneType==2){
+    callMethodFinish();
+  }else{
+    window.call.callMethodFinish();
+  }
+})
+
+//点击列表详情
+$(".content").on("click",".toylist",function(event){
+  event.stopPropagation();
+  busin=$(this).attr("busindex");
+  if(phoneType==1){
+    window.call.callMethodToToysDetail(busin);
+  }else if(phoneType==2){
+    callMethodToToysDetail(busin);
+  }else{
+    window.call.callMethodToToysDetail(busin);
+  }
+})
+
+//删除订单
+$(".content").on("click",".remove",function(event){
+  
+  remCombned=$(this).attr("remindex");
+  // alert(remCombned);
+  if(confirm('确定要删除订单吗?')){
+    $.ajax({
+      url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV77/cancelToysOrderV1',
+      type:'GET',
+      cache:false,
+      data:{
+        login_user_id:userId,
+        order_id:remCombned
+      },
+      success:function(data){
+        var data=JSON.parse(data);
+        order_cout();
+      }
+    })
+  } 
+})
+
+//退还玩具
+$(".content").on("click",".tuib",function(event){
+  tuiCombined=$(this).attr("tuibindex")
+  // if(phoneType==1){
+  //     userId=window.call.callMethodGetLoginUserId();
+      
+  //   }else if(phoneType==2){
+  //     userId=callMethodGetLoginUserId();
+  //   }else{
+  //     userId=window.call.callMethodGetLoginUserId();
+  //   }
+  if(confirm('确定要退还玩具吗?')){
+    $.ajax({
+      url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV77/toysOrderRefund',
+      type:'GET',
+      cache:false,
+      data:{
+        login_user_id:userId,
+        source:0,
+        refund_status:10,
+        order_id:tuiCombined,
+      },
+      success:function(data){
+        var data=JSON.parse(data);
+        order_cout();
+      }
+    })
+    
+  } 
+})
+
+//取消订单
+$(".content").on("click",".cencal",function(event){
+  cancel=$(this).attr("ceindex");
+  // if(phoneType==1){
+  //   userId=window.call.callMethodGetLoginUserId();
+    
+  // }else if(phoneType==2){
+  //   userId=callMethodGetLoginUserId();
+  // }else{
+  //   userId=window.call.callMethodGetLoginUserId();
+  // }
+  if(confirm('确定要取消订单吗?')){
+    $.ajax({
+      url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV77/toysOrderRefund',
+      type:'GET',
+      cache:false,
+      data:{
+        login_user_id:userId,
+        source:0,
+        refund_status:8,
+        order_id:cancel,
+      },
+      success:function(data){
+        var data=JSON.parse(data);
+        location.reload();
+      }
+    })
+  }else{
+    return false;
+  } 
+})
+
+$(".content").on("click",".pay",function(event){
+  var souceType=3;
+  if(phoneType==1){
+    window.call.callMethodToPayMoney(souceType,comorderId);
+  }else if(phoneType==2){
+    callMethodToPayMoney(souceType,comorderId);
+  }else{
+    window.call.callMethodToPayMoney(souceType,comorderId);
+  }comorderId
+})
+
+window.onload=function getSystemType() {
+  var u = navigator.userAgent;
+  if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {//安卓手机
+    phoneType = 1;
+  } else if (u.indexOf('iPhone') > -1) {//苹果手机
+    phoneType = 2;
+  } else if (u.indexOf('Windows Phone') > -1) {//winphone手机
+    phoneType = 3;
+  }else{
+    phoneType = 4;
+  }
+}
+
+window.confirm = function (message) {
+   if(phoneType==1){
+       var iframe = document.createElement("IFRAME");
+       iframe.style.display = "none";
+       iframe.setAttribute("src", '');
+       document.documentElement.appendChild(iframe);
+       var alertFrame = window.frames[0];
+       var result = alertFrame.window.confirm(message);
+       iframe.parentNode.removeChild(iframe);
+       return result;
+      
+    }else if(phoneType==2){
+       var iframe = document.createElement("IFRAME");
+       iframe.style.display = "none";
+       iframe.setAttribute("src", 'data:text/plain,');
+       document.documentElement.appendChild(iframe);
+       var alertFrame = window.frames[0];
+       var result = alertFrame.window.confirm(message);
+       iframe.parentNode.removeChild(iframe);
+       return result;
+    }
+};
+var payType="";
+function order_cout(){
+    picHtml="";
+    addressHtml="";
+    remaskHtml="";
+    moneyHtml="";
+    toyHtml="";
+    // if(phoneType==1){
+    //   userId=window.call.callMethodGetLoginUserId();
+      
+    // }else if(phoneType==2){
+    //   userId=callMethodGetLoginUserId();
+    // }else{
+    //   userId=window.call.callMethodGetLoginUserId();
+    // }
+    $.ajax({
+      url:'https://api.baobaoshowshow.com/index.php?r=BabyShowV77/getToysOrderListCombined&login_user_id='+userId+'&combined_order_id='+comorderId,
+      type:'GET',
+      async :false,
+      datatype:'json',
+      success:function(data){
+        var data=JSON.parse(data);
+        orderData=data.data;
+        alldata=data.data2;
+        console.log(orderData);
+        console.log(alldata);
+        addressHtml="";
+        picHtml="";
+        console.log(orderData.length)
+        if(orderData.length!=0){
+          for(var i in orderData){
+            payType=orderData[i].combined_order_id
+            if(orderData[i].combined_status_now==1){
+              picHtml+='<img src="img/45.png">';
+              $(".bottomfoot").show();
+            }else if(orderData[i].combined_status_now==2){
+              picHtml+='<img src="img/53.png">';
+              
+            }
+            else if(orderData[i].combined_status_now==22){
+              picHtml+='<img src="img/41.png">';
+              
+            }
+            else if(orderData[i].combined_status_now==5){
+              picHtml+='<img src="img/47.png">';
+              
+            }
+            else if(orderData[i].combined_status_now==6){
+              picHtml+='<img src="img/49.png">';
+              
+            }
+            else if(orderData[i].combined_status_now==14){
+              picHtml+='<img src="img/49.png">';
+              
+            }
+            else if(orderData[i].combined_status_now==7){
+              picHtml+='<img src="img/51.png">';
+              
+            }
+            else if(orderData[i].combined_status_now==10){
+              picHtml+='<img src="img/43.png">';
+              
+            }
+            else if(orderData[i].combined_status_now==11){
+              picHtml+='<img src="img/51.png">';
+              
+            }
+            else if(orderData[i].combined_status_now==8){
+              picHtml+='<img src="img/90.png">';
+              
+            }
+            else if(orderData[i].combined_status_now==9){
+              picHtml+='<img src="img/88.png">';
+              
+            }else if(orderData[i].combined_status_now==33){
+              picHtml+='<img src="img/86.png">';
+              
+            }else{
+              $('.pic').hide();
+            }
+          }
+          $('.pic').html(picHtml)
+        
+        
+        addressHtml+='<span><img src="img/33.png"></span><span><a>'+alldata.user_name_value+''+alldata.mobile+'</a><a>'+alldata.address+'</a></span></span>'; 
+        $(".addresss").html(addressHtml);
+
+        
+        remaskHtml+='<p><span>'+alldata.order_number_title+'</span><span>'+alldata.order_number_value+'</span></p><p><span>'+alldata.remark_title+'</span><span>'+alldata.remark_value+'</span></p>';
+          
+        $(".remask").html(remaskHtml);
+
+        moneyHtml+='<ul><li><span>'+alldata.sell_price_title+'</span><span>'+alldata.sell_price_value+'</span></li><li><span>'+alldata.battery_title+'</span><span>'+alldata.battery_value+'</span></li><li><span>'+alldata.service_price_title+'</span><span>'+alldata.service_price_value+'</span></li><li><span>'+alldata.deposit_price_title+'</span><span>'+alldata.deposit_price_value+'</span></li><li><span>'+alldata.total_price_title+'</span><span>'+alldata.total_price_value+'</span></li></ul>';
+        $(".money").html(moneyHtml);
+
+        for(var i in orderData){
+          toyCout=orderData[i].toys_info;
+          if(toyCout.length!=0){
+            for(var j in toyCout){
+              toyHtml+='<div class="top"><dl class="toylist" busindex='+toyCout[j].business_id+'><dt><img src="'+toyCout[j].img_thumb+'"></dt><a class="xing"><img src="'+toyCout[j].size_img_thumb+'"></a><dd><p>'+toyCout[j].business_title+'</p><p><span>'+toyCout[j].toys_card_infoS+'</span></p><p><span>'+toyCout[j].status_name+'</span></p><a class="card"></a></dd></dl></div>';
+              if(toyCout[j].status==11){
+                toyHtml+='<div class="bottom"><span class="remove" remindex='+toyCout[j].order_id+'>删除</span></div>';
+              }
+              else if(toyCout[j].status==9){
+                toyHtml+='<div class="bottom"><span class="remove" remindex='+toyCout[j].order_id+'>删除</span></div>';
+              }
+              else if(toyCout[j].status==1){
+                toyHtml+='<div class="bottom"><span class="remove" remindex='+toyCout[j].order_id+'>删除</span></div>';
+              }
+              else if(toyCout[j].status==2){
+                toyHtml+='<div class="bottom"><span class="cencal" ceindex='+toyCout[j].order_id+'>取消订单</span></div>';
+              }
+              else if(toyCout[j].status==6){
+                toyHtml+='<div class="bottom"><span class="tuib" tuibindex='+toyCout[j].order_id+'>退还</span></div>';
+              }
+              $(".toylist dt img").each(function(i){
+                var img = $(this);
+                var imgWidth;
+                var imgHeight;
+                
+                $("<img/>").attr("src", $(img).attr("src")).load(function() {
+                
+                  boxHeight=$(".toylist dt").height();
+                  boxWidth=$(".toylist dt").width();
+                  imgWidth = this.width;
+                  imgHeight = this.height;
+                  shown=imgWidth/imgHeight;
+                  
+                  if(shown>=2){
+                    newimgHeight =boxWidth/imgWidth*imgHeight;
+                    $(img).css("width",boxWidth).css("height",newimgHeight);
+                  }
+                  else if(shown<2){
+                    newimgWidth = boxHeight/imgHeight*imgWidth;
+                    $(img).css("width",newimgWidth).css("height",boxHeight);
+
+                  }
+                });
+              });
+            }
+            $(".toy").html(toyHtml);
+          }else{
+            wrapHtml="<img src='img/84.png' class='pppic'>"
+            $(".main").html(wrapHtml);
+          }
+          
+        }
+
+        payHtml='<span class="pay">去支付</span>';
+        $(".bottomfoot").html(payHtml);
+        }else{
+          wrapHtml="<img src='img/84.png' class='pppic'>"
+          $(".main").html(wrapHtml);
+        }
+          
+      },
+      complete:function(){
+             
+             $(".wrapper").show();
+             $(".pic").show();
+          },
+          error:function(data){
+            var data=JSON.parse(data);
+            if(data.reCode==404){
+          wrapHtml+='<img src="img/error.png" class="load"/>'
+              $(".wrap").html(wrapHtml)
+        }
+          }
+    })
+}
+
+function headOrder(){
+  // if(phoneType==1){
+  //   userId=window.call.callMethodGetLoginUserId();
+    
+  // }else if(phoneType==2){
+  //   userId=callMethodGetLoginUserId();
+  // }else{
+  //   userId=window.call.callMethodGetLoginUserId();
+  // }
+  $.ajax({
+    url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV77/getToysOrderListCombined&login_user_id='+userId+'&combined_order_id='+comorderId,
+    type:'GET',
+    cache:false,
+    datatype:'json',
+    success:function(data){
+      var data=JSON.parse(data);
+      orderData=data.data;
+      alldata=data.data2;
+      console.log(orderData);
+
+      for(var i in orderData){
+        if(orderData[i].postman_mobile==0){
+          headHtml+='<p style="position: relative;"><span class="back"><img src="img/back.png"></span><span>订单</span></p>';
+        }else{
+          headHtml+='<p style="position: relative;"><span class="back"><img src="img/back.png"></span><span>订单</span><a href="tel:'+orderData[i].postman_mobile+'"><img src="img/81.png"></span></p>';
+        }
+      }
+      $(".head").html(headHtml)
+      
+    },
+    complete:function(){
+           
+       $("#loading").hide();
+       $(".head").show();
+    },
+    error:function(data){
+      var data=JSON.parse(data);
+      if(data.reCode==404){
+        wrapHtml+='<img src="img/error.png" class="load"/>'
+            $(".wrap").html(wrapHtml);
+      }
+    }
+  })
+}
+</script>
+</body>
+</html> 

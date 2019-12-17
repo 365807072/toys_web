@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>舜鑫国际旅游（北京）有限公司租赁玩具租赁</title>
+    <link rel="stylesheet" type="text/css" href="css/shared_cout.css">
+    <link rel="stylesheet" type="text/css" href="css/mobile.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="main" style="display:none">
+            <div class="activity_title" id="activity_title"></div>
+            <div class="rotary_box">
+                <div class="rotary_table"></div>
+                <div class="draw_btn"></div>
+            </div>
+            <div class="rotaery_num">
+                <!-- <p>您有 <span>1</span> 次抽奖机会</p> -->
+            </div>
+            <div class="showliwu">
+               
+            </div>
+            <div class="xz_btn">
+                <p><a href="http://mp.weixin.qq.com/s/ARqbCjpI6PXjVEYZ3dtnOQ"><img src="img/59.png"></a></p>
+                
+            </div>
+            <div class="foot">
+                <p>活动说明</p >
+                <p>1.输入手机号即可抽奖或直接领取邀请人分享的福利</p >
+                <p>2.活动期内每位用户有3次抽奖机会，抽到的所有福利任选其一</p >
+                <p>3.福利抽取后，请在舜鑫国际旅游（北京）有限公司租赁App内选择兑换。</p >
+                <p>4.福利兑换操作流程【玩具世界】→ 【右上角礼盒】→【邀请页面】</p >
+            </div>
+        </div>
+        <div class="box">
+            <div class="top">
+                <img src="img/67.png">
+            </div>
+
+           <div class="btn">
+                <span><img src="img/70.png" alt=""></span>
+            </div>
+            <div class="xz_btn">
+                <p><a href="http://mp.weixin.qq.com/s/ARqbCjpI6PXjVEYZ3dtnOQ"><img src="img/59.png"></a></p>
+                
+            </div>
+            <div class="foot">
+                <p>活动说明</p >
+                <p>1.输入手机号即可抽奖或直接领取邀请人分享的福利</p >
+                <p>2.活动期内每位用户有3次抽奖机会，抽到的所有福利任选其一</p >
+                <p>3.福利抽取后，请在舜鑫国际旅游（北京）有限公司租赁App内选择兑换。</p >
+                <p>4.福利兑换操作流程【玩具世界】→ 【右上角礼盒】→【邀请页面】</p >
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 遮罩 -->
+    <div class="overbox"></div>
+    <!-- 提示框 -->
+    <div class="alertBox">
+        <div class="alertBox_close"></div>
+        <div class="alertBox_content">
+            <input type="number" name="" placeholder="请输入您的手机号" class="numInput">
+        </div>
+        <div class="alertBtn">
+            <button class="draw_determine">确定</button>
+            <button class="alertBtn_cancel">取消</button>
+        </div>
+    </div>
+    <!--开奖结果弹出框-->
+    <div class="drawBox">
+        <img src="" alt="">
+       
+    </div>
+    <div class="drawBox_close"></div>
+
+<!-- <script src="js/dial_draw.js"></script> -->
+<script src="js/jquery.min.js"></script>
+<script src="js/setfontsize.js"></script>
+<script src="js/jquery.rotate.min.js"></script>
+<script type="text/javascript">
+    var flag = false;
+    var txt="";
+    var url = location.href;
+    var userNum="";
+    var timesUse="";
+    var timesNum="";
+    var synums="";
+    var prize="";
+    var dialhtml="";
+    var isClick = 0; // 0 = 没确定礼品，1 = 已经确定礼品
+    var newUserId = "";
+
+    //地址中带有参数
+    if(url.indexOf("?") > 0){
+        if(GetQueryString("login_user_id")!=null && GetQueryString("login_user_id").length>-1){
+            txt = GetQueryString("login_user_id")
+        }
+    }
+    function GetQueryString(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
+
+    // 查询分享人是否选定了奖励
+    $.ajax({
+        url:'https://api.baobaoshowshow.com/index.php?r=BabyShowV77/ToysTimesF&login_user_id='+txt,
+        type:'GET',
+        async:true,
+        success:function(res){
+            var data=JSON.parse(res);
+
+            // 判断是否有确定奖励
+            if(JSON.parse(res).data[0].prize == 0){
+                isClick = 0; // 没选定奖励
+            }else{
+                isClick = 1; // 已选定奖励
+                
+                //显示再凑一次弹框
+                if (JSON.parse(res).data[0].prize == 1) {
+                    $(".top img").attr("src", 'img/60.png');
+                } else if (JSON.parse(res).data[0].prize == 2) {
+                    $(".top img").attr("src", 'img/61.png');
+                } else if (JSON.parse(res).data[0].prize == 3) {
+                    $(".top img").attr("src", 'img/62.png');
+                } else if (JSON.parse(res).data[0].prize == 4) {
+                    $(".top img").attr("src", 'img/63.png');
+                } else if (JSON.parse(res).data[0].prize == 5) {
+                    $(".top img").attr("src", 'img/64.png');
+                } else if (JSON.parse(res).data[0].prize == 6) {
+                    $(".top img").attr("src", 'img/65.png');
+                } else if (JSON.parse(res).data[0].prize == 7) {
+                    $(".top img").attr("src", 'img/66.png');
+                }
+            } 
+            
+            // 判断是否显示转盘
+            if(0 == isClick){ // 没确定奖励，显示转盘
+                 $(".main").show();
+                  $(".box").hide();
+            }else{ // 确定了奖励，不显示装盘，显示奖励和同享
+                 $(".box").show();
+                 $(".main").hide();
+            }
+                                    
+            // 绘制抽奖记录列表
+            var listarr=JSON.parse(res).data[0].prize_list;
+            //drawList.splice(0, drawList.length);
+            for(var i in listarr){
+                //drawList[i] = listarr[i].no;
+                if(listarr[i].sun == 1){ // 确定兑换的礼品
+                        dialhtml+="<span class='showliwuhui02' txtindex="+i+">"+"选定-"+listarr[i].name+"</span>";
+                }else{
+                        dialhtml+="<span class='showliwuhui' txtindex="+i+">"+listarr[i].name+"</span>";
+                }
+            }
+            $(".showliwu").html(dialhtml);  
+        }
+    })
+    
+    
+    //刷新页面
+    var updatePage = function () {
+         $.ajax({
+        url:'https://api.baobaoshowshow.com/index.php?r=BabyShowV77/ToysTimesF&login_user_id='+txt,
+        type:'GET',
+        async:true,
+        success:function(res){
+            var data=JSON.parse(res);
+            
+            // 初始化剩余次数
+            if(JSON.parse(res).data[0].times_second > 0){
+                synums = JSON.parse(res).data[0].times_second;
+                timesUse='<p>您有 <span>'+ JSON.parse(res).data[0].times_second +'</span> 次抽奖机会</p>';     
+            }else{
+                synums = 0;
+                timesUse='<p>亲，您已抽过三次奖了！</p>';     
+            }
+            $(".rotaery_num").html(timesUse);      
+            
+            // 绘制抽奖记录列表
+            var listarr=JSON.parse(res).data[0].prize_list;
+            dialhtml = "";
+            $(".showliwu").html(dialhtml);
+            //drawList.splice(0, drawList.length);
+            for(var i in listarr){
+                //drawList[i] = listarr[i].no;
+                if(listarr[i].sun == 1){ // 确定兑换的礼品
+                    dialhtml+="<span class='showliwuhui02' txtindex="+i+">"+"选定-"+listarr[i].name+"</span>";
+                }else{
+                    dialhtml+="<span class='showliwuhui' txtindex="+i+">"+listarr[i].name+"</span>";
+                }
+            }
+            $(".showliwu").html(dialhtml);
+            
+        }
+    })
+    }
+    
+    //抽奖按钮
+    $(".draw_btn").on("click", function () {
+            
+        if(newUserId == ""){
+             $(".alertBox").show();
+            return false;
+        }
+        
+         if(synums==0 || synums<0){
+                alert("亲，最多抽奖三次哦！");
+                return false;
+            }else{
+                clickfunc();
+            }
+    });
+    
+    // 同享福利
+    $(".btn").on("click", function () {
+        $(".alertBox").show();
+    });
+    
+    // 手机号码提示框取消按钮点击事件
+    $(".alertBtn_cancel").on("click",function(){
+        close_alertBox();
+    })
+
+    // 手机号码提示框确定按钮点击事件
+    $(".draw_determine").on("click", function () {
+        close_alertBox();
+        if($(".numInput").val() =="" || $(".numInput").val().length != 11){
+            alert("请输入正确的手机号哦");
+            return false;
+        }else{
+            // 转盘抽奖
+            if(0 == isClick){
+                var mobile = $(".numInput").val();
+                $.ajax({
+                url:'https://api.baobaoshowshow.com/index.php?r=BabyShowV77/ToysTimesFS&mobile='+ mobile,
+                type:'GET',
+                async:true,
+                success:function(res){
+                    var data=JSON.parse(res);
+                    if(data.reCode == "200"){
+                        // 更新用户id
+                        newUserId = JSON.parse(res).data[0].parent_id;
+                        txt = JSON.parse(res).data[0].parent_id;
+                        // 初始化剩余次数
+                        if(JSON.parse(res).data[0].times_second > 0){
+                            synums = JSON.parse(res).data[0].times_second;
+                            timesUse='<p>您有 <span>'+ JSON.parse(res).data[0].times_second +'</span> 次抽奖机会</p>';     
+                        }else{
+                            synums = 0;
+                            timesUse='<p>亲，您已抽过三次奖了！</p>';     
+                        }
+                        $(".rotaery_num").html(timesUse);      
+            
+                        // 判断是否有确定奖励
+                        if(JSON.parse(res).data[0].prize == 0){ // 确定了奖励
+                            isClick = 0;
+                        }else{
+                            isClick = 1;
+                        }
+                        
+                        // 绘制抽奖记录列表
+                        var listarr=JSON.parse(res).data[0].prize_list;
+                        dialhtml = "";
+                        $(".showliwu").html(dialhtml);
+                        //drawList.splice(0, drawList.length);
+                        for(var i in listarr){
+                            //drawList[i] = listarr[i].no;
+                            if(listarr[i].no == JSON.parse(res).data[0].prize){ // 确定兑换的礼品
+                                dialhtml+="<span class='showliwuhui02' txtindex="+i+">"+"选定-"+listarr[i].name+"</span>";
+                            }else{
+                                dialhtml+="<span class='showliwuhui' txtindex="+i+">"+listarr[i].name+"</span>";
+                            }
+                        }
+                        $(".showliwu").html(dialhtml);  
+                    }else{
+                        alert("未能成功获取，请重试");    
+                    }
+                }
+            })
+            }else{ // 已确定礼品，绑定
+                
+                 $.ajax({
+                url:'https://api.baobaoshowshow.com/index.php?r=BabyShowV77/ToysActivityIng&mobile='+$(".numInput").val()+"&login_user_id="+txt,
+                type:'GET',
+                async:true,
+                success:function(res){
+                    var data=JSON.parse(res);
+                    if(data.reCode == 200){
+                        alert("已获得TA的福利，快去下载【舜鑫国际旅游（北京）有限公司租赁】app吧！");
+                        window.location.href='http://www.meimei.yihaoss.top/download.php';
+                    }else{
+                        alert(data.reMsg);
+                    }
+                }
+            })
+            }
+        } 
+    });
+    
+    // 列表兑换
+    $(".showliwu").on("click",".showliwuhui",function(){
+        alert("兑换福利请移步【舜鑫国际旅游（北京）有限公司租赁】app哦亲！");
+        window.location.href='http://www.meimei.yihaoss.top/download.php';
+    });
+
+    //抽奖功能
+    var clickfunc = function () {
+        $.ajax({
+            url:'https://api.baobaoshowshow.com/index.php?r=BabyShowV77/ToysTimesStartF&login_user_id='+txt,
+            type:'GET',
+            async:true,
+            success:function(data){
+                var data=JSON.parse(data);
+                prize = parseInt(data.prize)
+                
+                
+                
+               switch (prize) {
+
+                    case 1:
+                        rotateFunc(1, 0);
+                        break;
+                    case 2:
+                        rotateFunc(2, 51.4);
+                        break;
+                    case 3:
+                        rotateFunc(3, 257.1);
+                        break;
+                    case 4:
+                        rotateFunc(4, 308.5);
+                        break;
+                    case 5:
+                        rotateFunc(5, 205.7);
+                        break;
+                    case 6:
+                        rotateFunc(6, 102.8);
+                        break;
+                    case 7:
+                        rotateFunc(7, 154.2);
+                        break;
+                }
+
+               
+            }
+        }) 
+    }
+
+    //关闭提示框
+    $(".alertBox_close").on("click", function () {
+
+        close_alertBox();
+    });
+
+    //转盘旋转角度
+    var rotateFunc = function (awards, angle) {
+        isture = true;
+        $(".rotary_table").stopRotate();
+        $(".rotary_table").rotate({
+            angle: 0,
+            duration: 4000,
+            animateTo: 1440 - angle ,
+            callback: function () {
+                isture = false; // 标志为 执行完毕
+                flag = true;
+                if(synums==0){
+                    synums=0;
+                    timesUse='<p>亲，最多抽奖三次哦！</p>';
+                    $(".rotaery_num").html(timesUse);
+                }else{
+                    synums=parseInt(synums-1)
+                    timesUse='<p>您有 <span>'+synums+'</span> 次抽奖机会</p>';
+                    $(".rotaery_num").html(timesUse);
+                }
+                //显示再凑一次弹框
+               if (awards == 1) {
+                    drawBox('drawBox','img/60.png');
+                } else if (awards == 2) {
+                    drawBox('drawBox','img/61.png');
+                } else if (awards == 3) {
+                    drawBox('drawBox','img/62.png');
+                } else if (awards == 4) {
+                    drawBox('drawBox','img/63.png');
+                } else if (awards == 5) {
+                    drawBox('drawBox','img/64.png');
+                } else if (awards == 6) {
+                    drawBox('drawBox','img/65.png');
+                } else if (awards == 7) {
+                    drawBox('drawBox','img/66.png');
+                }
+
+                updatePage();
+            }
+        });
+    };
+
+    //调起中奖结果提示框
+    function drawBox(className,imgurl) {
+        $(".overbox").show();
+        $(".drawBox").show();
+        $(".drawBox_close").show();
+        $(".drawBox img").attr("src", imgurl);
+        $(".drawBox_btn").on("click", function () {
+            close_drawBox();
+        })
+        $(".drawBox_close").on("click", function () {
+            close_drawBox();
+        })
+    }
+
+    //调起关闭中奖结果提示框
+    function close_drawBox() {
+        $(".overbox").hide();
+        $(".drawBox").hide();
+        $(".drawBox_close").hide();
+    }
+
+     //调起关闭提示框
+    function close_alertBox() {
+        $(".overbox").hide();
+        $(".alertBox").hide();
+    }
+
+    $(".xz_btn").on("click","img",function(){
+        window.location.href='http://www.meimei.yihaoss.top/download.php';
+    })
+    
+    
+</script>
+</body>
+</html>

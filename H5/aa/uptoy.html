@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta charset="UTF-8">
+	<title>玩具置换</title>
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+	<link rel="stylesheet" type="text/css" href="css/uptoy.css">
+</head>
+<body>
+	<div class="wrap">
+		<div class="box">
+			<div class="headpic">
+				<img src="img/toy.jpg">
+			</div>
+			<div class="main">
+				<form action="http://api.baobaoshowshow.com/index.php?r=BabyShowV7/ExchangeToys11" method="POST" enctype="multipart/form-data" onsubmit="return check()">
+					<div class="first">
+						<p>
+							<label>玩具名称</label><input type="text" name="toys_name" class="nametxt" placeholder="乐高积木多合一趣味桶">
+							<span>*</span>
+						</p>
+						<p>
+							<label>购买价格</label><input type="number" name="buy_price" class="pricetxt">
+							<span>*</span>
+						</p>
+						<p>
+							<label>购买年限</label>
+							<select id="yeartest" name="buy_time_now">
+								<option>请选择</option>
+								<option value="1">3个月以内</option>
+								<option value="2">3-6个月</option>
+								<option value="3">6-12个月</option>
+								<option value="4">12-18个月</option>
+								<option value="5">18-24个月</option>
+								<option value="6">两年以上</option>
+							</select>
+							<span>*</span>
+						</p>
+						<p>
+							<label>官网价格</label><input type="number" name="website_price" placeholder="可不填" class="gwtxt">
+						</p>
+						<p>
+							<label>官网链接</label><input type="text" name="website_link" placeholder="可不填" class="ljtxt">
+						</p>
+					</div>
+
+					<div class="middle">
+						<p>
+							<label>期望置换价格</label><input type="number" name="want_price" class="xltxt" style="width: 60.3%" placeholder="可用来兑换等值玩具租赁会员卡">
+							<span>*</span>
+						</p>
+						<p>
+							<label>玩具状态</label>
+							<select id="test" name="status">
+								<option>请选择</option>
+								<option value="1">全新 - 未使用</option>
+								<option value="2">9成新 - 功能良好，配件齐全</option>
+								<option value="3">7-8成新  有损伤，不影响使用</option>
+								<option value="4">3-6成新  零件丢失，可配</option>
+								<option value="5">零件完好，可维修</option>
+								<option value="6">其它</option>
+							</select>
+							<span style="padding-left: 1rem">*</span>
+						</p>
+						
+					</div>
+					
+					<div class="uppic">
+						<p>实物图片<span style="padding-left: 5.5rem">*</span></p>
+						<p style="display: -webkit-box">
+							<label for='file' id='showDiv'><img src='img/3.png' class="pic"></label>
+							<input type='file' id='file' onchange='_file' name="img1" accept="image/*" multiple>
+						
+						<p>
+
+					</div>
+					
+					
+
+					<div class="bottom">
+						<p>
+							<label>联系人</label><input type="text" name="user_name" class="usertxt">
+						</p>
+						<p>
+							<label>手机号码</label><input type="number" name="user_mobile" placeholder="必填" class="phonetxt"><span style="padding-left: 0.13rem" maxlength="11" onkeyup="this.value=this.value.replace(/\D/g,'')">*</span>
+						</p>
+						<p>
+							<label>联系地址</label><input type="text" name="user_address" class="addresstxt">
+						</p>
+						<p>
+							<label>微信号码</label><input type="text" name="user_wx" class="wxtxt">
+						</p>
+						<p>
+							<label>备注</label>
+							<textarea name="remark" class="bz"></textarea>
+						</p>
+					</div>
+					
+					<button type="submit" name="" class="btn">提交</button>
+				</form>
+			</div>
+			<div class="foot">
+				<div class="top">
+					<p style="font-weight: bold">活动说明：</p>
+					<p><span>* </span><span>闲置玩具可折成相应的价格，兑换舜鑫国际旅游（北京）有限公司租赁玩具租赁会员卡，不可兑换现金。</span></p>
+					<p><span>* </span><span>旧玩具兑换的舜鑫国际旅游（北京）有限公司租赁玩具租赁会员卡同样享受会员的全部权限。</span></p>
+					<p><span>* </span><span>每个用户提交的玩具数量不限，可以累加兑换等值玩具租赁会员卡。</span></p>
+					<p><span>* </span><span>提交申请后，将由平台审核并及时通知。</span></p>
+					<p><span>* </span><span>客服手机： <a style="color:red" href="tel:13373920077">185-1539-4818</a> <br>      客服微信：xiuxiuxiaobian</span></p>
+				</div>
+
+				<div class="dibu">
+					<p style="font-weight: bold">玩具安全：</p>
+					<p><span>* </span><span>为保障孩子们的安全，置换活动仅限可清洗消毒和维修、并且是安全可靠的玩具；不支持毛绒类玩具和容易对孩子造成伤害的玩具进行置换活动。</span></p>
+					<p><span>* </span><span>每一件玩具在回收后将严格进行统一的清洗消毒和维修，确保之后的安全使用。</span></p>
+					
+				</div>
+
+				<div class="dibu">
+					<p style="font-weight: bold">玩具用途：</p>
+					<p><span>* </span><span>适合平台业务的玩具，将在严格的检查维护和清洗消毒后以更合适的价格在平台上进行共享，发挥其价值。</span></p>
+					<p><span>* </span><span>部分玩具将在严格的检查维护和清洗消毒后统一捐赠给山区需要的孩子们。</span></p>
+
+				</div>
+
+				<div class="dibu">
+					<p style="font-weight: bold">活动备注：</p>
+					<p><span>* </span><span>可租赁的玩具，以豌豆苗提供的品牌玩具为主。</span></p>
+					<p><span>* </span><span>用户分享的玩具，会在平台标注“用户共享”。</span></p>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+
+<script type="text/javascript" src="js/setfontsize.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+
+ var _file = document.querySelector('#file');
+
+_file.onchange = function(){
+	var fileList = document.getElementById("file").files[0];
+	var reader = new FileReader();
+	reader.readAsDataURL(fileList);
+	reader.onload = function (){
+		var urlData = this.result;
+		document.getElementById("showDiv").innerHTML += "<img src = '" + urlData + "'/>"
+		$(".pic").hide();
+	}
+}
+
+
+
+window.alert = function(name){
+    var iframe = document.createElement("IFRAME");
+	iframe.style.display="none";
+	iframe.setAttribute("src", 'data:text/plain,');
+	document.documentElement.appendChild(iframe);
+	window.frames[0].window.alert(name);
+	iframe.parentNode.removeChild(iframe);
+}
+
+function check(){
+	var nameTxt=$(".nametxt").val();
+	var priceTxt=$(".pricetxt").val();
+	var yearTxt=$(".yeartxt").val();
+	var gwTxt=$(".gwtxt").val();
+	var ljTxt=$(".ljtxt").val();
+	var xlTxt=$(".xltxt").val();
+	var userTxt=$(".usertxt").val();
+	var phoneTxt=$(".phonetxt").val();
+	var addressTxt=$(".addresstxt").val();
+	var wxTxt=$(".wxtxt").val();
+	var checkIndex=$("#test").find("option:selected").attr("value");
+	var yearIndex=$("#yeartest").find("option:selected").attr("value");
+	var filetxt=$("#file").val();
+	var file1txt=$("#file1").val();
+	var file2txt=$("#file2").val();
+	var reg=/[^0-9]/g;
+    var len=$(".phonetxt").val().length;
+        if (len!=11){
+        	alert("您输入的手机号码位数不正确，请重新输入");
+        	
+        	return false;
+  		
+	    }
+	if(nameTxt==""){
+		alert("请填写玩具名称");
+		return false;
+	}else if(priceTxt==""){
+		alert("请填写玩具价格");
+		return false;
+	}else if(yearIndex==undefined){
+		alert("请填写玩具购买年限");
+		return false;
+	}else if(xlTxt==""){
+		alert("请填写期望置换价格");
+		return false;
+	}else if(phoneTxt==""){
+		alert("请填写联系方式");
+		return false;
+	}else if(checkIndex==undefined){
+		alert("请填写玩具状态");
+		return false;
+	}else if(filetxt==""){
+		alert("请上传玩具图片");
+		return false;
+	}
+	return true;
+}
+
+
+
+
+
+</script>
+</body>
+</html>

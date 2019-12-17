@@ -1,0 +1,844 @@
+*{  
+    -webkit-touch-callout:none;  /*系统默认菜单被禁用*/   
+    -webkit-user-select:none; /*webkit浏览器*/   
+    -khtml-user-sel
+    ect:none; /*早期浏览器*/   
+    -moz-user-select:none;/*火狐*/   
+    -ms-user-select:none; /*IE10*/   
+    user-select:none;   
+} 
+
+input{  
+    -webkit-user-select:auto; /*webkit浏览器*/     
+}
+
+textarea{
+    -webkit-user-select:auto; /*webkit浏览器*/
+}
+
+html,body{
+    width: 100%; 
+    height: 100%;
+    font-family: '微软雅黑';
+    -webkit-tap-highlight-color:rgba(255,255,255,0);
+    background-color: #d3f0ff;
+}
+
+.wrap{
+    height: 100%;
+    background-color: #d3f0ff;
+}
+
+/*.box,.box1,.box2,.box3{
+    background: url(../img/kuang.png)no-repeat left center;
+    background-size: 100% 100%;
+    position: relative;
+    height: 95%;
+    margin: 0.2rem;
+   
+}
+*/
+.first,.second,.third,.forth{
+    background: url(../img/kuang.png) no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+}
+
+
+.share{
+    display: block;
+    position: absolute;
+    right: 0.65rem;
+    top: 1.5rem;
+    width: 1rem;
+    height: 1rem;
+}
+
+.swiper-wrapper{
+    height: 100%;
+
+}
+.swiper-container{
+    height: 100%;
+}
+.swiper-slide{
+    transition: 800ms;
+    color: #fff;
+    width: 100%;
+}
+
+.up{
+    position: absolute;
+    bottom: 0.5rem;
+    left: 3.5rem;
+    width: 0.7rem;
+    height: 0.7rem;
+}
+
+/*第一屏动画*/
+@keyframes warn {
+    0% {
+        transform: scale(0.3);
+        -webkit-transform: scale(0.3);
+        opacity: 0.0;
+    }
+    25% {
+        transform: scale(0.3);
+        -webkit-transform: scale(0.3);
+        opacity: 0.1;
+    }
+    50% {
+        transform: scale(0.5);
+        -webkit-transform: scale(0.5);
+        opacity: 0.3;
+    }
+    75% {
+        transform: scale(0.8);
+        -webkit-transform: scale(0.8);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        opacity: 0.0;
+    }
+}
+@keyframes warn1 {
+    0% {
+        transform: scale(0.3);
+        -webkit-transform: scale(0.3);
+        opacity: 0.0;
+    }
+    25% {
+        transform: scale(0.3);
+        -webkit-transform: scale(0.3);
+        opacity: 0.1;
+    }
+    50% {
+        transform: scale(0.3);
+        -webkit-transform: scale(0.3);
+        opacity: 0.3;
+    }
+    75% {
+        transform: scale(0.5);
+        -webkit-transform: scale(0.5);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(0.8);
+        -webkit-transform: scale(0.8);
+        opacity: 0.0;
+    }
+}
+@-webkit-keyframes "warn" {
+    0% {
+        transform: scale(0);
+        -webkit-transform: scale(0);
+        opacity: 0.0;
+    }
+    25% {
+        transform: scale(0);
+        -webkit-transform: scale(0);
+        opacity: 0.1;
+    }
+    50% {
+        transform: scale(0.1);
+        -webkit-transform: scale(0.1);
+        opacity: 0.3;
+    }
+    75% {
+        transform: scale(0.5);
+        -webkit-transform: scale(0.5);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        opacity: 0.0;
+    }
+}
+
+.container {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    top: 1rem;
+    left: -0.15rem;
+}
+/* 保持大小不变的小圆圈  */
+.dot {
+    position: absolute;
+    width: 1.5rem;
+    height: 1.5rem;
+    left: 3.1rem;
+    top: 2.9rem;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border: 2px solid #45b9ff;
+    border-radius: 50%;
+}
+
+.dot img{
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+
+}
+/* 产生动画（向外扩散变大）的圆圈  */
+.pulse {
+    position: absolute;
+    width: 4rem;
+    height: 4rem;
+    left: 1.85rem;
+    top: 1.6rem;
+    border: 2px solid #45b9ff;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    opacity: 0;
+    -webkit-animation: warn 2s ease-out;
+    -moz-animation: warn 2s ease-out;
+    animation: warn 2s ease-out;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    box-shadow: 1px 1px 30px #45b9ff;
+
+}
+.pulse1 {
+    position: absolute;
+    width: 4rem;
+    height: 4rem;
+    left: 1.85rem;
+    top: 1.6rem;
+    border: 2px solid #45b9ff;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    opacity: 0;
+    -webkit-animation: warn1 2s ease-out;
+    -moz-animation: warn1 2s ease-out;
+    animation: warn1 2s ease-out;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    box-shadow: 1px 1px 30px #45b9ff;
+}
+
+.username{
+    text-align: center;
+    color: #2f749d;
+    font-size: 0.35rem;
+    margin-top:4.8rem;
+}
+
+.annual{
+    position: absolute;
+    bottom: 1.5rem;
+    left: 2.4rem;
+    font-size: 0.3rem;
+    color: #2f749d;
+}
+
+/*第二屏动画*/
+.longTime{
+    width: 86%;
+    color: #28698f;
+    position: absolute;
+    top: 1rem;
+    font-size: 0.55rem;
+    font-weight: bolder;
+    padding: 0 0.5rem;
+    letter-spacing: 0.05rem;
+    line-height: 0.6rem;
+}
+
+.longTime a{
+    width: 2.3rem;
+    height: 0.45rem;
+    display: inline-block;
+    padding-right: 0.1rem;
+    padding-top: 0.1rem;
+}
+
+.toyPic{
+    width: 76%;
+    margin: 0 auto;
+    height: 3.8rem;
+    background: url(../img/1.png)no-repeat center;
+    background-size: 100% auto;
+    position: absolute;
+    top: 2.5rem;
+    left: 0.8rem;
+    padding-top: 1rem;
+}
+.toyPic img{
+    width: 55%;
+    margin: 0rem auto;
+}
+.chuo{
+    position: absolute;
+    right: -3rem;
+    top: 5.4rem;
+    width: 1.8rem;
+    height: 1.8rem;
+}
+
+.Hline{
+    width: 83%;
+    position: absolute;
+    top: 7rem;
+    left: 0.6rem;
+}
+
+.service{
+    position: absolute;
+    top: 7.3rem;
+    left: -4.5rem;
+    width: 71%;
+    color: #28698f;
+    font-size: 0.55rem;
+    font-weight: bolder;
+    letter-spacing: 0.05rem;
+    line-height: 0.6rem;
+}
+
+.num{
+    position: absolute;
+    top: 8.7rem;
+    left: -5.5rem;
+    font-size: 0.3rem;
+}
+
+.num ul{
+    display: -webkit-box;
+    color: #28698f
+}
+
+.num ul li{
+    display: block;
+}
+
+.num ul li span{
+    display: block;
+    letter-spacing: 0.1rem;
+}
+
+.num ul li span:nth-of-type(2){
+    text-align: center;
+    margin-top: 0.1rem;
+}
+
+.num ul li a{
+    color: #fd6363;
+    font-size: 0.4rem;
+    font-weight: bold;
+}
+
+.num b{
+    width: 1px;
+    height: 1rem;
+    display: inline-block;
+    padding: 0 0.2rem;
+}
+
+/*第三屏动画*/
+.noknow{
+    width: 80%;
+    
+}
+.knTop{
+    position: absolute;
+    top: -2.7rem;
+    left: 0.7rem;
+}
+
+.noknow p:nth-of-type(1){
+    color: #28698f;
+    font-size: 0.55rem;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+}
+
+.noknow p:nth-of-type(2){
+    color: #28698f;
+    font-size: 0.45rem;
+    font-weight: 500;
+    letter-spacing: 0.1rem;
+}
+
+.noknow p:nth-of-type(3){
+    color: #28698f;
+    font-size: 0.45rem;
+    font-weight: 500;
+    letter-spacing: 0.1rem;
+}
+
+.noknow a{
+    width: 2.5rem;
+    height: 1.2rem;
+    display: block;
+    background: url(../img/5.png)no-repeat center;
+    background-size: 100% auto;
+    font-size: 0.4rem;
+    position: absolute;
+    right: -2.6rem;
+    top: 2.7rem;
+    line-height: 1.35rem;
+    text-align: center;
+    font-weight: bold;
+    color: #28698f;
+    letter-spacing: 0.1rem;
+}
+
+.Hline1{
+    width: 81%;
+    position: absolute;
+    top: 4rem;
+    left: 0.7rem;
+}
+
+.noknow1{
+    width: 80%;
+}
+
+.knTop2{
+    position: absolute;
+    top: -1.8rem;
+    left: 0.7rem;
+}
+
+.noknow1 p:nth-of-type(1){
+    color: #28698f;
+    font-size: 0.45rem;
+    letter-spacing: 0.1rem;
+}
+
+.noknow1 p:nth-of-type(2){
+    color: #28698f;
+    font-size: 0.45rem;
+    font-weight: 500;
+    letter-spacing: 0.1rem;
+}
+
+.noknow1 p:nth-of-type(3){
+    color: #28698f;
+    font-size: 0.45rem;
+    font-weight: 500;
+    letter-spacing: 0.1rem;
+}
+
+.noknow1 a{
+    width: 2.5rem;
+    height: 1.2rem;
+    display: block;
+    background: url(../img/5.png)no-repeat center;
+    background-size: 100% auto;
+    font-size: 0.4rem;
+    position: absolute;
+    right: -2.8rem;
+    top: 5.2rem;
+    line-height: 1.35rem;
+    text-align: center;
+    font-weight: bold;
+    color: #28698f;
+    letter-spacing: 0.1rem;
+}
+
+.Hline2{
+    width: 81%;
+    position: absolute;
+    top: 6.5rem;
+    left: 0.7rem;
+}
+
+.sheng{
+    color: #28698f;
+    font-size: 0.4rem;
+    letter-spacing: 0.1rem;
+}
+
+.ssq{
+    position: absolute;
+    top: -1.6rem;
+    left: 0.7rem;
+}
+
+.sheng a{
+    width: 2.5rem;
+    height: 1.2rem;
+    display: block;
+    background: url(../img/6.png)no-repeat center;
+    background-size: 100% auto;
+    font-size: 0.4rem;
+    position: absolute;
+    right: -2.8rem;
+    top: 7.5rem;
+    line-height: 1.35rem;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 0.1rem;
+}
+
+.qq{
+    width: 40%;
+    position: absolute;
+    left: -4rem;
+    top: 8.4rem;
+}
+
+.qq p:nth-of-type(1){
+    width: 100%;
+    font-size: 0.19rem;
+    letter-spacing: 0rem;
+    position: absolute;
+    top: -0.4rem;
+}
+
+.processcontainer{  
+    width: 100%;
+    border: 1px solid #fd6363;
+    height: 0.12rem;
+    border-radius: 30px; 
+    background-color: #28698f;
+} 
+
+#processbar{  
+   background:#fd6363;  
+   float:left; 
+   height:100%;  
+   text-align:center;  
+   line-height:150%; 
+   animation: animate-positive 2s;
+} 
+
+.gx{
+    width: 83%;
+    color: #28698f;
+    font-size: 0.35rem;
+    font-weight: bold;
+}
+.sq{
+    position: absolute;
+    bottom: 1.35rem;
+    left: -4rem;
+}
+
+.gx a{
+    width: 1.7rem;
+    height: 1.7rem;
+    display: block;
+    position: absolute;
+    right: 0.7rem;
+    bottom: 0.9rem;
+}
+
+/*第四屏动画*/
+.memeber{
+    position: absolute;
+    top: 1.1rem;
+    left: -4..3rem;
+}
+
+.memeber h1{
+    color: #28698f;
+    font-weight: bold;
+    font-size: 0.55rem;
+    letter-spacing: 0.1rem;
+}
+.memeber p{
+    width: 80%;
+    color: #28698f;
+    font-size: 0.4rem;
+    letter-spacing: 0.05rem;
+    font-weight: 400;
+    margin-top: 0.05rem;
+    line-height: 0.5rem;
+}
+
+.memeber p span{
+    color: #fd6363;
+    font-weight: bold;
+    font-size: 0.55rem;
+}
+
+.yuan{
+    width: 79%;
+    position: absolute;
+    top: 3.2rem;
+    left: 0.7rem;
+}
+
+.yuan p:nth-of-type(1){
+    font-size: 0.27rem;
+    width: 63%;
+    position: absolute;
+    top: 1.5rem;
+    left: 0.95rem;
+    padding: 0 0.1rem;
+    letter-spacing: 0.05rem
+}
+
+.yuan p:nth-of-type(2){
+    font-size: 10px;
+    width: 54%;
+    position: absolute;
+    bottom: -5rem;
+    right: 0rem;
+    padding: 0 0.1rem;
+    letter-spacing: 0.05rem;
+    color: #28698f;
+    font-weight: 400;
+    font-size: 0.26rem;
+}
+
+.yuan p:nth-of-type(2) span{
+    font-size: 0.35rem;
+    color: #fd6363;
+    font-weight: bold;
+}
+
+.yuan a{
+    width: 0.25rem;
+    height: 0.9rem;
+    position: absolute;
+    display: inline-flex;
+    right: 1.7rem;
+    top: 5.2rem;
+}
+
+.tet{
+    position: absolute;
+    color: #28698f;
+    font-size: 0.4rem;
+    font-weight: bold;
+    letter-spacing: 0.05rem;
+    left: -5.2rem;
+    width: 100%;
+}
+
+.tet .pp1{
+    padding: 0.2rem 0;
+    position: absolute;
+    top: 1rem;
+}
+
+.tet p:nth-of-type(2){
+    color: #fd6363;
+    margin-bottom: 0.9rem;
+    position: absolute;
+    top: 2.1rem;
+}
+
+.tet p:nth-of-type(3){
+    color: #28698f;
+    margin-bottom: 0.9rem;
+    position: absolute;
+    top: 3rem;
+}
+
+.tet p:nth-of-type(4){
+    color: #28698f;
+    margin-bottom: 0.9rem;
+    position: absolute;
+    top: 3.6rem;
+}
+
+.tet p:nth-of-type(5){
+    margin-top: 0.6rem;
+    position: absolute;
+    top: 3.9rem;
+}
+
+.tet p:nth-of-type(6){
+    position: absolute;
+    top: 5.2rem;
+}
+
+.tet p:nth-of-type(7){
+    font-weight: normal;
+    font-size: 0.35rem;
+    color: #fff;
+    background-color: #fd6363;
+    text-align: center;
+    line-height: 0.9rem;
+    border-radius: 10px;
+    letter-spacing: 0.05rem;
+    position: absolute;
+    top: 8.2rem;
+    left: 6.3rem;
+    width: 67%;
+    height: 0.9rem;
+    display: none;
+}
+
+.tet p:nth-of-type(8){
+    font-weight: normal;
+    font-size: 0.35rem;
+    color: #fff;
+    background-color: #28698f;
+    text-align: center;
+    line-height: 0.9rem;
+    border-radius: 10px;
+    letter-spacing: 0.05rem;
+    position: absolute;
+    top: 9.3rem;
+    left: 6.3rem;
+    width: 67%;
+    height: 0.9rem;
+    display: none;
+}
+
+.tet a{
+    display: block;
+    font-size: 0.33rem;
+    font-weight: normal;
+    color: #28698f;
+    position: absolute;
+    bottom: -13.8rem;
+    left: 8.1rem;
+    width: 1.6rem;
+}
+
+.overbox {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.5;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: none;
+}
+
+.alertBox {
+    width: 5.42rem;
+    height: 3.58rem;
+    border-radius: 0.07rem;
+    background: #fff;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: -2.71rem;
+    margin-top: -2.29rem;
+    display: none;
+}
+
+.alertBtn {
+    height: 1.2rem;
+    margin-top: 0.5rem;
+    position: relative;
+    padding-left: 0.28rem;
+}
+
+.numInput{
+    width: 80%;
+    height: 0.8rem;
+    border-radius: 30px;
+    border:1px solid #FD6363;
+    margin-left: 8%;
+    margin-top: 1rem;
+    padding-left: 0.2rem;
+}
+
+.alertBtn button {
+    width: 2.38rem;
+    height: 0.62rem;
+    border: 0;
+    font-size: 0.34rem;
+    color: #fff;
+}
+
+.draw_determine {
+    background-color: #FD6363;
+}
+
+.alertBtn_cancel {
+    background-color: #ccc;
+}
+
+.alertBox_close {
+    width: 0.3rem;
+    height: 0.3rem;
+    background: url("../img/activity_rules_close.png") no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    top: 0.3rem;
+    right: 0.23rem;
+}
+
+.processcontainer1{
+    width: 64%;
+    border: 1px solid #fd6363;
+    height: 0.12rem;
+    border-radius: 30px;
+    position: absolute;
+    bottom: -7.1rem;
+    left: -0.2rem;
+    background-color: #28698f;
+}
+
+.processcontainer1 .progress-value1{
+    padding: 0.2rem 0;
+    position: absolute;
+    font-size: 0.35rem;
+    left: 0.7rem;
+
+}
+
+#processbar1{  
+   background:#fd6363;  
+   float:left; 
+   height:100%;  
+   text-align:center;  
+   line-height:150%; 
+   animation: animate-positive 2s 9s;
+} 
+
+.processcontainer2{
+    width: 64%;
+    border: 1px solid #fd6363;
+    height: 0.12rem;
+    border-radius: 30px;
+    position: absolute;
+    bottom: -7rem;
+    left: -0.2rem;
+    background-color: #28698f;
+}
+
+.processcontainer2 .progress-value2{
+    padding: 0.2rem 0;
+    position: absolute;
+    font-size: 0.35rem;
+    left: 0.7rem;
+}
+
+#processbar2{  
+   background:#fd6363;  
+   float:left; 
+   height:100%;  
+   text-align:center;  
+   line-height:150%;
+   animation: animate-positive 2s 10s;
+}
+
+/*.progress-bar2.active2{
+    animation: reverse progress-bar-stripes 4s linear infinite, animate-positive 5s;
+}
+
+.progress-bar1.active1{
+    animation: reverse progress-bar-stripes 4s linear infinite, animate-positive 5s;
+}*/
+
+@-webkit-keyframes animate-positive{
+    0% { width: 0;}
+}
+@keyframes animate-positive{
+    0% { width: 0;}
+}
+
+
+
+
+

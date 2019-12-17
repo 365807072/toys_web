@@ -1,0 +1,101 @@
+*{  
+    -webkit-touch-callout:none;  /*系统默认菜单被禁用*/   
+    -webkit-user-select:none; /*webkit浏览器*/   
+    -khtml-user-select:none; /*早期浏览器*/   
+    -moz-user-select:none;/*火狐*/   
+    -ms-user-select:none; /*IE10*/   
+    user-select:none;   
+} 
+input{  
+    -webkit-user-select:auto; /*webkit浏览器*/     
+}
+textarea{
+    -webkit-user-select:auto; /*webkit浏览器*/
+}
+html,body{
+	width: 100%;
+	height: 100%;
+	background: #f5f5f5;
+	font-family: '微软雅黑';
+}
+.wrap{
+	width: 100%;
+	height: 100%;
+}
+#loading{
+	width: 100%;
+	height: 100%;
+	font-size: 0.3rem;
+	color: #fff;
+	z-index: 9999;
+}
+#loading img{
+	margin: 0 auto;
+    width: 20%;
+	z-index: 9999
+}
+header{
+	width: 100%;
+    background: #f5f5f5;
+}
+.head{
+	width: 98%;
+	margin:0.1rem auto;
+}
+.head img{
+	width: 100%;
+}
+.main{
+	width: 100%;
+    background: #F5F5F5;
+	padding-bottom: 1rem;
+}
+.mess{
+	width: 100%;
+	background-color: #fff;
+}
+.mess h1{
+	font-size: 0.4rem;
+	border-bottom: 0.5px solid #e4e4e4;
+	color: #333;
+	line-height: 1rem;
+    padding-left: 0.3rem;
+}
+.mess h2{
+	font-size: 0.35rem;
+	color: #333;
+	line-height: 1rem;
+    padding-left: 0.3rem;
+}
+.txt{
+	padding:0.1rem 0;
+}
+.txt p{
+	line-height: 0.6rem;
+	font-size: 0.25rem;
+	color: #666;
+	padding:0rem 0.3rem;
+}
+.cuowu{
+	text-align: center;
+    margin-top: 6rem;
+    font-size: 0.3rem;
+    color: #333;
+}
+.bottom{
+	position: fixed;
+	bottom: 0;
+	width:100%;
+}
+.bottom a{
+	display: block;
+	width: 100%;
+	height: 1rem;
+	line-height: 1rem;
+	text-align: center;
+	font-size: 0.35rem;
+	color: #fff;
+	background: #ff5050;
+}
+
+

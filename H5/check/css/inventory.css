@@ -1,0 +1,168 @@
+html,body{
+	font-size: 14px;
+}
+header ul{
+	display: -webkit-box;
+	background-color: #6795B4;
+}
+header ul li{
+	margin:0 0.3rem;
+	font-weight: bold;
+	padding: 0.05rem 0;
+}
+header ul li a{
+	color: #fff;
+}
+.head{
+	width: 100%;
+	z-index: 1;
+	background-color: #fff;
+}
+.head form{
+	margin-top: 0.1rem;
+}
+.head input{
+	margin-left: 0.03rem;
+}
+.head .idbtn{
+	width: 48px;
+	height: 26px;
+	line-height: 17px;
+	text-align: center;
+}
+.head .namebtn{
+	width: 48px;
+	height: 26px;
+	line-height: 17px;
+	text-align: center;
+}
+.main{
+	width: 100%;
+	margin-top: 0.2rem;
+	font-size: 16px;
+}
+.main .lists{
+	margin-bottom: 30px;
+}
+.count{
+	position: absolute;
+	right: 0.1rem;
+	top: 0.25rem;
+	font-size: 0.13rem;
+}
+.count a{
+	color: red;
+}
+.top{
+	width: 100%;
+	height: 0.1rem;
+	margin-bottom: 0.15rem;
+	font-weight: bold;
+}
+.top ul{
+	display: -webkit-box;
+	padding-top: 0.1rem;
+}
+.top ul li:nth-of-type(1){
+	width: 0.89rem;
+	display: block;
+	text-align: center;
+}
+.top ul li:nth-of-type(2){
+	width: 0.91rem;
+	display: block;
+	text-align: center;
+}
+.top ul li:nth-of-type(3){
+	width: 0.96rem;
+	display: block;
+	text-align: center;
+}
+.top ul li:nth-of-type(4){
+	width: 0.96rem;
+	display: block;
+	text-align: center;
+}
+.top ul li:nth-of-type(5){
+	width: 0.83rem;
+	display: block;
+	text-align: center;
+}
+.top ul li:nth-of-type(6){
+	width: 0.8rem;
+	display: block;
+	text-align: center;
+}
+.top ul li:nth-of-type(7){
+	width: 1rem;
+	display: block;
+	text-align: center;
+}
+.top ul li:nth-of-type(8){
+	width: 1.3rem;
+	display: block;
+	text-align: center;
+}
+.lists{
+	border-top: 1px solid #999;
+	border-left: 1px solid #999;
+}
+.lists tr td{
+	width: 0.95rem;
+	height: 0.4rem;
+	text-align: center;
+	vertical-align: middle;
+	border-right: 1px solid #999;
+	border-bottom: 1px solid #999;
+}
+.membercont img{
+	width: 41%;
+}
+.dropload-down{
+	position: fixed;
+	bottom: 0;
+	left: 3.5rem;
+}
+.upload{
+	text-align: center;
+	height: 25px;
+	line-height: 25px;
+	position: fixed;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background: #fff;
+}
+.upload.loading span:nth-child(2){
+	display: block;
+}
+.upload span:nth-child(2),.upload.loading span:nth-child(1){
+	display: none;
+}
+.part,.func{
+	display: block;
+	width: 1.09rem;
+	height: 0.2rem;
+	margin-top: -0.2rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

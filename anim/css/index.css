@@ -1,0 +1,316 @@
+body { background:#fff; -webkit-text-size-adjust:100%;-ms-text-size-adjust:100%; }
+/*css resert*/
+html, body, div, p, span, label, img, a, ol, ul, dl, dt, dd, li, table, tr, td, th, tbody, thead, tfoot, form, fieldset, legent, h1, h2, h3, h4, h5, h6, strong, b, em, blockquote, cite, pre, code, hr, br, input, button, textarea,article, aside, details, figcaption, figure, footer, header, group, menu, nav, section { padding:0px; margin:0px; }
+
+/* 要注意表单元素并不继承父级 font 的问题 */
+button, input, select, textarea { font: 100% serif; }
+img, input, select { vertical-align: middle; }
+h1, h2, h3, h4, h5, h6 { font-weight:normal; font-size:1em; }
+ol, ul { list-style-type:none; }
+table { border-collapse:collapse; border-spacing:0; }
+th,caption { text-align:left; }
+a img { border:0 none; cursor:pointer; } 
+fieldset,img { border:0 none; }
+a, input { outline:0 none; }
+abbr, acronym { border:0; }
+button { outline:0 none; cursor:pointer; }
+button::-moz-focus-inner { border:0; }
+input::-moz-focus-inner { border:0; }
+:focus { outline:0 none; }
+caption, cite, code, em, th, var,i { font-weight:normal; font-style:normal; }
+a:link, a:visited { text-decoration:none; }
+textarea { overflow: auto; vertical-align: top; }
+/******常用****/
+.clearfix:before,.clearfix:after { content:""; display:table; }
+.clearfix:after { clear:both; }
+.clearfix { zoom:1; }
+.clear { clear:both; height:0; width:0; display:block; visibility:hidden; overflow:hidden; }
+.clearit { clear:both; zoom:1; }
+.hidden { display:none; }
+.vhidden { visibility:hidden; }
+.hide-txt { overflow: hidden; text-indent: 100%; white-space: nowrap; }
+.left { float:left; display:inline; }
+.right { float:right; display:inline; }
+.fnone { float:none; }
+.txtleft{ text-align:left; }
+.txtright{ text-align:right; }
+.txtcenter{ text-align:center; }
+.middle { vertical-align:middle; }
+.noborder{ border:0 none !important; }
+.nobg{ background:none !important; }
+.sub{ vertical-align:sub; }
+.sup{ vertical-align:sup; }
+.cursor { cursor:pointer; }
+.zoom { zoom:1; }
+.vtop { vertical-align:top; }
+/******常用颜色*****/
+.red { color:#f00; }
+.orange { color:#ffa500; }
+.yellow { color:#ff0; }
+.green { color:#080; }
+.blue { color:#00f; }
+.dark-gray { color:#333; }
+.gray { color:#666; }
+.light-gray { color:#999; }
+.an-ccc { color:#ccc; }
+/*字体设置*/
+.fs14 { font-size:14px; }
+.fs16 { font-size:16px; }
+.fs18 { font-size:18px; }
+.abs{ position: absolute;}
+
+
+#loading{
+    position:absolute;
+    width:100%;
+    height:100%;
+    text-align:center;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.95);
+}
+#circularG{
+    position:relative;
+    width:128px;
+    height:128px;
+    margin: 50% auto;
+}
+
+.circularG{
+    position:absolute;
+    background-color:#FFFFFF;
+    width:29px;
+    height:29px;
+    -moz-border-radius:19px;
+    -moz-animation-name:bounce_circularG;
+    -moz-animation-duration:0.96s;
+    -moz-animation-iteration-count:infinite;
+    -moz-animation-direction:linear;
+    -webkit-border-radius:19px;
+    -webkit-animation-name:bounce_circularG;
+    -webkit-animation-duration:0.96s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-direction:linear;
+    -ms-border-radius:19px;
+    -ms-animation-name:bounce_circularG;
+    -ms-animation-duration:0.96s;
+    -ms-animation-iteration-count:infinite;
+    -ms-animation-direction:linear;
+    -o-border-radius:19px;
+    -o-animation-name:bounce_circularG;
+    -o-animation-duration:0.96s;
+    -o-animation-iteration-count:infinite;
+    -o-animation-direction:linear;
+    border-radius:19px;
+    animation-name:bounce_circularG;
+    animation-duration:0.96s;
+    animation-iteration-count:infinite;
+    animation-direction:linear;
+}
+
+#circularG_1{
+    left:0;
+    top:50px;
+    -moz-animation-delay:0.36s;
+    -webkit-animation-delay:0.36s;
+    -ms-animation-delay:0.36s;
+    -o-animation-delay:0.36s;
+    animation-delay:0.36s;
+}
+
+#circularG_2{
+    left:14px;
+    top:14px;
+    -moz-animation-delay:0.48s;
+    -webkit-animation-delay:0.48s;
+    -ms-animation-delay:0.48s;
+    -o-animation-delay:0.48s;
+    animation-delay:0.48s;
+}
+
+#circularG_3{
+    top:0;
+    left:50px;
+    -moz-animation-delay:0.6s;
+    -webkit-animation-delay:0.6s;
+    -ms-animation-delay:0.6s;
+    -o-animation-delay:0.6s;
+    animation-delay:0.6s;
+}
+
+#circularG_4{
+    right:14px;
+    top:14px;
+    -moz-animation-delay:0.72s;
+    -webkit-animation-delay:0.72s;
+    -ms-animation-delay:0.72s;
+    -o-animation-delay:0.72s;
+    animation-delay:0.72s;
+}
+
+#circularG_5{
+    right:0;
+    top:50px;
+    -moz-animation-delay:0.84s;
+    -webkit-animation-delay:0.84s;
+    -ms-animation-delay:0.84s;
+    -o-animation-delay:0.84s;
+    animation-delay:0.84s;
+}
+
+#circularG_6{
+    right:14px;
+    bottom:14px;
+    -moz-animation-delay:0.96s;
+    -webkit-animation-delay:0.96s;
+    -ms-animation-delay:0.96s;
+    -o-animation-delay:0.96s;
+    animation-delay:0.96s;
+}
+
+#circularG_7{
+    left:50px;
+    bottom:0;
+    -moz-animation-delay:1.08s;
+    -webkit-animation-delay:1.08s;
+    -ms-animation-delay:1.08s;
+    -o-animation-delay:1.08s;
+    animation-delay:1.08s;
+}
+
+#circularG_8{
+    left:14px;
+    bottom:14px;
+    -moz-animation-delay:1.2s;
+    -webkit-animation-delay:1.2s;
+    -ms-animation-delay:1.2s;
+    -o-animation-delay:1.2s;
+    animation-delay:1.2s;
+}
+
+@-moz-keyframes bounce_circularG{
+    0%{
+        -moz-transform:scale(1)}
+
+    100%{
+        -moz-transform:scale(.3)}
+
+}
+
+@-webkit-keyframes bounce_circularG{
+    0%{
+        -webkit-transform:scale(1)}
+
+    100%{
+        -webkit-transform:scale(.3)}
+
+}
+
+html, body{
+    height: 100%;
+    background: #ffdfc3;
+}
+
+#doc{ background: #ffdfc3; font-family: 'microsoft yahei',Tahoma,Arial,Roboto,'Droid Sans','Helvetica Neue','Droid Sans Fallback','Heiti SC','Hiragino Sans GB',Simsun,sans-self; overflow: hidden;}
+section{ position: relative;}
+.dot{ width: 15px; height: 15px; border: 1px solid #fff; background: #ff6767; border-radius: 50%; display: inline-block}
+.dot2{ width: 17px; height: 17px; background: #ff6767; padding: 3px; display: inline-block; border-radius: 50%;}
+
+.flag{ background: #ff6767; min-width: 204px; height: 34px; line-height: 34px; color: #fff; text-align: center; border-radius: 3px; padding: 0 10px; position: relative; font-size: 26px;}
+.flag .arrow{ position: absolute; width: 8px; height: 9px; top: 13px; right: -8px; background: url(../img/arrow.png) no-repeat;}
+.flag-wrap{ position: absolute;}
+.flag-wrap .flag{ float: left; margin: 0 20px;}
+.flag-wrap .dot{ margin-top: 8px; float: right;}
+
+
+.keyframe{ height: 27px; line-height: 27px; padding: 0 4px; border-radius: 14px; background: #ff6767; color: #fff;}
+.wrap-header{ background: #ff8d83;}
+.wrap-header .header{ width: 640px; position: relative; margin: auto;}
+.wrap{ width: 640px; position: relative; margin: auto; overflow: hidden;
+    -webkit-animation:uslideDown 2s linear;
+}
+@-webkit-keyframes uslideDown{
+    from { height: 0;}
+    to { height: 1520px;}
+}
+.wrap .content-wrap{  background: url(../img/guiji2.png) repeat-y center -2px;}
+.wrap .comment{ color: #9a9a9a; line-height: 1.1;}
+.wrap .img-wrap{ position: relative; width: 171px; height: 171px; border-radius: 50%;}
+.wrap .img-wrap .bg{ width: 171px; height: 171px; position: absolute; z-index: 2; background: url(../img/img-border.png) no-repeat; top:0; left: 0; border-radius: 50%;}
+
+.header{ overflow: hidden; padding: 10px 0;}
+.header .atr{ width: 175px; height: 175px; margin: 6px 0 0 6px; border-radius: 50%; overflow: hidden;}
+.header h1{ position: absolute; top: 25px; left: 216px; color: #fff;}
+.header h1 .nick{ font-size: 55px; font-weight: bold; }
+.header h1 .old{ font-size: 36px; }
+.header .bro{ top:10px; right: 6px;}
+.birthday{ color: #ff6767; overflow: hidden; line-height: 1; padding:10px 0 10px 230px; font-weight: bold;}
+.birthday .left{ padding-top: 7px;}
+.birthday .day{ font-size:50px; float: left;}
+.birthday .month{ font-size: 20px; display: block;}
+.birthday .year{ font-size: 20px;}
+.birthday .im{ clear: both; font-size: 50px;}
+.header .cloud{ position: absolute; left: -200px; top: 233px; opacity: .6;
+    -webkit-animation:ufadeInLeft 8s linear infinite;
+}
+.fire-ballon{-webkit-animation:ushake 2s linear infinite;}
+
+@-webkit-keyframes ufadeInLeft{
+    to { left:800px;}
+}
+@-webkit-keyframes ushake{
+    0 { transform:rotate(0deg); -webkit-transform:rotate(0deg)}
+    50% { transform:rotate(20deg); -webkit-transform:rotate(20deg)}
+    100% { transform:rotate(0deg); -webkit-transform:rotate(0deg)}
+}
+
+@-webkit-keyframes fin{
+    from{left: -640px;}
+    to { left:0;}
+}
+
+.list.trans{left:0; transition:left 1s; -webkit-transition:left 1s;}
+
+.list{ height: 280px;}
+.list .info{ display: table;}
+.list .info .content{ font-size:28px;}
+.list .info .cell{ display: table-cell; vertical-align: middle; text-align: center; padding: 0 10px;}
+.list .info .content{ width: 274px;}
+
+.list-o{ left: -640px; transition:left 1s; -webkit-transition:left 1s;}
+.list-o .flag-wrap{ top: 53px; right: 202px;}
+.list-o .info{ top:106px; left: 5px;}
+.list-o .info .content{ text-align: right;}
+.list-o .cloud{ position: absolute; left: 10px; top: 23px; }
+.list-o .fire-ballon{ top:0; right: 30px;}
+
+.list-o .flag-wrap .flag{ float: left;}
+.list-o .flag-wrap .dot{ float: right;}
+/*.list-o .flag-wrap .flag .arrow{ left: -8px; transform:rotate(180deg);}*/
+
+.list-e{ left: 640px; transition:left 1s; -webkit-transition:left 1s;}
+.list-e .flag-wrap{ top: 42px; left: 225px;}
+.list-e .info{ top: 90px; right: 10px;}
+.list-e .info .content{ text-align: left;}
+.list-e .cloud{ position: absolute; width: 84px; height: 47px; left: 10px; top: 23px; opacity: .6;
+    -webkit-animation:ufadeInLeft 10s linear infinite;
+}
+.list-e .flag-wrap .flag{ float: right;}
+.list-e .flag-wrap .dot{ float: left;}
+.list-e .flag-wrap .flag .arrow{ left: -8px; transform:rotate(180deg); -webkit-transform:rotate(180deg);}
+
+/*
+.list-3{ height: 210px; left: -640px; transition:left 1s; -webkit-transition:left 1s;}
+.list-3 .flag-wrap{ top: 0; left: 300px;}
+.list-3 .info{ top: 46px; right: 110px;}
+.list-3 .cloud{ position: absolute; left: 10px; top: 80px; opacity: .8; }
+
+.list-4{ height: 203px; left: 640px; transition:left 1s; -webkit-transition:left 1s;}
+.list-4 .flag-wrap{ top: 10px; left: 60px;}
+.list-4 .info{ top: 46px; right: 110px;}
+.list-4 .cloud{ width: 79px; height: 47px; position: absolute; right: -20px; top: 30px;}
+
+.list-5{ height: 260px; left: -640px; transition:left 1s; -webkit-transition:left 1s;}
+.list-5 .flag-wrap{ top: 10px; left: 300px;}
+.list-5 .info{ top: 46px; right: 110px;}
+.list-5 .cloud{ width: 79px; height: 47px; position: absolute; right: 60px; top: 180px;}
+.list-5 .fire-ballon{ top:-20px; left: 10px;}*/

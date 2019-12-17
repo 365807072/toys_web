@@ -1,0 +1,322 @@
+﻿html, body, h1, h2, h3, h4, h5, h6, p, ul, ol, form, button, dl, dt, dd, input, textarea {
+	-webkit-box-sizing: border-box;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	word-wrap: break-word;
+	word-break: break-all;
+	padding: 0;
+	margin: 0;
+}
+i,em{
+	font-style: italic;
+	font-family: "微软雅黑";
+	font-weight: normal;
+}
+body{
+	width: 100%;
+	/*background: #ff3333;*/
+    background: #f5f5f5;/*#ff9636，#9ce0d5,#e3ffdb,#bbfffc*/
+	color: #333;
+	position: relative;
+	min-height: 100%;
+}
+.wrapper{
+	width: 100%;
+	margin: auto;
+	max-width: 320px;
+}
+.image{
+    height: 6.05rem;
+}
+.image img{
+	width: 100%;
+}
+.form{
+    height: 5.2rem;
+	text-align: center;
+    background:url(../img/formbg.png);
+    background-size: 100% auto;
+    margin-top: -0.4rem;
+}
+.form input{
+	width: 66%;
+	height: 0.85rem;
+	font-size: 0.35rem;
+	border: none;
+	border-radius: 3px;
+	text-align: center;
+    margin-top: -0.3rem;
+}
+#submit{
+    letter-spacing: 3px;
+    color: #fff;
+    width: 66%;
+    height: 0.85rem;
+    font-size: 0.33rem;
+    line-height: 0.9rem;
+    background: #aeaeae;
+    border-radius: 3px;
+    border: none;
+    margin:0.2rem auto;
+}
+#submit.active{
+    background: #FCDC74;
+    color: #E52319;
+    -moz-box-shadow:2px 2px 5px rgba(0,0,0,.3); 
+    -webkit-box-shadow:2px 2px 5px rgba(0,0,0,.3); 
+    box-shadow:2px 2px 5px rgba(0,0,0,.3);
+}
+.content-bg{
+	width: 100%;
+    margin: 0px auto;
+    border-radius: 5px;
+}
+.rule{
+	margin: 0 auto;
+    margin-top: 5px;
+    padding: 5px 0px;
+}
+.rule h4{
+    font-family: "微软雅黑";
+	line-height: 20px;
+    background: url(../img/sub-title-bg.544e2777.png) no-repeat;
+    background-size: 100% auto;
+    background-position: 0px;
+    font-size: 18px;
+    /*color: #333333;*/
+    color: #2b3030;
+    text-align: center;
+    font-weight: normal;
+}
+.rule h4.firds{
+    background: url(../img/sub-title-bg.544e2766.png) no-repeat;
+    background-size: 100% auto;
+    background-position: 0px;
+    margin-top: 20px;
+    display: none;
+}
+body.active .rule h4.firds{
+    display: block;
+}
+.rule ul {
+    width: 90%;
+    margin: 5px auto 0;
+}
+.rule li {
+    font-size: 14px;
+    line-height: 20px;
+    margin: 3px 0px;
+    color: #333333;/**/
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+ul, ol {
+    padding-left: 0;
+    list-style-type: none;
+}
+.result{
+	display: none;
+}
+.resultBox{
+	width: 100%;
+	margin: auto;
+}
+.result-inner-share{
+    width: 100%;
+    -webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	height: 2rem;
+	background: url(../img/result-bg1.1aab91ef.png) no-repeat;
+	background-size: 100% auto;
+	margin: 0 auto;
+	text-align: center;
+	position: relative;
+}
+.share-sort{
+	width: 40px;
+    height: 70px;
+    font-size: 14px;
+    display: table-cell;
+    vertical-align: middle;
+    line-height: 20px;
+}
+.share-sort i{
+	display: block;
+    width: 10px;
+    margin: 0 auto;
+    color: #ff3f26;
+    font-style: normal;
+}
+.share-infor{
+    width: 68%;
+    height: 2rem;
+    position: absolute;
+    top: 0.15rem;
+    right: 29px;
+}
+.share-infor .number {
+    width: 180px;
+    color: #ef361e;
+    font-weight: bold;
+    text-align: center;
+    margin-left: 0.3rem;
+}
+.share-infor .number .rmb {
+    font-size: 22px;
+    font-style: normal;
+}
+.share-infor .number i {
+    font-size: 40px;
+    font-style: normal;
+    font-weight: bold;
+    font-family: "Î¢ÈíÑÅºÚ";
+}
+.classify {
+    color: #999;
+    font-size: 0.25rem;
+    margin-top: -7px;
+}
+.info {
+	display: none;
+    font-size: 0.28rem;
+    line-height: 18px;
+    text-align: center;
+    width: 100%;
+    height: 2.8rem;
+    color: #fff;
+    background:url(../img/hlgbg.png);
+    background-size: 100% auto;
+    position: relative;
+}
+.info p:nth-of-type(1){
+    padding-top: 0.6rem;
+    font-size: 0.28rem;
+    color: #fff;
+    line-height: 0.5rem;
+    letter-spacing: 0.01rem;
+}
+.info p:nth-of-type(2) img{
+    width: 69%;
+    margin-top: 0.1rem;
+}
+body.active .info , body.active .result{
+	display: block;
+}
+body.active .form{
+	display: none;
+}
+.info .goupd {
+    color: #e01933;
+    margin-left: 2px;
+    text-decoration: none;
+}
+.combtn {
+    display: block;
+    background-color: #fe4d3d;
+    color: #fff;
+    font-size: 16px;
+    height: 30px;
+    width: 91%;
+    margin: 10px auto 0;
+    border-radius: 5px;
+    border: 0;
+}
+#users{
+    width: 90%;
+    margin: auto;
+    display: none;
+}
+body.active #users{
+    display: block;
+}
+#users li{
+    border-bottom: 1px #2b3030 solid;
+    /*border-bottom: 1px #e0736e solid;*/
+    position: relative;
+    margin: 10px 0;
+    min-height: 45px;
+    padding: 10px 0;
+}
+#users li dl{
+
+}
+#users li dl dt{
+    float: left;
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    background: #fff;
+}
+#users li dl dt img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+#users li dl dd{
+    float: left;
+    max-width: 200px;
+    margin-left: 10px;
+}
+#users li dl dd h3{
+    font-size: 14px;
+    width:200px;
+}
+/*#users li dl dd span{
+    font-size: 10px;
+    font-weight: normal;
+    color: #582d1d;
+    margin-left: 10px;
+}*/
+#users li dl dd #user_p{
+    float:right;
+    width:60%;
+    font-size: 10px;
+    font-weight: normal;
+    color: #582d1d;
+    margin-left: 10px;
+}
+#users li dl dd #user_p span{
+    float:right;
+    font-size: 14px;
+    color: #2b3030;
+}
+#users li dl dd p{
+    font-size: 8px;
+    line-height: 14px;
+    margin-top: 5px;
+}
+#users li dl dd b{
+    position: absolute;
+    top: 13px;
+    right: 0;
+    font-size: 18px;
+}
+#time{
+    position: absolute;
+    bottom: 0.5rem;
+    left: 1.8rem;
+    color: #E52319;
+    font-size: 0.3rem;
+}
+.prompt_mobile{
+    height: 2.6rem;
+    text-align: center;
+    font-size: 0.25rem;
+    background:url(../img/hlgbg.png);
+    background-size: 100% auto; 
+}
+.prompt_mobile p:nth-of-type(1){
+    padding-top: 0.6rem;
+    color: #fff;
+    letter-spacing: 0.02rem;
+}
+.prompt_mobile p:nth-of-type(2){
+    width: 80%;
+    margin:0 auto;
+}
+.prompt_mobile p:nth-of-type(2) img{
+    width: 85%;
+    margin-top: 0.1rem;
+}

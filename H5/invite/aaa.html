@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>舜鑫国际旅游（北京）有限公司租赁玩具租赁</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/mobile.css">
+    <link rel="stylesheet" type="text/css" href="css/aaa.css">
+</head>
+<body>
+    <div class="wrap">
+        <div class="head">
+            <a><img src="img/114.png"></a>
+            
+            <p><img src="img/116.png"></p>
+        </div>
+
+        <div class="dtime">
+            <span class="first"></span>
+            <span class="second"></span>
+            <span class="three"></span>
+            <span class="four"></span>
+        </div>
+
+        <div class="gift">
+            <!-- <a class="giftaa">+10</a>
+            <img src="img/123.png"> -->
+        </div>
+        <div class="active">
+            <!-- <p>现在有100人已购卡</p>
+            <div class="inlist">
+                <p>
+                    <img src="img/3.jpg">
+                    <span>用户名称</span>
+                    <span>邀请成功</span>
+                </p>
+            </div> -->
+            
+        </div>
+    </div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/setfontsize.js"></script>
+<script type="text/javascript">
+    var loginUserid = '';
+    var mainHtml = '';
+    var headHtml = '';
+    var userHtml = '';
+    var duihuanHtml = '';
+    var inlistHtml = '';
+    var giftlistHtml = '';
+    var idbrn = '';
+    var numberHtml = '';
+    var numTotal = '';
+    var listData = '';
+    var activeHtml = '';
+	var giftHtml = '';
+    function GetQueryString(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
+    
+    // 获取分享人id
+    if(GetQueryString("login_user_id")!=null && GetQueryString("login_user_id").length>-1){
+        loginUserid = GetQueryString("login_user_id");
+    }
+
+    //倒计时
+	var starttime = new Date("2018/04/15");
+	setInterval(function () {
+		var nowtime = new Date();
+		var time = starttime - nowtime;
+		var day = parseInt(time / 1000 / 60 / 60 / 24);
+		var hour = parseInt(time / 1000 / 60 / 60 % 24);
+		var minute = parseInt(time / 1000 / 60 % 60);
+		var seconds = parseInt(time / 1000 % 60);
+		$(".first").html(day);
+		$(".second").html(hour);
+		$(".three").html(minute);
+		$(".four").html(seconds);
+	}, 1000);
+    
+    //全部数据
+	request();
+
+    $.ajax({
+        url:'https://api.baobaoshowshow.com/index.php?r=BabyShowV7/ToysActivityPSinfoOne&login_user_id='+loginUserid,
+        type:'GET',
+        success:function(res){
+            var res = JSON.parse(res);
+            console.log(res);
+            var data = res.data2;
+			activeHtml += '<p class="pp">'+res.title+'</p>';
+			activeHtml += '<div class="inlist">';
+			for(var i in data){
+				if(data[i].is_pay==1){
+					activeHtml +='<p><img src='+data[i].avatar+'><span>'+data[i].nick_name+'</span><span>邀请成功</span></p>';
+				}else{
+					activeHtml +='<p><img src='+data[i].avatar+'><span>'+data[i].nick_name+'</span><span>邀请中</span></p>';
+				}
+				
+			}
+			activeHtml += '</div>';
+
+			$(".active").html(activeHtml);
+        }
+    })
+
+    function request(){
+    	$.ajax({
+    		url:'https://api.baobaoshowshow.com/index.php?r=BabyShowV7/ToysActivityAllUserList',
+    		type:'GET',
+    		datatype:'json',
+    		success:function(res){
+    			var res = JSON.parse(res);
+    			console.log(res);
+    			if(res.num_success<10){
+					giftHtml += '<img src="img/117.png">';
+    			}
+    			else if(res.num_success==10){
+    				giftHtml += '<img src="img/118.png">';
+    			}
+    			else if(res.num_success==20){
+    				giftHtml += '<img src="img/119.png">';
+    			}
+    			else if(res.num_success==30){
+    				giftHtml += '<img src="img/120.png">';
+    			}
+    			else if(res.num_success==40){
+    				giftHtml += '<img src="img/121.png">';
+    			}
+    			else if(res.num_success==50){
+    				giftHtml += '<a class="giftaa">+10</a><img src="img/122.png">';
+    			}
+    			else if(res.num_success==60){
+    				giftHtml += '<img src="img/123.png">';
+    			}
+
+    			$(".gift").html(giftHtml);
+    			
+    			
+    		}
+    	})
+    }
+    
+    
+    
+
+    //点击活动详情
+    $(".head").on("click",".action",function(){
+        
+        $(".showall").show();
+        $(".allow").show();
+    })
+
+    //点击知道了弹窗
+    $(".allow").on("click",function(){
+        $(".showall").hide();
+        $(".allow").hide();
+    })
+
+    //点击知道了按钮
+    $(".showall").on("click",".know",function(){
+        $(".showall").hide();
+        $(".allow").hide();
+    })
+
+    //点击兑换
+    if(loginUserid==2354){
+        
+    }else{
+        $(".giftlist").on("click",".sumbit",function(){
+            idbrn = $(this).attr("idindex");
+            if(confirm('确定兑换?')){
+                $.ajax({
+                    url:'https://api.baobaoshowshow.com/index.php?r=BabyShowV7/getToysPrizeUserAdding&login_user_id='+loginUserid+'&prize_id='+idbrn,
+                    type:'GET',
+                    success:function(res){
+                        var res = JSON.parse(res);
+                        alert(res.reMsg);
+                        location.reload();
+                    }
+                })
+            }else{
+                 return true;
+            }
+        })
+    }
+    
+
+    window.onload=function getSystemType() {
+        var u = navigator.userAgent;
+        if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {//安卓手机
+            phoneType = 1;
+
+        } else if (u.indexOf('iPhone') > -1) {//苹果手机
+            phoneType = 2;
+        } else if (u.indexOf('Windows Phone') > -1) {//winphone手机
+            phoneType = 3;
+        }else{
+            phoneType = 4;
+        }
+    }
+
+    //弹窗除网址
+    window.alert = function(name){
+         if(phoneType==1){
+           var iframe = document.createElement("IFRAME");
+            iframe.style.display="none";
+            iframe.setAttribute("src", '');
+            document.documentElement.appendChild(iframe);
+            window.frames[0].window.alert(name);
+            iframe.parentNode.removeChild(iframe);
+          
+        }else if(phoneType==2){
+           var iframe = document.createElement("IFRAME");
+            iframe.style.display="none";
+            iframe.setAttribute("src", 'data:text/plain');
+            document.documentElement.appendChild(iframe);
+            window.frames[0].window.alert(name);
+            iframe.parentNode.removeChild(iframe);
+        }
+    }
+
+    window.confirm = function (message) {
+        if(phoneType==1){
+            var iframe = document.createElement("IFRAME");
+            iframe.style.display = "none";
+            iframe.setAttribute("src", '');
+            document.documentElement.appendChild(iframe);
+            var alertFrame = window.frames[0];
+            var result = alertFrame.window.confirm(message);
+            iframe.parentNode.removeChild(iframe);
+            return result;
+        }else if(phoneType==2){
+            var iframe = document.createElement("IFRAME");
+            iframe.style.display = "none";
+            iframe.setAttribute("src", 'data:text/plain,');
+            document.documentElement.appendChild(iframe);
+            var alertFrame = window.frames[0];
+            var result = alertFrame.window.confirm(message);
+            iframe.parentNode.removeChild(iframe);
+            return result;
+        }
+       
+    };
+</script>
+</body>
+</html>

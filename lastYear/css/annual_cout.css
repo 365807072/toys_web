@@ -1,0 +1,412 @@
+*{  
+    -webkit-touch-callout:none;  /*系统默认菜单被禁用*/   
+    -webkit-user-select:none; /*webkit浏览器*/   
+    -khtml-user-sel
+    ect:none; /*早期浏览器*/   
+    -moz-user-select:none;/*火狐*/   
+    -ms-user-select:none; /*IE10*/   
+    user-select:none;   
+} 
+
+input{  
+    -webkit-user-select:auto; /*webkit浏览器*/     
+}
+
+textarea{
+    -webkit-user-select:auto; /*webkit浏览器*/
+}
+
+html,body{
+    width: 100%; 
+    height: 100%;
+    font-family: '微软雅黑';
+    -webkit-tap-highlight-color:rgba(255,255,255,0);
+}
+
+.wrap{
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.main{
+    width: 100%;
+    height: 100%;
+    background-color: #fff9da;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.head{
+    width: 100%;
+    height: 4.2rem;
+    background:url(../img/12.png)no-repeat;
+    background-size: 100% auto;
+    position: relative;
+    margin-bottom: 1.65rem;
+}
+.head a{
+    display: block;
+    width: 1.2rem;
+    height: 1.2rem;
+    position: absolute;
+    top: 2.73rem;
+    left: 3.25rem;
+}
+.head a img{
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50px;
+}
+.wrapbox{
+    width: 100%;
+}
+.Wprogress{
+    height: 0.2rem;
+    background: url(../img/13.png)no-repeat;
+    background-size: 100% auto;
+    overflow: visible;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+.main_box{
+    height: 0.2rem;
+    overflow: visible;
+    width: 80%;
+    margin: 0 auto;
+    border-radius:20px;
+    padding:0.1rem 0.2rem;
+}
+.Wprogress p{
+    position: absolute;
+    color: #6e00c4;
+    top: -0.5rem;
+    left: 0.1rem;
+}
+.Wprogress .Wprogress-bar{
+    border-radius: 20px;
+    position: relative;
+    
+    animation: animate-Wpositive 2s;
+}
+.Wprogress .Wprogress-value{
+    position: absolute;
+    top: -1.7rem;
+    right: -1.55rem;
+    width: 1.6rem;
+    height: 1.3rem;
+    background: url(../img/15.png)no-repeat;
+    background-size: 100% auto;
+    font-size: 0.23rem;
+    line-height: 1.1rem;
+    padding-left: 0.15rem;
+}
+.Wprogress .Wprogress-value a{
+    width: 0.35rem;
+    position: absolute;
+    top: 1.6rem;
+    display: block;
+}
+
+.Wprogress .Wprogress-value a img{
+    width: 41%;
+}
+.Wprogress .Wprogress-value span{
+    color: #333;
+}
+.Wprogress .Wprogress-value span b{
+    color: #6e00c4;
+    font-size: 0.25rem;
+}
+.Wprogress-val{
+    width: 2.4rem;
+    height: 0.8rem;
+    background: url(../image/pro-bg.png);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    margin:0 auto;
+    color: #fd6363;
+    font-size: 0.26rem;
+    text-align: center;
+    line-height: 0.5rem;
+}
+.WpeoNum{
+    position: absolute;
+    right: 1.1rem;
+    top: 0.85rem;
+    font-size: 0.26rem;
+    color: #fff;
+}
+.WpeoNum span{
+    font-size: 0.35rem;
+    font-weight: bold;
+    letter-spacing:0.03rem;
+}
+.Wprogress-bar.Wactive{
+    animation: reverse progress-bar-stripes 0.40s linear infinite, animate-Wpositive 2s;
+}
+@-webkit-keyframes animate-Wpositive{
+    0% { width: 100; }
+}
+@keyframes animate-Wpositive{
+    0% { width: 100; }
+}
+.btns{
+    width: 100%;
+    margin-top: 0.5rem;
+}
+.btns p:nth-of-type(1){
+    width: 80%;
+    height: 1rem;
+    color: #fff;
+    background-color: #6e00c4;
+    margin:0 auto;
+    text-align: center;
+    border-radius: 30px;
+    line-height: 1rem;
+    font-size: 0.35rem;
+}
+
+.btns p:nth-of-type(2){
+    width: 80%;
+    height: 1rem;
+    color: #fff;
+    background-color: #ff612a;
+    margin:0 auto;
+    text-align: center;
+    border-radius: 30px;
+    line-height: 1rem;
+    font-size: 0.35rem;
+    margin-top:0.4rem;
+}
+.aules{
+    width: 84%;
+    margin: 0 auto;
+    background: #ffe560;
+    border-radius: 5px;
+    margin-top: 1rem;
+    color: #333;
+    padding:0.3rem;
+    position: relative;
+}
+.aules a{
+    position: absolute;
+    top: -0.3rem;
+    left: 2.6rem;
+    width: 1.9rem;
+}
+.aules p{
+    padding-bottom: 0.1rem;
+}
+.aules p:nth-of-type(1){
+    padding-top: 0.1rem;
+}
+.liwu{
+    width: 92.5%;
+    margin: 0.5rem auto
+}
+.renqi{
+    width: 84%;
+    margin: 0 auto;
+    background: #ffe560;
+    border-radius: 5px;
+    margin-top: 1rem;
+    color: #333;
+    padding:0.3rem;
+    position: relative;
+    margin-bottom: 1rem;
+}
+.renqi a{
+    position: absolute;
+    top: -0.3rem;
+    left: 2.25rem;
+    width: 2.5rem;
+}
+.renqi b{
+    text-align: center;
+    padding-top: 0.2rem;
+    color: #333;
+    display: block;
+    margin: 0 auto;
+    font-size: 0.3rem;
+}
+.renqi p{
+    display: -webkit-box;
+    padding:0.1rem 0;
+}
+.renqi p span{
+    -webkit-box-flex:1;
+    display: block;
+}
+.renqi p span:nth-of-type(1) img{
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50px;
+}
+.renqi p span:nth-of-type(2){
+    text-align: center;
+    line-height: 0.7rem;
+}
+.renqi p span:nth-of-type(3){
+    text-align: right;
+    line-height: 0.7rem;
+}
+.overbox {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.5;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: none;
+}
+
+.alertBox {
+    width: 5.72rem;
+    height: 3.58rem;
+    border-radius: 0.07rem;
+    background: #fff;
+    position: fixed;
+    left: 48%;
+    top: 50%;
+    margin-left: -2.71rem;
+    margin-top: -2.29rem;
+    display: none;
+}
+
+.alertBtn {
+    height: 1.2rem;
+    margin-top: 0.5rem;
+    position: relative;
+    padding-left: 0.52rem;
+    display: -webkit-box;
+}
+
+.numInput{
+    width: 79%;
+    height: 0.8rem;
+    border-radius: 30px;
+    margin-left: 8%;
+    margin-top: 0.8rem;
+    padding-left: 0.3rem;
+    background: #f1f1f1;
+    border: none;
+}
+
+.alertBtn button {
+    width: 2.1rem;
+    height: 0.62rem;
+    border: 0;
+    font-size: 0.34rem;
+    color: #fff;
+    border-radius: 47px;
+    display: block;
+}
+
+.draw_determine {
+    background-color: #6e00c4;
+}
+
+.alertBtn_cancel {
+    background-color: #ccc;
+    margin-left: 0.53rem;
+}
+
+.alertBox_close {
+    width: 0.3rem;
+    height: 0.3rem;
+    background: url("../img/activity_rules_close.png") no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    top: 0.3rem;
+    right: 0.23rem;
+}
+
+.xuanfu{
+    position: fixed;
+    right: 0.2rem;
+    bottom: 3.5rem;
+    width: 1.2rem;
+    height: 2rem;
+    z-index: 5;
+}
+
+.erwem{
+    position: fixed;
+    top: 10%;
+    background: #fff;
+    width: 80%;
+    left: 10%;
+    height: 7rem;
+    border-radius: 9px;
+    padding-top: 0.7rem;
+    display: none;
+}
+.erwem p{
+    text-align: center;
+    font-size: 0.3rem;
+}
+.erwem p:nth-of-type(2){
+    color: #fd6363
+}
+.erwem p:nth-of-type(3){
+    padding-top: 0.7rem;
+    color: #6e00c4
+}
+.erwem img{
+    width: 78%;
+    margin: 0 auto;
+}
+
+.alertBox2 {
+    width: 5.72rem;
+    height: 4.2rem;
+    border-radius: 0.07rem;
+    background: #fff;
+    position: fixed;
+    left: 48%;
+    top: 50%;
+    margin-left: -2.71rem;
+    margin-top: -2.29rem;
+    display: none;
+}
+
+#getCode{
+    background-color: #6e00c4;
+    width: 2.1rem;
+    height: 0.7rem;
+    line-height: 0.7rem;
+    border: 0;
+    font-size: 0.3rem;
+    color: #fff;
+    border-radius: 47px;
+    margin: 0.5rem auto;
+}
+
+.numInput1{
+    width: 37%;
+    height: 0.8rem;
+    border-radius: 30px;
+    margin-left: 8%;
+    margin-top: 0.1rem;
+    padding-left: 0.3rem;
+    background: #f1f1f1;
+    border: none;
+}
+
+.draw_determine1 {
+    width: 2.1rem;
+    height: 0.62rem;
+    border: 0;
+    font-size: 0.34rem;
+    color: #fff;
+    border-radius: 47px;
+    display: block;
+    background-color: #fd6363;
+    margin-left: 1.7rem;
+}
+
+
+
+
+

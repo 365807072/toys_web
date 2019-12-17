@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>推荐页</title>
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+	<link rel="stylesheet" type="text/css" href="css/active.css">
+</head>
+<body>
+	<div class="wrap">
+		<div class="box">
+			<p class="aa" index="1"><span><img src="img/120.jpg"></span><span>迪士尼大块木质积木</span></p>
+			<p class="aa" index="2"><span><img src="img/120.jpg"></span><span>迪士尼大块木质积木</span></p>
+			<p class="aa" index="3"><span><img src="img/120.jpg"></span><span>迪士尼大块木质积木</span></p>
+			<p class="aa" index="4"><span><img src="img/120.jpg"></span><span>迪士尼大块木质积木</span></p>
+		</div>
+	</div>
+
+<script type="text/javascript" src="js/setfontsize.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+$(".box").on("click",".aa",function(){
+	var toyid=$(this).attr("index");
+	
+	window.call.callMethodToDetail(toyid);
+})
+	
+</script>
+</body>
+</html>

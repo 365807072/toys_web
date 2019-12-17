@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>单个玩具详情</title>
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+	<link rel="stylesheet" type="text/css" href="css/toyOrder_cout.css">
+</head>
+<body>
+	<div class="wrap">
+		<div class="head">
+			<!-- <p>您的订单会在72小时送达，详情联系客服：13373920077</p> -->
+		</div>
+
+		<div class="main">
+			<div class="remask">
+				<!-- <p>
+					<span>订单单号</span>
+					<span>3534324432434</span>
+				</p>
+				<p>
+					<span>其他备注：</span>
+					<span><input type="text" placeholder="尽量满足您的要求"></span>
+				</p> -->
+			</div>
+			<div class="toy">
+				<!-- <dl>
+					<dt><img src="img/31.png"></dt>
+					<dd>
+						<span>我是玩具名字</span>
+						<span>￥2.9元/天</span>
+						<span>准备中</span>
+					</dd>
+				</dl>
+				<a>(年卡ID：2332)</a> -->
+			</div>
+		</div>
+
+	</div>
+<script type="text/javascript" src="js/setfontsize.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+var headHtml="";
+var orderData="";
+var remaskHtml="";
+var toyHtml="";
+var url = location.href;
+var userId="";
+var orderId="";
+
+//判断链接中是否含有字段
+if(url.indexOf("?") > 0){
+	if(GetQueryString("login_user_id")!=null && GetQueryString("login_user_id").length>-1){
+		
+		userId = GetQueryString("login_user_id");
+	}
+	if(GetQueryString("order_id")!=null && GetQueryString("order_id").length>-1){
+		
+		orderId = GetQueryString("order_id");
+	}
+}
+function GetQueryString(name){
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if(r!=null)return  unescape(r[2]); return null;
+}
+request();
+function request(){
+	$.ajax({
+		url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV77/getToysOrderDetail&login_user_id='+userId+'&order_id='+orderId,
+		type:'GET',
+		datatype:'json',
+		success:function(data){
+			var data=JSON.parse(data);
+			orderData=data.data;
+			console.log(orderData);
+			headHtml+='<p>'+orderData.order_post_time+'</p>';
+			$(".head").html(headHtml);
+
+			remaskHtml+='<p><span>'+orderData.order_number_title+'</span><span>'+orderData.order_number_value+'</span></p>';
+			$(".remask").html(remaskHtml);
+
+			toyHtml+='<dl><dt><img src="'+orderData.img_thumb+'"></dt><dd><span>'+orderData.business_title+'</span><span>'+orderData.every_sell_price+'</span><span>'+orderData.status_name+'</span></dd></dl><a>(年卡ID：'+orderData.card_id+')</a>';
+			$(".toy").html(toyHtml);
+		}
+	})
+}
+
+</script>
+</body>
+</html>

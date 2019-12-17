@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div class="jiathis_style_32x32">
+    <a class="jiathis_button_qzone">1</a>
+    <a class="jiathis_button_tsina">2</a>
+    <a class="jiathis_button_tqq">3</a>
+    <a class="jiathis_button_weixin">4</a>
+    <a class="jiathis_button_renren">5</a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank">6</a>
+    <a class="jiathis_counter_style">7</a>
+</div>
+
+<script type="text/javascript" >
+    //  alert("${summary}:::"+'${summary}'+"url::"+'${sharUrl}');
+    var str= '${sharUrl}' ;
+    console.info("00000"+str);
+    var jiathis_config={
+        summary:'${summary}', //分享的文本摘要
+        url:'${sharUrl}',     //自定义分享路径
+        title:'${title}'      //自定义网页标题
+    }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+</body>
+
+</html>

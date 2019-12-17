@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>上传图片和修改</title>
+</head>
+<body>
+	<div class="wrap">
+		<form action='http://api.baobaoshowshow.com/index.php?r=BabyShowV77/ToysOrderImg' method='POST' enctype='multipart/form-data'>
+			<input type="file" name="img1" value=""><br><br>
+			<input type="file" name="img2" value=""><br><br>
+			<input type="file" name="img3" value=""><br><br>
+			<input type="file" name="img4" value=""><br><br>
+			<input type="file" name="img5" value=""><br><br>
+			<input type="file" name="img6" value=""><br><br>
+			<input type='submit' value="确定">
+			<input type='hidden' value='' id="txt" name="order_id">
+			<input type='hidden' value='2' name="source">
+		</form>
+		<div class="pic">
+			<p class="wen">用户上传图片展示</p>
+			<div class="zi"></div>
+		</div>
+		<div class="pic1">
+			<p class="wen1">后台上传图片展示</p>
+			<div class="zi1"></div>
+		</div>
+	</div>
+	<script type="text/javascript" src='js/jquery.min.js'></script>
+	<script type="text/javascript">
+		var orderId='';
+		function GetQueryString(name){
+		    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		    var r = window.location.search.substr(1).match(reg);
+		    if(r!=null)return  unescape(r[2]); return null;
+		}
+		if(GetQueryString("order_id")!=null && GetQueryString("order_id").length>-1){
+
+			orderId=GetQueryString("order_id");
+
+			$("#txt").val(orderId);
+		}
+		$.ajax({
+			url:'https://api.baobaoshowshow.com/index.php?r=BabyShowV77/ToysOrderImgInfo&order_id='+orderId,
+			type:'get',
+			success:function(data){
+				var res=JSON.parse(data);
+				var boxdata=res.data;
+				var boxhtml='';
+				var boxhtml1='';
+				var boximg=boxdata.user_load_img;
+				var boximg1=boxdata.admin_load_img;
+				boxhtml+='<div>'
+				for(var i in boximg){
+					boxhtml+='<p style="position:relative"><img src='+boximg[i]+' style="width:500px;height:500px;"><input type="button" class="btn" value="删除" style="margin-left:50px;position:absolute;top:250px;" imgindex='+boximg[i]+'></p>';
+				}
+				boxhtml+='</div>';
+				$(".zi").html(boxhtml);
+				boxhtml1+='<div>'
+				for(var i in boximg1){
+					boxhtml1+='<p style="position:relative"><img src='+boximg1[i]+' style="width:500px;height:500px;"><input type="button" class="btn1" value="删除" style="margin-left:50px;position:absolute;top:250px;" imgindex='+boximg1[i]+'></p>';
+				}
+				boxhtml1+='</div>';
+				
+				$(".zi1").html(boxhtml1);
+				$(".btn").on("click",function(){
+					var imgIndex=$(this).attr("imgindex");
+					var fgnl=confirm("确定删除?");
+						if (fgnl==true){  
+							console.log(orderId);
+							console.log(imgIndex);
+							$.ajax({
+								url:'https://api.baobaoshowshow.com/index.php?r=BabyShowV77/ToysOrderImgdel&order_id='+orderId+'&img_del='+imgIndex+'&source=1',
+								type:'GET',
+								datatype:'json',
+								success:function(data){
+									var data=JSON.parse(data);
+									alert(data.reMsg);
+									window.location.reload();
+								}
+							})
+						}else{  
+							return false;  
+						} 
+				})
+
+				$(".btn1").on("click",function(){
+					var imgIndex=$(this).attr("imgindex");
+					var fgnl=confirm("确定删除?");
+						if (fgnl==true){  
+							console.log(orderId);
+							console.log(imgIndex);
+							$.ajax({
+								url:'https://api.baobaoshowshow.com/index.php?r=BabyShowV77/ToysOrderImgdel&order_id='+orderId+'&img_del='+imgIndex+'&source=2',
+								type:'GET',
+								datatype:'json',
+								success:function(data){
+									var data=JSON.parse(data);
+									alert(data.reMsg);
+									window.location.reload();
+								}
+							})
+						}else{  
+							return false;  
+						} 
+				})
+			}
+		})
+	</script>
+</body>
+</html>

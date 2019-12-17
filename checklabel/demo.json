@@ -1,0 +1,267 @@
+{
+    "success": true,
+    "reCode": 200,
+    "reMsg": "获取列表",
+    "data": [
+        {
+            "label_id": 100,
+            "label_name": "萌宝",
+            "category_label": [
+                {
+                    "label_name": "萌萌哒的小胖子",
+                    "label_id": "101"
+                },
+                {
+                    "label_name": "性感撩人的睡姿",
+                    "label_id": "102"
+                },
+                {
+                    "label_name": "我是无敌的熊孩子",
+                    "label_id": "104"
+                },
+                {
+                    "label_name": "无敌的小逗比",
+                    "label_id": "105"
+                },
+                {
+                    "label_name": "美丽成长*闪闪童星",
+                    "label_id": "106"
+                },
+                {
+                    "label_name": "风一样的女汉子",
+                    "label_id": "107"
+                },
+                {
+                    "label_name": "我是迷人的小帅哥",
+                    "label_id": "108"
+                },
+                {
+                    "label_name": "歪脖萌到无极限",
+                    "label_id": "109"
+                },
+                {
+                    "label_name": "吃货的世界你不懂",
+                    "label_id": "110"
+                },
+                {
+                    "label_name": "孖生俩宝贝",
+                    "label_id": "111"
+                },
+                {
+                    "label_name": "靓靓小公主",
+                    "label_id": "112"
+                },
+                {
+                    "label_name": "酷酷小宝宝",
+                    "label_id": "113"
+                },
+                {
+                    "label_name": "我爱旅游",
+                    "label_id": "114"
+                },
+                {
+                    "label_name": "看看我像谁",
+                    "label_id": "115"
+                },
+                {
+                    "label_name": "这个爸爸超有爱",
+                    "label_id": "117"
+                },
+                {
+                    "label_name": "我是小王子",
+                    "label_id": "119"
+                },
+                {
+                    "label_name": "小财迷",
+                    "label_id": "120"
+                },
+                {
+                    "label_name": "我有牛牛的豪车",
+                    "label_id": "121"
+                },
+                {
+                    "label_name": "勤劳的小蜜蜂",
+                    "label_id": "122"
+                },
+                {
+                    "label_name": "一家多宝",
+                    "label_id": "125"
+                },
+                {
+                    "label_name": "清凉一夏",
+                    "label_id": "126"
+                },
+                {
+                    "label_name": "自力更生",
+                    "label_id": "127"
+                },
+                {
+                    "label_name": "迷人小光头",
+                    "label_id": "130"
+                },
+                {
+                    "label_name": "周人气宝贝",
+                    "label_id": "131"
+                },
+                {
+                    "label_name": "甜甜蜜蜜的亲子照",
+                    "label_id": "134"
+                },
+                {
+                    "label_name": "吃货是这样贴秋膘的",
+                    "label_id": "136"
+                },
+                {
+                    "label_name": "你那里下雪了吗？",
+                    "label_id": "137"
+                },
+                {
+                    "label_name": "父爱是什么样子的？",
+                    "label_id": "141"
+                }
+            ]
+        },
+        {
+            "label_id": 200,
+            "label_name": "生活",
+            "category_label": [
+                {
+                    "label_name": "快乐成长",
+                    "label_id": "201"
+                },
+                {
+                    "label_name": "育儿知识",
+                    "label_id": "202"
+                },
+                {
+                    "label_name": "时尚情感",
+                    "label_id": "203"
+                },
+                {
+                    "label_name": "辣妈厨房",
+                    "label_id": "204"
+                },
+                {
+                    "label_name": "亲子游玩",
+                    "label_id": "205"
+                }
+            ]
+        },
+        {
+            "label_id": 300,
+            "label_name": "学习成长",
+            "category_label": [
+                {
+                    "label_name": "钢琴学习",
+                    "label_id": "301"
+                },
+                {
+                    "label_name": "古筝学习",
+                    "label_id": "302"
+                },
+                {
+                    "label_name": "舞蹈基本功",
+                    "label_id": "303"
+                },
+                {
+                    "label_name": "民族舞学习",
+                    "label_id": "304"
+                },
+                {
+                    "label_name": "现代舞学习",
+                    "label_id": "305"
+                },
+                {
+                    "label_name": "芭蕾舞学习",
+                    "label_id": "306"
+                },
+                {
+                    "label_name": "街舞学习",
+                    "label_id": "307"
+                },
+                {
+                    "label_name": "武术",
+                    "label_id": "308"
+                },
+                {
+                    "label_name": "少儿绘画",
+                    "label_id": "309"
+                },
+                {
+                    "label_name": "素描",
+                    "label_id": "310"
+                },
+                {
+                    "label_name": "水彩",
+                    "label_id": "311"
+                },
+                {
+                    "label_name": "游泳",
+                    "label_id": "312"
+                },
+                {
+                    "label_name": "唱歌",
+                    "label_id": "313"
+                },
+                {
+                    "label_name": "吉他",
+                    "label_id": "314"
+                },
+                {
+                    "label_name": "跆拳道",
+                    "label_id": "315"
+                },
+                {
+                    "label_name": "篮球",
+                    "label_id": "316"
+                },
+                {
+                    "label_name": "DIY",
+                    "label_id": "317"
+                },
+                {
+                    "label_name": "少儿英语",
+                    "label_id": "318"
+                }
+            ]
+        },
+        {
+            "label_id": 400,
+            "label_name": "值得买",
+            "category_label": [
+                {
+                    "label_name": "靓妈美妆",
+                    "label_id": "401"
+                },
+                {
+                    "label_name": "值得买-女童",
+                    "label_id": "402"
+                },
+                {
+                    "label_name": "值得买-男童",
+                    "label_id": "403"
+                },
+                {
+                    "label_name": "书本玩具",
+                    "label_id": "404"
+                },
+                {
+                    "label_name": "疯狂抢购",
+                    "label_id": "405"
+                },
+                {
+                    "label_name": "家居",
+                    "label_id": "406"
+                },
+                {
+                    "label_name": "海淘",
+                    "label_id": "407"
+                },
+                {
+                    "label_name": "孕妈",
+                    "label_id": "408"
+                }
+            ]
+        }
+    ]
+}

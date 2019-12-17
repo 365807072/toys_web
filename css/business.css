@@ -1,0 +1,228 @@
+body , div , dl , dd , dt , ul , li , ol , p , h1 , h2 , h3 {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-family: "微软雅黑";
+}
+a{
+	text-decoration:blink;
+	color: #333;
+}
+body{
+	max-width: 640px;
+	margin: auto;
+}
+header{
+	height: 50px;
+	line-height: 50px;
+	background: #484343;
+	text-align: center;
+	position: relative;
+	color: #fff;
+	font-size: 1.125rem;
+}
+header a{
+	display: block;
+	position: absolute;
+	left: 1.25rem;
+	color: #fff;
+	padding-left: .875rem; 
+	font-size: .875rem;
+}
+header a:after{
+	content: '';
+	position: absolute;
+	width: .875rem;
+	height: .875rem;
+	display: block;
+	background: url(../img/arrow.png) no-repeat left center;
+	background-size: auto 90%;
+	left: 0;
+	top: 1.125rem;
+}
+
+.banner{
+	width: 100%;
+}
+.banner li img{
+	width: 100%;
+}
+.content{
+	padding-bottom: 49px;
+}
+.content>div{
+	border-bottom: 1px #e5e5e5 solid;
+}
+.content .commodity{
+	height: 2.05rem;
+	line-height: 2.05rem;
+	color: #000;
+	font-size: .9rem;
+	padding-left: .6rem;
+}
+.content .address , .content .gameTime , .content .phoneNum , .content .Aevaluate , .content .evaluate , .content .more{
+	padding: .75rem .6rem;
+	font-size: .80rem;
+	color: #333;
+	position: relative;
+}
+.content .phoneNum:after{
+	content: "";
+	width: 1rem;
+	height: 100%;
+	background: url(../img/call.png) no-repeat left center;
+	background-size: 90%;
+	top: 0; 
+	position: absolute;
+	right: .85rem;
+}
+.content .setmeal{
+	height: 2.4rem;
+	padding: 0 .6rem;
+	position: relative;
+	color: #618afe;
+	line-height: 2.4rem;
+	font-size: .90rem;
+}
+.content .setmeal a{
+	display: block;
+	width: 5rem;
+	height: 1.7rem;
+	text-align: center;
+	line-height: 1.7rem;
+	background: #ff9d4d;
+	color: #fff;
+	border-radius: 5px;
+	position: absolute;
+	right: .6rem;
+	font-size: .9rem;
+	top: .38rem;
+}
+.content .ticket .price{
+	padding: .75rem .6rem ;
+	font-size: .75rem;
+}
+.content .ticket .price span{
+	font-size: 1.25rem;
+	color: #ff4d4d;
+}
+.content .ticket .price u{
+	color: #999999;
+	text-decoration: line-through;
+}
+.content .ticket ul li {
+	font-size: .83rem;
+	color: #333;
+	margin: 0 0 .4rem .64rem;
+}
+.content .ticket ol {
+	margin-top: .6rem;
+	margin-bottom: .7rem;
+}
+.content .ticket ol li {
+	font-size: .85rem;
+	color: #999;
+	margin: 0 0 .4rem .64rem;
+}
+.content .introduction{
+	padding: 0 .6rem 1rem .6rem;
+}
+.content .introduction .title{
+	line-height: 2rem;
+	font-size: .9rem;
+	color: #666;
+}
+.content .introduction p{
+	font-size: .8rem;
+	line-height: 1.25rem;
+	color: #999;
+	text-indent: 1.6rem;
+}
+.content .Aevaluate , .content .evaluate , .content .more{
+	font-size: 1rem;
+	padding: .5rem .6rem;
+	color: #666;
+}
+.content .Aevaluate i{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	margin-left: .2rem;
+	background: url(../img/stave.png) no-repeat center bottom;
+	background-size: 90%;
+}
+.content .Aevaluate i.c{
+	background: url(../img/hstave.png) no-repeat center bottom;
+	background-size: 90%;
+}
+.content .evaluates .stave i{
+	display: inline-block;
+	width: 1rem;
+	height: 1rem;
+	background: url(../img/stave.png) no-repeat center bottom;
+	background-size: 90%;
+}
+.content .evaluates .stave i.c{
+	background: url(../img/hstave.png) no-repeat center bottom;
+	background-size: 90%;
+}
+.content .evaluates li{
+	padding: .7rem .6rem;
+	border-bottom: 1px #e5e5e5 solid;
+}
+.content .evaluates li .name{
+	color: #f00;
+	font-size: .8rem;
+}
+.content .evaluates li .time{
+	font-size: .8rem;
+}
+.content .evaluates li p{
+	margin-top: .5rem;
+	line-height: 1.25rem;
+	font-size: .9rem;
+	color: #333;
+}
+.content .evaluates li:last-of-type{
+	border: none;
+}
+.aside{
+	position: fixed;
+	width: 100%;
+	height: 50px;
+	bottom: 0;
+	background: #5f5f5f;
+}
+.aside dl{
+	margin-left: 10px;
+	margin-top: 8px;
+}
+.aside dl dt{
+	height: 35px; 
+	float: left;
+}
+.aside dl dt img{
+	height: 100%;
+}
+.aside dl dd{
+	float: left;
+	font-size: .7rem;
+	color: #fff;
+	margin-left: 5px;
+
+}
+.aside a{
+	display: block;
+	width: 5.7rem;
+	height: 2rem;
+	background: #ff7575;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	border-radius: 2rem;
+	text-align: center;
+	line-height: 2rem;
+	color: #fff;
+
+}
+

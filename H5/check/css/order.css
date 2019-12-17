@@ -1,0 +1,126 @@
+html,body{
+	font-size: 14px;
+}
+.wrap{
+	width: 126%;
+}
+header ul{
+	display: -webkit-box;
+	background-color: #6795B4;
+}
+header ul li{
+	margin:0 0.5rem;
+	font-weight: bold;
+	padding: 0.05rem 0;
+}
+header ul li a{
+	color: #fff;
+}
+.head{
+	width: 126.3%;
+	z-index: 1;
+	background-color: #fff;
+}
+.head input{
+	margin-left: 0.03rem;
+	margin-top: 0.1rem;
+}
+.head .btn{
+	width: 48px;
+	height: 26px;
+	line-height: 17px;
+	text-align: center;
+}
+.numbtn{
+	width: 48px;
+	height: 26px;
+	line-height: 17px;
+	text-align: center;
+}
+.typebtn{
+	width: 48px;
+	height: 26px;
+	line-height: 17px;
+	text-align: center;
+}
+.count{
+	position: absolute;
+	right: 0.1rem;
+	top: 0.3rem;
+	font-size: 0.13rem;
+}
+.count a{
+	color: red;
+}
+.main{
+	margin-top: 0.1rem;
+	font-size: 16px;
+}
+.top{
+	width: 100%;
+	font-weight: bold;
+	margin-top: 0.1rem;
+}
+.top ul{
+	display: -webkit-box;
+}
+.top ul li{
+	width: 0.72rem;
+	display: block;
+	text-align: center;
+}
+.top ul li:nth-of-type(2){
+	margin-left:0.01rem;
+}
+.top ul li:nth-of-type(3){
+	margin-left: 0.03rem;
+}
+.top ul li:nth-of-type(7){
+	margin-left: 0.03rem;
+}
+.middle{
+	width: 100%;
+	border-top: 1px solid #999;
+	border-left: 1px solid #999;
+}
+
+.middle tr td{
+	width: 0.72rem;
+	height: 0.5rem;
+	text-align: center;
+	border-right: 1px solid #999;
+	border-bottom: 1px solid #999;
+	vertical-align: middle;
+}
+.dropload-down{
+	position: fixed;
+	bottom: 0;
+	left: 3.5rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

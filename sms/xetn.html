@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/xetn.css">
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+</head>
+<body>
+	<div class="wrap">
+		<header><h1>舜鑫国际旅游（北京）有限公司租赁亲子平台</h1></header>
+		<section class="content">
+			<div class="main">
+				<div class="baby"><p>“感恩有你”之蓝宝宝小儿推拿馆</p></div>
+				<div class="pic">
+					<ul>
+						<li>
+							<p><img src="img/5.png"></p>
+							<p>小儿推拿是以中医辨证理论为基础，提高免疫力的一种纯绿色疗法</p>
+						</li>
+						<li>
+							<p><img src="img/6.png"></p>
+							<p>增强孩子抗病能力，预防病毒侵蚀和滋生，达到有病治病，无病保健的目的</p>
+						</li>
+						<li>
+							<p><img src="img/7.png"></p>
+							<p>适合0-12岁婴幼儿改善体质，对于治疗小儿呼吸道和消化道疾病尤为有效</p>
+						</li>
+						<li>
+							<p><img src="img/8.png"></p>
+						</li>
+					</ul>
+				</div>
+				<div class="test">
+					<p>地址：北京市昌平区——回龙观西大街冠庭中心10-5-301</br></br></p>
+					<p>最最最重要的是！</br></br>现在参加舜鑫国际旅游（北京）有限公司租赁“感恩有你”活动免费去推拿！！</br></br></p>
+					<p>参与步骤：打开“舜鑫国际旅游（北京）有限公司租赁”客户端，搜索并关注群“同住回龙观”，参与发帖或互动即为参与“感恩有你”活动。发帖越多互动越高礼品越丰厚！</br></br></p>
+					<p>关注微信公众号“舜鑫国际旅游（北京）有限公司租赁”，或者添加微信号“xiuxiuxiaobian”，还可获得更多豪礼！</br></br></p>
+					
+					
+				</div>
+			</div>
+		</section>
+		
+		<a href="http://mp.weixin.qq.com/s/zSSVWBDL1qCYJes9nF8b0g" class="btn">更多豪礼</a>
+		
+	</div>
+
+
+<script type="text/javascript" src="js/zepto.js"></script>
+<script type="text/javascript" src="js/setfontsize.js"></script>
+<script type="text/javascript">
+	$.ajax({
+		url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV1/messageLink&title=小儿推拿',
+		type:'GET',
+		success:function(data){
+		}
+	})
+	$(".btn").on("click",function(){
+		$.ajax({
+			url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV1/messageOpen&title=小儿推拿',
+			type:'GET',
+			success:function(data){
+				
+			}
+		})
+</script>
+</body>
+</html>

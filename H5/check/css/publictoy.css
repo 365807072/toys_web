@@ -1,0 +1,45 @@
+html,body{
+	font-size: 14px;
+}
+header ul{
+	display: -webkit-box;
+	background-color: #6795B4;
+}
+header ul li{
+	margin:0 0.1rem;
+	font-weight: bold;
+	padding: 0.05rem 0;
+}
+header ul li a{
+	color: #fff;
+}
+.main p{
+	margin:0.1rem 0;
+}
+.main p textarea{
+	width: 30%;
+	height: 0.3rem;
+	margin-left:0.1rem;
+}
+.main p input{
+	margin-left:0.1rem;
+}
+.foot button{
+	width: 0.35rem;
+	height: 0.2rem;
+	font-size: 0.1rem; 
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

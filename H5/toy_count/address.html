@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/address.css">
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+	<link rel="stylesheet" type="text/css" href="css/iosSelect.css">
+</head>
+<body>
+	<div class="wrap">
+		<div class="box" style="display: none">
+			<ul>
+				<li>
+					<span>您的姓名：</span>
+					<span><input type="text" class="userName"></span>
+				</li>
+				<li>
+					<span>手机号码：</span>
+					<span><input type="number" class="phone"></span>
+				</li>
+				<li>
+					<div class="form-item item-line" id="select_contact">                 
+					    <label>所在地区</label>                 
+					    <div class="pc-box">                     
+					        <input type="hidden" name="contact_province_code" data-id="0001" id="contact_province_code" value="" data-province-name="">                     
+        					<input type="hidden" name="contact_city_code" id="conhrtact_city_code" value="" data-city-name=""><span data-city-code="510100" data-province-code="510000"  id="show_contact">请选择</span>  
+					    </div>             
+					</div>
+
+				</li>
+				<li>
+					<span>详细地址：</span>
+					<span><input type="text" name="" placeholder='最少填写五个字' class="dizhi"></span>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="main" style="display: none">
+		</div>
+			<!--<div class="choose" style="display: none">
+		 <p>
+				<span>我是名字</span>
+				<span>13283479832</span>
+			</p>
+			<p>饿得快会考的生活方式的咖啡酒红色的快递发货速度快第三发当时发生的大事第三发水电费</p>
+			<p>
+				<span><a><img src="img/36.png"></a><a>编辑</a></span>
+				<span><a><img src="img/37.png"></a><a>删除</a></span>
+			</p> 
+		</div>-->
+
+		
+	</div>
+	<div class="foot">
+		<button class="btn">新增地址</button>
+		<button class="bnt" style="display: none">保存</button>
+	</div>
+
+
+<script type="text/javascript" src="js/setfontsize.js"></script>
+<script type="text/javascript" src="js/iScrolldata.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/iosSelect.js"></script>
+<script type="text/javascript">
+var iosProvinces="";
+var iosCitys="";
+var obj="";
+var citys=[];
+var inces=[];
+var url = location.href;
+var userId="";
+var choseHtml="";
+var addId="";
+var remove="";
+var user_Name="";
+var telephone="";
+var cityId="";
+var diZhi=""; 
+var businessId="";
+var comborder="";
+var orderId="";  
+var sourceId=""
+var boxHtml="";
+var addreId="";
+if(url.indexOf("?") > 0){
+	if(GetQueryString("login_user_id")!=null && GetQueryString("login_user_id").length>-1){
+		
+		userId = GetQueryString("login_user_id");
+	}
+	if(GetQueryString("business_id")!=null && GetQueryString("business_id").length>-1){
+			
+		businessId = GetQueryString("business_id");
+	}
+	if(GetQueryString("combined_order_id")!=null && GetQueryString("combined_order_id").length>-1){
+		
+		comborder = GetQueryString("combined_order_id");
+	}
+	if(GetQueryString("order_id")!=null && GetQueryString("order_id").length>-1){
+		
+		orderId = GetQueryString("order_id");
+	}
+	if(GetQueryString("source")!=null && GetQueryString("source").length>-1){
+		
+		sourceId = GetQueryString("source");
+	}
+}
+function GetQueryString(name){
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if(r!=null)return  unescape(r[2]); return null;
+}
+dianchi();
+addaddress();
+addres();
+function addaddress(){
+	$.ajax({
+		url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV77/getToysCityAdd&login_user_id='+userId,
+		type:'GET',
+		datatype:'json',
+		success:function(data){
+			var data=JSON.parse(data);
+			obj=data.data;
+			for(var i=0; i<obj.length; i++){
+				citys[i]={
+					id:obj[i].city_id,
+					value:obj[i].city_name
+				}
+				
+				for(var k=0; k<obj[i].children.length; k++){
+					inces.push({
+						id:obj[i].children[k].city_id,
+						value:obj[i].children[k].city_name,
+						parentId:obj[i].city_id
+					})
+					
+				}
+			}
+		}
+	})
+}
+function addres(){
+	var selectContactDom = $('#select_contact');
+	var showContactDom = $('#show_contact');
+	var contactProvinceCodeDom = $('#contact_province_code');
+	var contactCityCodeDom = $('#contact_city_code');
+	selectContactDom.bind('click', function () {
+	    var sccode = showContactDom.attr('data-city-code');
+	    var scname = showContactDom.attr('data-city-name');
+	    var oneLevelId = showContactDom.attr('data-province-code');
+	    var twoLevelId = showContactDom.attr('data-city-code');
+
+	    var iosSelect = new IosSelect(2, 
+	        [citys, inces],
+	        {
+	            title: '地址选择',
+	            itemHeight: 35,
+	            relation: [1],
+	            oneLevelId: oneLevelId,
+	            twoLevelId: twoLevelId,
+	            callback: function (selectOneObj, selectTwoObj,) {
+	                contactProvinceCodeDom.val(selectOneObj.id); 
+	                contactProvinceCodeDom.attr('data-province-name', selectOneObj.value);
+	                contactCityCodeDom.val(selectTwoObj.id);
+	                contactCityCodeDom.attr('data-city-name', selectTwoObj.value);
+
+	                showContactDom.attr('data-province-code', selectOneObj.id);
+	                showContactDom.attr('data-city-code', selectTwoObj.id);
+	                showContactDom.html(selectOneObj.value + ' ' + selectTwoObj.value);
+	            }
+
+	    });
+	});
+}
+
+
+function dianchi(){
+	$(".main").show();
+	$.ajax({
+		url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV77/getToysUserAddressList&login_user_id='+userId+'&business_id='+businessId+'&combined_order_id='+comborder+'&order_id='+orderId+'&source='+sourceId,
+		success:function(data){
+			var data=JSON.parse(data);
+			console.log(data);
+			var res=data.data;
+			console.log(data.data2);
+			if(res){
+				
+				for(var i in res){
+					var state = res[i].is_defalut==1?"checked":"";
+					console.log(state);
+					choseHtml+='<div class="choose">'
+					choseHtml+='<p><span>'+res[i].user_name+'</span><span>'+res[i].mobile+'</span></p><p>'+res[i].address+'</p><p><span class="edit" editindex='+res[i].id+'><a><img src="img/36.png"></a><a>编辑</a></span><span class="remove" remindex='+res[i].id+'  onclick="return confirmAct();"><a><img src="img/37.png"></a><a>删除</a></span></p><label class="rad_label" addindex='+res[i].id+'><input type="radio" '+state+' name='+res[i].user_id+'/><div>默认地址</div></label>';
+					choseHtml+='</div>'
+				}
+			
+				$(".main").html(choseHtml);
+
+				$(".choose").on('change','input',function(){
+					addId=$(this).parent('label').attr("addindex");
+					
+					$.ajax({
+						url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV77/getToysUserAddressSet',
+						data:{
+							login_user_id:userId,
+							address_id:addId
+						},
+						success:function(data){
+							console.log(data);
+							var data=JSON.parse(data);
+							alert(data.reMsg);
+							location.reload();
+						}
+					})
+				})
+			}
+		}
+	})
+}
+
+function confirmAct() { 
+	remove=$(".remove").attr("remindex");
+	console.log(remove)
+    if(confirm('确定要删除地址吗?')){ 
+       $.ajax({
+			url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV77/getToysUserAddressDel&login_user_id='+userId+'&address_id='+remove,
+			success:function(data){
+				var data=JSON.parse(data);
+				alert(data.reMsg);
+				location.reload();
+			}
+		})
+    } else{
+    	return false; 
+    }
+    
+} 
+
+$(".wrap").on("click",".edit",function(){
+	alert(1);
+	addId=$(this).attr("editindex");
+	$.ajax({
+		url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV77/getToysCityEdit',
+		data:{
+			login_user_id:userId,
+			address_id:addId
+		},
+		success:function(data){
+			var data=JSON.parse(data);
+			var editData=data.data2;
+			console.log(editData);
+			$(".bnt").show();
+			$(".btn").hide();
+			$(".choose").hide();
+			$(".box").show();
+			// $(".userName").value=editData.user_name;
+			// $(".phone").value=editData.mobile;
+			// $("#show_contact").attr("data-city-code").value=editData.city_id;
+			boxHtml+='<ul adidindex='+editData.address_id+'><li><span>您的姓名：</span><span><input type="text" class="userName" value='+editData.user_name+'></span></li><li><span>手机号码：</span><span><input type="number" class="phone" value='+editData.mobile+'></span></li><li><div class="form-item item-line" id="select_contact"><label>所在地区</label><div class="pc-box"><input type="hidden" name="contact_province_code" data-id="0001" id="contact_province_code" value="" data-province-name=""><input type="hidden" name="contact_city_code" id="conhrtact_city_code" value="" data-city-name=""><span data-city-code='+editData.city_id+' data-province-code="510000"  id="show_contact">请选择</span></div></div></li><li><span>详细地址：</span><span><input type="text" name="" class="dizhi"></span></li></ul>';
+			$(".box").html(boxHtml);
+			addaddress();
+			addres();
+
+
+		}
+	})
+})
+
+$(".foot").on("click",".btn",function(){
+	$(".bnt").show();
+	$(".btn").hide();
+	$(".choose").hide();
+	$(".box").show();
+})
+
+$(".foot").on("click",".bnt",function(){
+	user_Name=$(".userName").val();
+	telephone=$(".phone").val();
+	cityId=$("#show_contact").attr("data-city-code");
+	diZhi=$(".dizhi").val();
+	addreId=$(".box ul").attr("adidindex");
+	$.ajax({
+		url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV77/editUserOrderInfo',
+		data:{
+			login_user_id:userId,	
+			combined_order_id:comborder,
+			user_name:user_Name,
+			address:diZhi,
+			mobile:telephone,
+			city_id:cityId,
+			address_id:addreId
+		},
+		type:'get',
+		success:function(data){
+			var data=JSON.parse(data);
+			alert(data.reMsg);
+			if(data.success==true){
+				$(".box").hide();
+				location.reload();
+			}else{
+				$(".main").hide();
+				$(".box").show();
+				$(".choose").hide();
+			}
+			
+		}
+	})
+})
+
+</script>
+</body>
+</html> 

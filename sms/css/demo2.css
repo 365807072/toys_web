@@ -1,0 +1,279 @@
+html,body{
+	width: 100%;
+	height: 100%;
+	background-color: #f5f5f5;
+}
+.wrapper{
+	width: 100%;
+	height: 100%;
+	min-width: 320px;
+	max-width: 640px;
+	margin: 0 auto;
+}
+.scroll{
+	width: 100%;
+	height: 100%;
+}
+#loading{
+	width: 100%;
+	height: 100%;
+	font-size: 0.3rem;
+	color: #fff;
+	z-index: 9999;
+}
+#loading img{
+	margin: 0 auto;
+	margin-top: 40%;
+	width: 80%;
+	display: block;
+	z-index: 9999;
+}
+.top{
+	width: 97%;
+	margin: 0 auto;
+	margin-top: 0.2rem;
+}
+.top h1{
+	line-height: 0.65rem;
+	margin-left: 0.1rem;
+	font-size: 0.4rem;
+}
+.pp{
+	width: 100%;
+	margin: 0 auto;
+	position: relative;
+}
+.pp span{
+	display: block;
+}
+.pp span:nth-of-type(1) a:nth-of-type(1){
+	margin-left: 0.5rem;
+	margin-top: 0.2rem;
+}
+.pp span:nth-of-type(1) a:nth-of-type(1) img{
+	width: 0.7rem;
+	height: 0.7rem;
+	border-radius: 60px;
+	border: none;
+	margin-left: 0.1rem;
+}
+.pp span:nth-of-type(1) a b{
+	display: block;
+	position: absolute;
+	left: 1.1rem;
+	top: 0.25rem;
+}
+
+.pp span:nth-of-type(1) a:nth-of-type(2) b{
+	display: block;
+}
+.pp span:nth-of-type(1) a:nth-of-type(2) b:nth-of-type(1){
+	color: #696969;
+	line-height: 0.35rem;
+	font-size: 0.3rem;
+	
+}
+.pp span:nth-of-type(1) a:nth-of-type(2) b:nth-of-type(2){
+	color: #999;
+	font-size: 0.27rem;
+	position: absolute;
+	top: 0.65rem;
+	font-family: Arial;
+	font-weight: normal;
+	
+}
+.box{
+	width: 100%;
+	margin-top: 0.3rem;
+}
+.wenzi{
+	width: 100%;
+}
+.pp1{
+	width: 95%;
+	margin: 0 auto;
+	line-height: 0.5rem;
+	font-size: 0.35rem;
+
+}
+.content{
+	width: 100%;
+	margin-top: 0.15rem;
+}
+.pic{
+	width: 100%;
+	margin: 10px 0;
+}
+.pic img{
+	width: 95%;
+	margin: 0 auto;
+}
+.center{
+	display: -webkit-box;
+	display: -moz-box;
+	display: box;
+	padding-top: 0.17rem;
+	border-bottom: 0.01rem solid #DDDDDD;
+	padding-bottom: 0.1rem;
+}
+.center span{
+	display: block;
+}
+.center span:nth-of-type(1) img{
+	width: 0.6rem;
+	height: 0.6rem;
+	margin-left: 0.3rem;
+}
+.center span:nth-of-type(2){
+	margin-left: 0.4rem;
+	line-height: 0.38rem;
+}
+.center span:nth-of-type(2) h1{
+	color: #666;
+	font-size: 0.25rem;
+}
+.center span:nth-of-type(2) a{
+	color: #999999;
+	font-family: Arial;
+	font-weight: normal;
+	font-size: 0.2rem;
+}
+.pl{
+	padding-left: 0.3rem;
+	margin: 0 auto;
+	line-height: 0.9rem;
+}
+.pl p{
+	font-size: 0.35rem;
+	color: #505050;
+	font-weight: bold;
+	margin-left: -0.1rem;
+	font-family: "黑体";
+}
+.wrap{
+	width: 100%;
+}
+.wenzi1{
+	width: 93%;
+	margin: 0 auto;
+	border-bottom: 1px solid #E4E4E4;
+}
+.bottom{
+	border-bottom: none;
+}
+.bottom span:nth-of-type(2){
+	margin-left: 0.2rem;
+}
+.bottom span:nth-of-type(1) img{
+	width: 0.7rem;
+	height: 0.7rem;
+	margin-left: 0.3rem;
+	display: block;
+	border-radius: 60px;
+}
+.lx{
+	width: 93%;
+	border-bottom: 1px solid #E4E4E4;
+	margin: 0 auto; 
+}
+.lx p{
+	font-size: 0.3rem;
+	color: #505050;
+	font-weight: 8rem;
+	line-height: 0.45rem;
+	padding-bottom: 0.2rem;
+	padding-left: 0.95rem;
+}
+.footer{
+	width: 100%;
+}
+.logo{
+	width: 90%;
+	margin: 0 auto;
+	margin-top: 0.4rem;
+}
+.logo a img{
+	width: 180px;
+	height: 100px;
+	margin: 0 auto;
+}
+.foot{
+	width: 90%;
+	margin: 0 auto;
+	text-align: center;
+	line-height: 1rem;
+	font-size: 0.3rem;
+}
+.foot a{
+	color: #1c88ff;
+}
+.mask{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	background: #000;
+	opacity: .8;
+	z-index: 100;	
+}
+.tipContainer {
+	display: none;
+	width: 100%;
+	position: fixed;
+	top: 0.15rem;
+	z-index: 1000;
+}
+.tipContainer img {
+	width: 1rem;
+	height: 1.3rem;
+	position: fixed;
+	top: 0.3rem;
+	left: 5rem;
+	margin-right: 0.18rem;
+}
+
+.tipContainer p {
+	font-size: 16px;
+	color: #fff;
+	padding-left: 0.2rem;
+}
+.tipContainer p:nth-of-type(1){
+	margin-top: 1.6rem;
+}
+.tipContainer p:nth-of-type(2){
+	margin-top: 1.6rem;
+}
+
+.tipContainer p em {
+	color: #ffd800;
+	font-style: inherit
+}
+
+#text{
+	position: fixed;
+	bottom: 1.6rem;
+	margin-left: -1.2rem;
+	font-size: 0.3rem;
+	background: url(../img/92.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	line-height: 0.6rem;
+	padding-bottom: 0.2rem;
+    padding-left: 0.2rem;
+    padding-right: 0.3rem;
+}
+.tell a{
+	position: fixed;
+	bottom: 0.3rem;
+	left: 43%;
+}
+.tell a img{
+	width: 1.2rem;
+	border-radius: 30px;
+}
+
+
+
+
+
+

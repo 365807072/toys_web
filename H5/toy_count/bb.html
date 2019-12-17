@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/mobile-select-area.css">
+	<link rel="stylesheet" type="text/css" href="css/dialog.css">
+</head>
+<body>
+
+<input type="text" id="txt_area" value="浙江省 杭州市 滨江区"/>
+<input type="hidden" id="hd_area" value="1,1,1"/>
+
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/mobile-select-area.js"></script>
+<script type="text/javascript" src="js/dialog.js"></script>
+<script type="text/javascript">
+
+	$.ajax({
+		  
+		url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV1/getToysCityList&login_user_id=65723',
+		type:'GET',
+		datatype:'json',
+		success:function(data){
+			var data=JSON.parse(data);
+			var quyuData=data.data;
+			var selectArea = new MobileSelectArea();
+			selectArea.init({trigger:$('#txt_area'),value:$('#hd_area').val(),data:data});
+		}
+	})
+</script>
+</body>
+</html>

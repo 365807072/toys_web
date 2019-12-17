@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>上传图片</title>
+	<link rel="stylesheet" type="text/css" href="css/publictoy.css">
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+</head>
+<body>
+	<div class="wrap">
+		<header>
+			
+			<ul>
+				<li><input type="button" class="back" value="返回"  onclick="javascript:history.back(-1);"></li>
+				<li><a>上传图片</a></li>
+			</ul>
+		</header>
+
+		<div class="main">
+			<p><label>玩具名称</label><textarea class="name"></textarea></p>
+			<p><label>玩具位置</label><textarea class="place"></textarea></p>
+			<p><label>玩具重量</label><textarea class="weight"></textarea></p>
+			<p><label>玩具尺寸</label><textarea class="size"></textarea></p>
+			<p><label>玩具颜色</label><textarea class="color"></textarea></p>
+			<p><label>玩具数量</label><textarea class="num"></textarea></p>
+			<p><label>玩具零件</label><textarea class="part"></textarea></p>
+			<p><label>玩具图片</label><input type="file" name="" class="img"></p>
+		</div>
+		<div class="foot">
+			<button>提交</button>
+		</div>
+	</div>
+
+<script type="text/javascript" src="js/setfontsize.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+ var nametext=$(".name").val();
+ var placetext=$(".place").val();
+ var weighttext=$(".weight").val();
+ var sizetext=$(".size").val();
+ var colortext=$(".color").val();
+ var numtext=$(".num").val();
+ var parttext=$(".part").val();
+ $().on("click",function(){
+ 	
+ })
+</script>
+</body>
+</html>

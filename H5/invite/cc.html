@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+	<div class="wrap">
+		<button>分享</button>
+	</div>
+</div>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script> 
+<?php 
+require_once "../jssdk/jssdk.php"; //表示主机根目录下jssdk文件夹内jssdk.php文件
+$jssdk = new JSSDK("AppID(应用ID)", "AppSecret(应用密钥)");//填写开发者中心你的开发者ID
+$signPackage = $jssdk->GetSignPackage();
+?>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>  //必须引用该文件  
+   <script>
+ wx.config({
+   debug:  false,  //调式模式，设置为ture后会直接在网页上弹出调试信息，用于排查问题
+   appId: '<?php echo $signPackage["appId"];?>',
+   timestamp: <?php echo $signPackage["timestamp"];?>,
+   nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+   signature: '<?php echo $signPackage["signature"];?>',
+   jsApiList: [  //需要使用的网页服务接口
+       'checkJsApi',  //判断当前客户端版本是否支持指定JS接口
+       'onMenuShareTimeline', //分享给好友
+       'onMenuShareAppMessage', //分享到朋友圈
+       'onMenuShareQQ',  //分享到QQ
+       'onMenuShareWeibo' //分享到微博
+   ]
+ });
+
+wx.onMenuShareTimeline({
+    title: '', // 分享标题
+    link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+    imgUrl: '', // 分享图标
+    success: function () { 
+        // 用户确认分享后执行的回调函数
+    },
+    cancel: function () { 
+        // 用户取消分享后执行的回调函数
+    }
+});
+
+wx.onMenuShareAppMessage({
+    title: '', // 分享标题
+    desc: '', // 分享描述
+    link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+    imgUrl: '', // 分享图标
+    type: '', // 分享类型,music、video或link，不填默认为link
+    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+    success: function () { 
+        // 用户确认分享后执行的回调函数
+    },
+    cancel: function () { 
+        // 用户取消分享后执行的回调函数
+    }
+});
+
+wx.onMenuShareQQ({
+    title: '', // 分享标题
+    desc: '', // 分享描述
+    link: '', // 分享链接
+    imgUrl: '', // 分享图标
+    success: function () { 
+       // 用户确认分享后执行的回调函数
+    },
+    cancel: function () { 
+       // 用户取消分享后执行的回调函数
+    }
+});
+
+wx.onMenuShareWeibo({
+    title: '', // 分享标题
+    desc: '', // 分享描述
+    link: '', // 分享链接
+    imgUrl: '', // 分享图标
+    success: function () { 
+       // 用户确认分享后执行的回调函数
+    },
+    cancel: function () { 
+        // 用户取消分享后执行的回调函数
+    }
+});
+
+wx.onMenuShareQZone({
+    title: '', // 分享标题
+    desc: '', // 分享描述
+    link: '', // 分享链接
+    imgUrl: '', // 分享图标
+    success: function () { 
+       // 用户确认分享后执行的回调函数
+    },
+    cancel: function () { 
+        // 用户取消分享后执行的回调函数
+    }
+});
+</script> 
+</body>
+</html>

@@ -1,0 +1,65 @@
+html,body{
+	font-size: 14px;
+}
+.head{
+	width: 100%;
+	background-color: #fff;
+	z-index: 1;
+}
+.head p{
+	background-color: #6795B4;
+	padding:0.05rem 0;
+	padding-left: 0.1rem;
+}
+.top{
+	width: 100%;
+	margin-bottom: 0.08rem;
+	font-weight: bold;
+	padding-top: 0.1rem;
+}
+.top ul{
+	display: -webkit-box;
+}
+.top ul li{
+	width: 0.95rem;
+	display: block;
+	text-align: center;
+}
+.main{
+	width: 100%;
+	font-size: 16px;
+	border-top: 1px solid #999;
+	border-left: 1px solid #999;
+}
+/*.playint ul{
+	display: -webkit-box;
+}*/
+.playint tr td{
+	width: 0.95rem;
+	height: 0.25rem;
+	text-align: center;
+	border-right: 1px solid #999;
+	border-bottom: 1px solid #999;
+}
+/*.playint ul li:nth-of-type(2),.playint ul li:nth-of-type(3),.playint ul li:nth-of-type(4),.playint ul li:nth-of-type(5),.playint ul li:nth-of-type(6),.playint ul li:nth-of-type(7),.playint ul li:nth-of-type(8),.playint ul li:nth-of-type(9){
+	line-height: 0.4rem;
+}*/
+.dropload-down{
+	position: fixed;
+	bottom: 0;
+	left: 3.5rem;
+}
+.weight,.size,.color{
+	display: block;
+	width: 0.95rem;
+	height: 0.2rem;
+}
+
+
+
+
+
+
+
+
+

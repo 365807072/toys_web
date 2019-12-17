@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta charset="UTF-8">
+	<title>舜鑫国际旅游（北京）有限公司租赁</title>
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+	<link rel="stylesheet" type="text/css" href="css/text.css">
+</head>
+<body>
+	<div class="wrap">
+		<div id="loading"><img src="img/dongtu.gif"></div>
+		<div class="head">
+			<div class="first"></div>
+			<div class="second"></div>
+			<div class="third"></div>
+			<!-- <span><img src=""></span>
+			<span><img src=""></span>
+			<span><img src=""></span> -->
+		</div>
+
+		<div class="main">
+			<p class="team">
+				<span><img src="img/39.png"></span>
+				<span>团长排行榜</span></p>
+			<ul class="paiming">
+				<!-- <li>
+					<span><img src="img/39.png"></span>
+					<span>我是团长名字</span>
+					<span>成功邀请10人</span>
+				</li> -->
+			</ul>
+			<ul class="no">
+				<!-- <li>
+					<span><img src="img/39.png"></span>
+					<span>我是团长名字</span>
+					<span>成功邀请10人</span>
+				</li> -->
+			</ul>
+		</div>
+	</div>
+
+<script type="text/javascript" src="js/setfontsize.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	var first="";
+	var second="";
+	var third="";
+	var firstHtml="";
+	var secondHtml="";
+	var thirdHtml="";
+	var ulHtml="";
+	var fiveHtml="";
+	var six="";
+	$.ajax({
+		url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV77/ToysActivitySoloOrderEnd',
+		type:'GET',
+		datatype:'json',
+		success:function(data){
+			var data=JSON.parse(data);
+			first=data.data1;
+			second=data.data2;
+			third=data.data3;
+			four=data.data4;
+			five=data.data5;
+			six=data.data6;
+			for(var i in first){
+				firstHtml+='<a><img src="img/41.png"></a><span><img src="'+first[i].avatar+'"></span>';
+				ulHtml+='<li><a><img src="img/41.png"></a><span><img src="'+first[i].avatar+'"></span><span>'+first[i].nick_name+'</span><span>参团团员延期'+first[i].longDay+'天</span></li>';
+			}
+			$(".first").html(firstHtml);
+			for(var i in second){
+				secondHtml+='<a><img src="img/42.png"></a><span><img src="'+second[i].avatar+'"></span>';
+				ulHtml+='<li><a><img src="img/42.png"></a><span><img src="'+second[i].avatar+'"></span><span>'+second[i].nick_name+'</span><span>参团团员延期'+second[i].longDay+'天</span></li>';
+			}
+			$(".second").html(secondHtml);
+			for(var i in third){
+				thirdHtml+='<a><img src="img/43.png"></a><span><img src="'+third[i].avatar+'"></span>';
+				ulHtml+='<li><a><img src="img/43.png"></a><span><img src="'+third[i].avatar+'"></span><span>'+third[i].nick_name+'</span><span>参团团员延期'+third[i].longDay+'天</span></li>';
+			}
+			$(".third").html(thirdHtml);
+			
+			for(var i in four){
+				ulHtml+='<li><span><img src="'+four[i].avatar+'"></span><span>'+four[i].nick_name+'</span><span>参团团员延期'+four[i].longDay+'天</span></li>';
+			}
+			for(var i in five){
+				ulHtml+='<li><span><img src="'+five[i].avatar+'"></span><span>'+five[i].nick_name+'</span><span>参团团员延期'+five[i].longDay+'天</span></li>';
+			}
+			for(var i in six){
+				ulHtml+='<li><span><img src="'+six[i].avatar+'"></span><span>'+six[i].nick_name+'</span><span>参团团员延期'+six[i].longDay+'天</span></li>';
+			}
+			$(".paiming").html(ulHtml)
+
+			
+		},
+		complete:function(){
+			$("#loading").hide();
+		}
+	})
+})
+</script>
+</body>
+</html>

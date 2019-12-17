@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>会员卡列表</title>
+<link rel="stylesheet" type="text/css" href="css/memberlist.css">
+<link rel="stylesheet" type="text/css" href="css/mobile.css">
+<link rel="stylesheet" type="text/css" href="css/dropload.css">
+</head>
+<body>
+	<div class="wrap">
+		<div class="head" id="head">
+			<header>
+				<ul>
+                    <li><a href="check.html">订单表</a></li>
+                    <li><a href="memberlist.html">会员表</a></li>
+                    <li><a href="inventory.html">库存表</a></li>
+                    <li><a href="http://checkpic.baobaoshowshow.com/Others/getToyslist.html">玩具列表</a></li>
+                    <li><a href="http://checkpic.baobaoshowshow.com/Others/cardeditinfo.html">卡编辑页面</a></li>
+                    <li><a href="http://checkpic.baobaoshowshow.com/Others/edittoysorder.html">编辑玩具订单</a></li>
+                    <li><a href="http://checkpic.baobaoshowshow.com/Others/editservice.html">客服退款编辑</a></li>
+                </ul>
+			</header>
+			<form>
+				<input type="text" style="margin-left: 0.1rem;" class="txt" placeholder="输入订单id或用户id">
+				<input type="text" name="" placeholder="下单开始时间" id="startTime" class="timestart laydate-icon" onclick="laydate({elem: '#startTime',istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">---<input type="text" name="" placeholder="下单结束时间" id="endTime" class="timeend laydate-icon" onclick="laydate({elem: '#endTime',istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+				<select id="test" style="margin-left: 0.05rem">
+					<option>选择状态</option>
+					<option index="1">启用</option>
+					<option index="2">已过期</option>
+					<option index="3">未启用</option>
+					<option index="4">过期筛选</option>
+				</select>
+				<select id="money" style="margin-left: 0.05rem">
+					<option>选择状态</option>
+					<option index="1">支付</option>
+					<option index="2">免费</option>
+				</select>
+				<select id="card" style="margin-left: 0.05rem">
+					<option>选择状态</option>
+					<option index="5">周卡</option>
+					<option index="1">月卡</option>
+					<option index="2">季卡</option>
+					<option index="3">半年卡</option>
+					<option index="4">年卡</option>
+				</select>
+
+				<input type="button" value="搜索" class="btn" >
+			</form>
+			
+			<div class="count">
+				<!-- <span>总共<a>34</a>页</span> -->
+			</div>
+			<div class="top">
+				<ul>
+					<li>会员</li>
+					<li>会员卡id</li>
+					<li>支付金额</li>
+					<li>状态</li>
+					<li>下单时间</li>
+					<li>启用时间</li>
+					<li>结束时间</li>
+					<li>过期时间</li>
+					<li>归属用户</li>
+					<li>归属用户id</li>
+					<li>服务总次数</li>
+					<li>剩余服务次数</li>
+					<li>备注信息</li>
+				</ul>
+			</div>
+		</div>
+		<div class="main">
+			
+			<div class="middle">
+				<!-- <ul>
+					<li>月卡</li>
+					<li>32</li>
+					<li>启用</li>
+					<li>2016.12.05</li>
+					<li>2016.12.15</li>
+					<li>fanfan</li>
+					<li>634</li>
+					<li>2</li>
+					<li>1</li>
+					<li>租赁中</li>
+					<li>2.17.1.3日，邀请好友，延长7天</li>
+				</ul> -->
+			</div>
+		</div>
+		
+	</div>
+	<div class="upload">
+        <span>上拉加载更多内容</span>
+        <span>内容加载中...</span>
+    </div>
+
+<script type="text/javascript" src="js/setfontsize.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/dropload.js"></script>
+<script type="text/javascript" src="js/laydate.js"></script>
+<script type="text/javascript">
+
+var postTime="";
+var ajaxData="";
+var coouthtml="";
+var last_post_time="";
+var searchId="";
+var checkIndex="";
+var userId="";
+var cardId="";
+var timeStart="";
+var timeEnd="";
+var isSearch_type=1;
+var ajax_data={};
+var loadType = false; // 加载更多方法是否在使用
+$(".middle").on("click",".membercont",function(){
+	var mtxt=$(this).attr('mindex');
+
+	if(mtxt=="启用"){
+
+		userId=$(this).attr("index");
+		cardId=$(this).attr("cardIndex");
+		
+		window.location.href='member_cont.html?login_user_id='+userId+'&card_id='+cardId;
+	}else if(mtxt=="已过期"){
+		userId=$(this).attr("index");
+		cardId=$(this).attr("cardIndex");
+		
+		window.location.href='member_cont.html?login_user_id='+userId+'&card_id='+cardId;
+	}
+	
+});
+
+$(".middle").on("click",".username",function(){
+	var userName=$(this).attr("userindex");
+	window.location.href='playlist.html?login_user_id='+userName;
+})
+
+$(".middle").on("click",".aa",function(){
+
+
+	alert($(this).html());
+})
+
+window.onscroll=function(){
+    var sl=-Math.max(document.body.scrollLeft,document.documentElement.scrollLeft);
+    document.getElementById('head').style.left=sl+'px';
+    $("#head").css({'position':'fixed','top':'0rem'});
+    $(".main").css({'margin-top':'0.9rem'})
+};
+
+
+is_search_type();
+
+
+function is_search_type(){
+    last_post_time = $(".middle").find("tr:last").data("posttime");
+	searchId=$('.txt').val();
+	checkIndex=$("#test").find("option:selected").attr("index");
+	checkMoney=$("#money").find("option:selected").attr("index");
+	checkCard=$("#card").find("option:selected").attr("index");
+	timeStart=$(".timestart").val();
+    timeEnd=$(".timeend").val();
+
+    switch(isSearch_type){
+            case 1 : 
+                ajax_data = {
+                    searchId:searchId,
+					checkIndex:checkIndex,
+					checkMoney:checkMoney,
+					checkCard:checkCard,
+					timeStart:timeStart,
+                    timeEnd:timeEnd,
+					postTime:last_post_time
+                }
+                break;
+        }
+        request(ajax_data);
+}
+
+$(".btn").on("click",function(){
+	// window.location.reload();
+	$(".middle").html("");
+	// $(".count").hide();
+	// console.log(121);
+	isSearch_type=1;
+	is_search_type();
+})
+
+function request(opt){
+	
+	if(!loadType){
+		loadType = true;
+		ajaxData={
+			post_create_time: opt.postTime,
+			search_id: opt.searchId,
+			is_enabled: opt.checkIndex,
+			is_price:opt.checkMoney,
+			card_type:opt.checkCard,
+			start_time: opt.timeStart,
+            end_time: opt.timeEnd
+		}
+		$('.upload').addClass('loading');
+		$.ajax({
+			url:'https://api.baobaoshowshow.com/index.php?r=WebBaoShow/getToysCardList',
+			type:'GET',
+			data:ajaxData,
+			datatype:'json',
+			success:function(data){
+				$('.upload').removeClass('loading');
+				var Data=JSON.parse(data);
+				var memberData=Data.data;
+				var memberhtml="";
+				// postTime=memberData[memberData.length-1].post_create_time;
+				if(memberData.length != 0){
+					for(var i in memberData){
+						coouthtml='<span>总共<a>'+memberData[0].total_count+'</a>条</span>';
+						memberhtml+='<tr class="memUl" data-postTime='+memberData[i].post_create_time+'><td class="membercont"><img src="'+memberData[i].img+'"><span>'+memberData[i].card_chinese+'</span></td><td class="membercont" index='+memberData[i].user_id+' cardIndex='+memberData[i].card_id+' mindex='+memberData[i].enabled_title+'>'+memberData[i].card_id+'</td><td>'+memberData[i].total_price+'</td><td>'+memberData[i].enabled_title+'</td><td>'+memberData[i].create_time+'</td><td>'+memberData[i].start_time+'</td><td>'+memberData[i].end_time+'</td><td>'+memberData[i].end_time_diff+'</td><td class="username" userindex='+memberData[i].user_id+'>'+memberData[i].nick_name+'</td><td>'+memberData[i].user_id+'</td><td>'+memberData[i].card_service_num+'</td><td>'+memberData[i].end_num+'</td><td class="aa">'+memberData[i].remark+'</td></tr>';
+						// mc=memberData[i].enabled_title;
+						
+					}
+					// $(".count").html(coouthtml);
+					$(".middle").append(memberhtml);
+				}
+				
+
+			},
+			complete:function(){
+				loadType = false;
+			}
+		})
+	}
+	
+}
+function debounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+        var context = this, args = arguments;
+        var later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+};
+ 
+var myEfficientFn = debounce(function() {
+    if($(window).scrollTop()+$(window).height()-129 >= $('.main').height()){
+        is_search_type();
+    }
+    
+}, 250);
+ 
+// 绑定监听
+window.addEventListener('scroll', myEfficientFn);
+
+  
+	
+
+
+	
+</script>
+</body>
+</html>
+

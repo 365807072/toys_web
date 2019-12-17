@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>舜鑫国际旅游（北京）有限公司租赁玩具租赁</title>
+    <link rel="stylesheet" type="text/css" href="css/lotteryDraw.css">
+    <link rel="stylesheet" type="text/css" href="css/mobile.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="activity_title" id="activity_title"></div>
+        <div class="rotary_box">
+            <div class="rotary_table"></div>
+            <div class="draw_btn"></div>
+        </div>
+        <!-- <div class="rotaery_num">
+            <p>您有 <span>1</span> 次抽奖机会</p>
+        </div> -->
+        <div class="showliwu">
+            
+        </div>
+        <!-- <div class="xz_btn">
+            <p><a href="http://mp.weixin.qq.com/s/ARqbCjpI6PXjVEYZ3dtnOQ">活动详情</a></p>
+            <img src="img/19.png">
+        </div> -->
+    </div>
+    <!-- 遮罩 -->
+    <!-- <div class="overbox"></div> -->
+    <!-- 提示框 -->
+    <!-- <div class="alertBox">
+        <div class="alertBox_close"></div>
+        <div class="alertBox_content">
+            <input type="number" name="" placeholder="请输入您的手机号或ID" class="numInput">
+        </div>
+        <div class="alertBtn">
+            <button class="draw_determine">确定</button>
+            <button class="alertBtn_cancel">取消</button>
+        </div>
+    </div> -->
+    <!--开奖结果弹出框-->
+    <div class="drawBox">
+        <img src="" alt="">
+       
+    </div>
+    <div class="drawBox_close"></div>
+
+<!-- <script src="js/dial_draw.js"></script> -->
+<script src="js/jquery.min.js"></script>
+<script src="js/setfontsize.js"></script>
+<script src="js/jquery.rotate.min.js"></script>
+<script type="text/javascript">
+    var flag = false;
+    var txt="";
+    var url = location.href;
+    var userNum="";
+    var timesUse="";
+    var timesNum="";
+    var synums="";
+    var prize="";
+    var dialhtml="";
+
+    //地址中带有参数
+    if(url.indexOf("?") > 0){
+        if(GetQueryString("login_user_id")!=null && GetQueryString("login_user_id").length>-1){
+            
+            txt = GetQueryString("login_user_id")
+        }
+    }
+    function GetQueryString(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
+    // if(txt){
+    //     $(".overbox").hide();
+    //     $(".alertBox").hide();
+    // }else{
+    //     $(".overbox").show();
+    //     $(".alertBox").show();
+    // }
+    
+
+    //点击确定事件
+    // $(".draw_determine").on("click", function () {
+    //     close_alertBox();
+    //     txt=$(".numInput").val();
+    //     if(txt==""){
+    //         alert("请输入您的手机号或ID");
+    //         return false;
+    //     }else{
+    //         $.ajax({
+    //             url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV77/ToysTimes&login_user_id='+txt,
+    //             type:'GET',
+    //             async:true,
+    //             success:function(res){
+    //                 var data=JSON.parse(res);
+    //                 timesNum=data.times_second;
+    //                 var listarr=data.prize_lisr_arr;
+    //                 synums=data.times_use;
+    //                 timesUse='<p>您有 <span>'+synums+'</span> 次抽奖机会</p>';
+    //                 $(".rotaery_num").html(timesUse);
+    //                 dialhtml+="<p>"
+    //                 for(var i in listarr){
+    //                     dialhtml+="<span><img src="+listarr[i]+"></span>";
+    //                 }
+    //                  dialhtml+="</p>"
+    //                  $(".showliwu").html(dialhtml);
+                    
+    //             }
+    //         })
+    //     } 
+    // });
+
+
+    //点击取消事件
+    $(".alertBtn_cancel").on("click",function(){
+
+        close_alertBox();
+    })
+
+    //抽奖按钮
+    $(".draw_btn").on("click", function () {
+        if(txt==""){
+            $(".overbox").show();
+            $(".alertBox").show();
+        }else{
+            clickfunc();
+        }
+          
+    });
+   
+
+    //抽奖功能
+    var clickfunc = function () {
+        $.ajax({
+            url:'https://api.baobaoshowshow.com/index.php?r=BabyShowV7/CardEditingActivity&login_user_id='+txt,
+            type:'GET',
+            async:true,
+            success:function(data){
+                var data=JSON.parse(data);
+                console.log(data);
+                prize = parseInt(data.data.prize);
+                console.log(prize)
+                switch (prize) {
+                    case 0:
+                        rotateFunc(0, 315);
+                        break;
+                    case 1:
+                        rotateFunc(1, 0);
+                        break;
+                    case 2:
+                        rotateFunc(2, 45 );
+                        break;
+                    case 3:
+                        rotateFunc(3, 90 );
+                        break;
+                    case 4:
+                        rotateFunc(4, 135);
+                        break;
+                    case 5:
+                        rotateFunc(5, 175);
+                        break;
+                    case 6:
+                        rotateFunc(6, 220);
+                        break;
+                    case 7:
+                        rotateFunc(7, 265);
+                        break;
+                }
+
+               
+            }
+        }) 
+    }
+
+    //关闭提示框
+    $(".alertBox_close").on("click", function () {
+
+        close_alertBox();
+    });
+
+    //转盘旋转角度
+    var rotateFunc = function (awards, angle) {
+        isture = true;
+        $(".rotary_table").stopRotate();
+        $(".rotary_table").rotate({
+            angle: 0,
+            duration: 4000,
+            animateTo: 1440 - angle ,
+            callback: function () {
+                isture = false; // 标志为 执行完毕
+                flag = true;
+                console.log(awards)
+                //显示再凑一次弹框
+                if (awards == 1) {
+                    drawBox('drawBox','img/22.png');
+                } else if (awards == 2) {
+                    drawBox('drawBox','img/25.png');
+                } else if (awards == 3) {
+                    drawBox('drawBox','img/24.png');
+                } else if (awards == 4) {
+                    drawBox('drawBox','img/23.png');
+                } else if (awards == 5) {
+                    drawBox('drawBox','img/79.png');
+                } else if (awards == 6) {
+                    drawBox('drawBox','img/21.png');
+                } else if (awards == 7) {
+                    drawBox('drawBox','img/27.png');
+                } else if(awards == 0) {
+                    drawBox('drawBox','img/80.png');
+                }
+
+                
+            }
+        });
+    };
+
+    //调起中奖结果提示框
+    function drawBox(className,imgurl) {
+        $(".overbox").show();
+        $(".drawBox").show();
+        $(".drawBox_close").show();
+        $(".drawBox img").attr("src", imgurl);
+        $(".drawBox_btn").on("click", function () {
+            close_drawBox();
+        })
+        $(".drawBox_close").on("click", function () {
+            close_drawBox();
+        })
+    }
+
+    //调起关闭中奖结果提示框
+    function close_drawBox() {
+        $(".overbox").hide();
+        $(".drawBox").hide();
+        $(".drawBox_close").hide();
+        location.reload();
+    }
+
+     //调起关闭提示框
+    function close_alertBox() {
+        $(".overbox").hide();
+        $(".alertBox").hide();
+    }
+
+    // $(".xz_btn").on("click","img",function(){
+    //     window.location.href='http://www.meimei.yihaoss.top/download.php';
+    // })
+</script>
+</body>
+</html>

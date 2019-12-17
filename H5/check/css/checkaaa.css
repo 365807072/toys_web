@@ -1,0 +1,93 @@
+html,body{
+	font-size: 14px;
+}
+header ul{
+	display: -webkit-box;
+	background-color: #6795B4;
+}
+header ul li{
+	margin:0 0.5rem;
+	font-weight: bold;
+	padding: 0.05rem 0;
+}
+header ul li a{
+	color: #fff;
+}
+.head{
+	width: 100%;
+	background-color: #fff;
+	z-index: 1;
+}
+.head form{
+	margin-top: 0.1rem;
+} 
+.head form input{
+	margin-left: 0.05rem;
+}
+.head .idtxt{
+	margin-left: 0.1rem;
+}
+.count{
+	position: absolute;
+	right: 0.1rem;
+	top: 0.3rem;
+	font-size: 0.13rem;
+}
+.count a{
+	color: red;
+} 
+.top{
+	width: 100%;
+	font-weight: bold;
+}
+.top tr td{
+	width: 0.6rem;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.main{
+	width: 100%;
+	font-size: 16px;
+	border-top: 1px solid #999;
+	border-left: 1px solid #999;
+}
+.listsbox{
+	width: 100%;
+}
+.listsbox tr td{
+	width: 0.6rem;
+	height: 0.6rem;
+	text-align: center;
+	vertical-align: middle;
+	border-right: 1px solid #999;
+	border-bottom: 1px solid #999;
+}
+.username{
+	color: orange;
+}
+.toyId{
+	color: blue;
+}
+.dropload-down{
+	position: fixed;
+	bottom: 0;
+	left: 3.5rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

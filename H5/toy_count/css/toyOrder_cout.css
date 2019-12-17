@@ -1,0 +1,91 @@
+html,body{
+	width: 100%;
+	height: 100%;
+	background: #f5f5f5;
+	font-family: '黑体'
+}
+.wrap{
+	width: 100%;
+	height: 100%;
+}
+.head{
+	height: 1rem;
+	background: #fffbf0;
+}
+.head p{
+	font-size: 0.27rem;
+	color: #f5a623;
+	padding:0.1rem 0.2rem; 
+}
+
+.main{
+	width: 100%;
+}
+.remask{
+	line-height: 1rem;
+	background: #fff;
+	margin-bottom: 0.2rem;
+}
+.remask p{
+	padding: 0 0.2rem;
+}
+.remask p:nth-of-type(1){
+	display: -webkit-box;
+}
+.remask p:nth-of-type(1) span{
+	display: block;
+	-webkit-box-flex:1;
+	font-size: 0.28rem;
+}
+.remask p:nth-of-type(1) span:nth-of-type(2){
+	text-align: right;
+}
+
+.toy{
+	background: #fff;
+	position: relative;
+	padding-bottom: 0.2rem;
+}
+.toy dl{
+	display: -webkit-box;
+}
+.toy dl dt{
+	width: 30%;
+	padding: 0.1rem;
+}
+.toy dl dt img{
+	width: 100%;
+	margin:0 auto;
+	margin-top: 0.5rem;
+}
+.toy dl dd{
+	padding-top: 0.2rem;
+	width: 67.5%;
+}
+.toy dl dd span{
+	display: block;
+}
+.toy dl dd span:nth-of-type(1){
+	font-size: 0.29rem;
+	color: #333;
+	line-height: 0.5rem;
+	width: 93%;
+
+}
+.toy dl dd span:nth-of-type(2){
+	font-size: 0.3rem;
+	color: #fc6262;
+	line-height: 0.4rem;
+}
+.toy dl dd span:nth-of-type(3){
+	font-size: 0.25rem;
+	color: #999;
+	padding-top: 0.2rem;
+}
+.toy a{
+	position: absolute;
+	right: 0.2rem;
+	bottom: 0.19rem;
+	font-size: 0.27rem;
+	color: #fc6262;
+}

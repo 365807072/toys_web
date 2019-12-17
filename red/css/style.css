@@ -1,0 +1,945 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+#wrapper,
+#box {
+    max-width: 640px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+#box1 {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: #000;
+    opacity: 0.2;
+    height: 100%;
+    display: none;
+}
+
+#wrapper {
+    overflow: hidden;
+}
+
+#box {
+    width: 100%;
+    display: -webkit-box;
+}
+
+.b-left header,
+.b-right header {
+    width: 100%;
+    height: 0.88rem;
+    background: #3FBC5B;
+}
+
+.b-right header {
+    display: -webkit-box;
+}
+
+.b-left header {
+    position: relative;
+    text-align: center;
+}
+
+.return {
+    position: absolute;
+    left: 0.33rem;
+    top: 0.13rem;
+    font-size: 0.5rem;
+    color: #fff;
+    display: none;
+}
+
+.search {
+    position: absolute;
+    left: 0.1rem;
+    font-size: 0.4rem;
+    color: #fff;
+    display: block;
+}
+
+.down {
+    position: absolute;
+    left: 90%;
+    top: 0;
+    font-size: 0.4rem;
+    color: #fff;
+    z-index: 9999
+}
+
+.gouwu {
+    position: absolute;
+    left: 90%;
+    top: 0.22rem;
+    font-size: 0.4rem;
+    color: #fff;
+    display: none;
+    z-index: 999;
+}
+
+.b-left header ol {
+    position: absolute;
+    right: 0;
+    top: 0.89rem;
+    width: 3rem;
+    z-index: 999;
+    line-height: 0.88rem;
+    border-radius: 0.1rem;
+    display: none;
+}
+
+.b-left header ol li {
+    height: 0.9rem;
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+    color: #575757;
+    font-size: 0.28rem;
+    text-align: center;
+}
+
+.set {
+    position: absolute;
+    left: 48%;
+    top: 0.89rem;
+    width: 3rem;
+    z-index: 999;
+    line-height: 0.88rem;
+    border-radius: 0.1rem;
+    display: none;
+}
+
+.set li {
+    height: 1.11rem;
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+    color: #575757;
+    font-size: 0.28rem;
+}
+
+.set li span {
+    padding-left: 0.4rem;
+    padding-right: 0.5rem;
+    color: #ccc;
+    font-size: 0.3rem;
+}
+
+.b-left header h1 {
+    text-align: center;
+    color: #fff;
+    font-size: 0.38rem;
+    line-height: 0.88rem;
+}
+
+.b-left,
+.b-right {
+    width: 100%;
+    height: 100%;
+}
+
+.b-left,
+.b-right {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.s-left {
+    padding-left: 0.24rem;
+    font-size: 0.36rem;
+    color: #fff;
+    padding-top: 0.25rem;
+}
+
+.content {
+    width: 100%;
+    background: #F7F7F7;
+}
+
+.content a {
+    display: block;
+}
+
+.content a dl {
+    width: 46%;
+    height: 4rem;
+    float: left;
+    border: 1px solid #ccc;
+    margin-left: 2%;
+    margin-top: 0.3rem;
+    background: #fff;
+}
+
+.content a dl dd {
+    height: 0.5rem;
+    line-height: 0.5rem;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.content a dl dd span {
+    color: #FF5858;
+    padding-right: 0.1rem;
+}
+
+.content a dl dd time,
+.content a dl dd i {
+    color: #B8BED0;
+}
+
+.dd-top {
+    color: #585858;
+}
+
+.s-right {
+    font-size: 0.36rem;
+    color: #fff;
+    padding-right: 0.24rem;
+    padding-top: 0.25rem;
+}
+
+
+/*更多专题*/
+
+.gengduo {
+    width: 100%;
+}
+
+.gengduo ul li {
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 0.3rem;
+    position: relative;
+}
+
+.gengduo ul li p {
+    position: absolute;
+    left: 0;
+    bottom: 0.1rem;
+    width: 90%;
+    height: 0.8rem;
+    background: rgba(0, 0, 0, 0.2);
+    line-height: 0.8rem;
+    text-align: center;
+    color: #fff;
+    font-size: 0.3rem;
+    margin-left: 5%;
+}
+
+.gengduo ul li img {
+    border-radius: 0.2rem;
+}
+
+.zhuanti {
+    text-align: center;
+}
+
+.zhuanti a {
+    text-align: center;
+    color: #0db20d;
+}
+
+
+/*list start*/
+
+.list {
+    width: 100%;
+    overflow: auto;
+}
+
+.list img {
+    padding-bottom: 0.2rem;
+}
+
+.list h2 {
+    width: 95%;
+    margin: 0 auto;
+    color: #3E3E3E;
+    font-size: 0.32rem;
+}
+
+.s-d1 {
+    width: 95%;
+    margin: 0 auto;
+    line-height: 1rem;
+    display: -webkit-box;
+}
+
+.s-d1 span,
+.s-d1 s {
+    display: block;
+}
+
+.l-s1 {
+    color: #F84F4F;
+    font-size: 0.28rem;
+}
+
+.s-d1 s {
+    color: #CDCDCD;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+}
+
+.l-s2 {
+    width: 0.66rem;
+    height: 0.34rem;
+    color: #fff;
+    background: #F84E4E;
+    text-align: center;
+    line-height: 0.34rem;
+    border-radius: 0.1rem;
+    margin-top: 16px;
+    margin-right: 0.2rem;
+}
+
+.l-s3 {
+    width: 0.66rem;
+    height: 0.34rem;
+    color: #F84E4E;
+    border: 1px solid #F84E4E;
+    text-align: center;
+    line-height: 0.34rem;
+    border-radius: 0.1rem;
+    margin-top: 16px;
+    margin-right: 0.2rem;
+}
+
+.list p {
+    width: 95%;
+    margin: 0 auto;
+    color: #686868;
+    line-height: 0.36rem;
+    font-size: 0.28rem;
+}
+
+
+/*list end*/
+
+
+/*齐亚楠专题*/
+
+.project {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.pro {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.prolis {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.prolis ul li {
+    list-style: none;
+    position: relative;
+    width: 95%;
+    overflow: hidden;
+    margin: 0 auto;
+    margin-top: 0.3rem;
+}
+
+.prolis ul li img {
+    border-radius: 0.2rem;
+}
+
+.prolis ul li p {
+    position: absolute;
+    left: 0;
+    bottom: 0.2rem;
+    font-size: 0.3rem;
+    color: #fff;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    width: 91%;
+    margin-left: 2.5%;
+    text-align: left;
+    padding: 2%;
+    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+    border-radius: 0.2rem;
+}
+
+.prolist {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    display: none;
+    overflow: auto;
+}
+
+.proj {
+    overflow: auto;
+    width: 100%;
+}
+
+.proj img {
+    width: 100%;
+    height: 2.4rem;
+}
+
+.proj p {
+    font-size: 0.3rem;
+    line-height: 0.48rem;
+    color: #817d7d;
+    padding-left: 0.2rem;
+    padding-right: 0.1rem;
+}
+
+.proj h2 {
+    font-size: 0.4rem;
+    font-weight: normal;
+    padding-left: 0.2rem;
+    padding-right: 0.1rem;
+    margin-top: 0.2rem;
+    line-height: 0.6rem;
+}
+
+.proj h2 span {
+    border-radius: 0.1rem;
+    border: 1px solid red;
+    font-size: 0.12rem;
+    height: 0.4rem;
+    line-height: 0.4rem;
+    display: inline-block;
+    padding-left: 0.15rem;
+    padding-right: 0.15rem;
+    margin-right: 0.1rem;
+    color: red;
+}
+
+.prolist img {
+    width: 100%;
+    height: 2.1rem;
+}
+
+.title {
+    width: 100%;
+    height: 0.48rem;
+    background: url("../images/bg.png") no-repeat;
+    background-size: 100% 100%;
+    font-size: 0.3rem;
+    line-height: 0.48rem;
+    text-align: center;
+    color: #fff;
+    margin-top: 0.48rem;
+    margin-bottom: 0.48rem;
+}
+
+.protitle img {
+    width: 92%;
+    height: 6rem;
+    margin-left: 4%;
+    margin-top: 0.3rem;
+}
+
+.protitle h2 {
+    font-size: 0.36rem;
+    width: 95%;
+    text-align: center;
+}
+
+.protitle p {
+    font-size: 0.3rem;
+    line-height: 0.48rem;
+}
+
+
+/*齐亚楠end*/
+
+.b-right header span,
+.b-right header form,
+.b-right header i {
+    -webkit-box-flex: 1;
+    display: block;
+}
+
+.b-right header form {
+    position: relative;
+}
+
+.b-right header form span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #D6D6D6;
+    font-size: 0.3rem;
+}
+
+.b-right header form input {
+    height: 0.6rem;
+    margin-top: 0.15rem;
+    border-radius: 0.1rem;
+    outline: none;
+    border: 1px solid #ccc;
+    line-height: 0.6rem;
+    padding-left: 0.68rem;
+}
+
+.b-right header span {
+    color: #fff;
+    font-size: 0.44rem;
+    line-height: 0.88rem;
+    padding-left: 0.24rem;
+    padding-right: 0.1rem;
+    font-weight: normal;
+}
+
+.b-right header i {
+    font-style: normal;
+    font-size: 0.28rem;
+    color: #fff;
+    text-align: right;
+    line-height: 0.88rem;
+    padding-right: 0.24rem;
+    font-weight: bold;
+}
+
+.main {
+    width: 100%;
+    -webkit-box-flex: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+.b-left section {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    top: 0;
+    overflow-y: scroll;
+}
+
+.b-left section:nth-child(1) {
+    -webkit-transform: translate3d(0, 0, 0);
+}
+
+.b-right section {
+    width: 100%;
+    -webkit-box-flex: 1;
+    overflow: auto;
+}
+
+.b-right section h2 {
+    font-size: 0.24rem;
+    color: #B3B3B3;
+    padding-top: 0.6rem;
+    padding-left: 0.3rem;
+    padding-bottom: 0.29rem;
+}
+
+.hot {
+    width: 90%;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-right: none;
+}
+
+.hot ul li {
+    display: -webkit-box;
+}
+
+.hot ul li a {
+    display: block;
+    width: 25%;
+    text-align: center;
+    padding: 0.36rem 0 0.36rem 0;
+    border-right: 1px solid #ccc;
+    color: #666666;
+}
+
+.nav {
+    display: -webkit-box;
+}
+
+.nav figure img {
+    width: 0.9rem;
+    margin: 0.36rem auto 0.27rem;
+}
+
+.nav figure figcaption {
+    color: #5D5D5D;
+    font-size: 0.22rem;
+}
+
+.nav a {
+    display: block;
+    -webkit-box-flex: 1;
+    text-align: center;
+}
+
+.nav a figure {
+    text-align: center;
+}
+
+#nav-c {
+    width: 100%;
+}
+
+#nav-c a {
+    width: 100%;
+    display: block;
+    overflow: hidden;
+}
+
+#nav-c a dl {
+    width: 100%;
+    display: -webkit-box;
+    background: #F7F7F7;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+}
+
+#nav-c a dl dd h2 {
+    color: #585858;
+    font-size: 0.28rem;
+}
+
+#nav-c a dl dt {
+    width: 30%;
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+}
+
+#nav-c a dl dd {
+    width: 60%;
+}
+
+.l-bottom {
+    display: -webkit-box;
+    -webkit-box-pack: justify;
+    margin-top: 0.3rem;
+}
+
+.l-bottom p span {
+    display: block;
+}
+
+.p-1 {
+    color: #A1A1A1;
+    font-size: 0.2rem;
+    padding-bottom: 0.12rem;
+}
+
+.p-2 {
+    font-size: 0.25rem;
+    color: #FF5959;
+}
+
+.p-2 i {
+    display: inline-block;
+    border: 1px solid #FF5959;
+    font-style: normal;
+    padding: 0.03rem;
+    margin-left: 0.1rem;
+    border-radius: 0.05rem;
+}
+
+.p-right {
+    border: 1px solid #3ABE58;
+    width: 1.44rem;
+    text-align: center;
+    border-radius: 0.1rem;
+}
+
+.p-3 {
+    height: 0.33rem;
+    color: #BBBBBB;
+    line-height: 0.33rem;
+}
+
+.p-4 {
+    height: 0.42rem;
+    background: #3ABE58;
+    line-height: 0.42rem;
+    color: #fff;
+}
+
+footer {
+    width: 100%;
+    height: 0.96rem;
+    border-top: 1px solid #ABABAB;
+    display: -webkit-box;
+}
+
+footer a {
+    -webkit-box-flex: 1;
+    text-align: center;
+    display: block;
+}
+
+footer a dl dt {
+    padding-top: 0.12rem;
+    font-size: 0.44rem;
+    padding-bottom: 0.05rem;
+    color: #B6B6B6;
+}
+
+footer a dl dd {
+    font-size: 0.18rem;
+    color: #8D8D8D;
+}
+
+.bg {
+    color: #3ABE58;
+}
+
+
+/*搜索样式*/
+
+#hot-search dl {
+    float: left;
+    width: 50%;
+    margin-top: 0.2rem;
+}
+
+#hot-search dl dt {
+    text-align: center;
+}
+
+#hot-search dl dt img {
+    margin: 0 auto;
+}
+
+#hot-search dl dd {
+    text-align: center;
+}
+
+
+/*微信*/
+
+#weixin {
+    background: #DCDCDC;
+    overflow: hidden;
+}
+
+#weixin div {
+    width: 100%;
+    text-align: center;
+}
+
+#weixin ul {
+    background: #fff;
+}
+
+#weixin ul li {
+    height: 1rem;
+    line-height: 1rem;
+    border-bottom: 1px solid #DCDCDC;
+    padding-right: 0.25rem;
+}
+
+#weixin ul li img {
+    display: inline;
+    width: 0.55rem;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+}
+
+#weixin ul li span {
+    display: inline-block;
+}
+
+.span-right {
+    float: right;
+}
+
+.w-center {
+    margin-top: 1.95rem;
+}
+
+.w-center a {
+    color: #0F63E1;
+    display: block;
+}
+
+.w-bottom {
+    line-height: 0.76rem;
+    color: #585858;
+}
+
+
+/*邀请好友*/
+
+#yaoqing {
+    background: #F7F7F7;
+}
+
+#yaoqing {
+    background: #DCDCDC;
+    overflow: hidden;
+}
+
+#yaoqing ul {
+    background: #fff;
+}
+
+#yaoqing ul li {
+    height: 1.1rem;
+    line-height: 1.1rem;
+    border-bottom: 1px solid #DCDCDC;
+    padding-right: 0.25rem;
+}
+
+#yaoqing ul li img {
+    display: inline;
+    width: 0.7rem;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+}
+
+#yaoqing ul li span {
+    display: inline-block;
+    font-size: 0.3rem;
+}
+
+.span-right {
+    float: right;
+    font-size: 0.3rem;
+}
+
+
+/*意见*/
+
+#yijian dl {
+    display: -webkit-box;
+    margin-top: 0.66rem;
+    padding-right: 0.3rem;
+    margin-bottom: 0.66rem;
+}
+
+#yijian dl dt {
+    width: 1.02rem;
+    margin-left: 0.3rem;
+    margin-right: 0.2rem;
+}
+
+#yijian dl dd {
+    width: 4.5rem;
+    line-height: 0.34rem;
+    color: #555555;
+    font-size: 0.22rem;
+}
+
+.yijian-d {
+    width: 90%;
+    border: 1px solid #D9D9D9;
+    border-radius: 0.1rem;
+    margin: 0 auto;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.yijian-p1 textarea {
+    width: 100%;
+    height: 1.55rem;
+    text-align: left;
+    margin-top: 0.2rem;
+    border: 0;
+    outline: none;
+}
+
+.yijian-p2 {
+    display: -webkit-box;
+    margin-bottom: 0.4rem;
+    border-top: 1px solid #CCCCCC;
+    padding-top: 0.25rem;
+}
+
+.yijian-p2 input {
+    width: 2.5rem;
+    border: 0;
+    outline: none;
+}
+
+.yijian-p2 button {
+    background: #B8B8B8;
+    color: #fff;
+    border: none;
+    width: 1rem;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    text-align: center;
+    border-radius: 0.05rem;
+}
+
+.yijian-p2 span {
+    color: #585858;
+}
+
+
+/*设置*/
+
+#setting {
+    background: #F7F7F7;
+}
+
+#setting {
+    background: #DCDCDC;
+    overflow: hidden;
+}
+
+#setting ul {
+    margin-top: 0.43rem;
+}
+
+#setting ul li {
+    height: 1.1rem;
+    line-height: 1.1rem;
+    border-bottom: 1px solid #DCDCDC;
+    padding-right: 0.25rem;
+    border-bottom: 1px solid #E3E3E3;
+    border-top: 1px solid #E3E3E3;
+    margin-bottom: 0.34rem;
+    background: #fff;
+}
+
+#setting ul li img {
+    display: inline;
+    width: 0.4rem;
+    margin-left: 0.4rem;
+    margin-right: 0.4rem;
+}
+
+#setting ul li span {
+    display: inline-block;
+    font-size: 0.3rem;
+}
+
+.span-right {
+    float: right;
+    font-size: 0.3rem;
+}
+
+#setting ul p {
+    text-align: center;
+    margin-bottom: 0.2rem;
+}
+
+#setting p button {
+    width: 90%;
+    border: none;
+    outline: none;
+    height: 0.9rem;
+    text-align: center;
+    line-height: 0.9rem;
+    color: #fff;
+    background: #42B85C;
+    border-radius: 0.1rem;
+    font-size: 0.3rem;
+}

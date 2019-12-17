@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>群分享</title>
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+	<link rel="stylesheet" type="text/css" href="css/wj.css">
+	<link rel="stylesheet" type="text/css" href="css/dropload.css">
+</head>
+<body>
+	<div class="wrap">
+		<header>
+			<!-- <div class="head">
+				<p><span>coco手工坊</span><span><img src="img/shopicon.png"></span></p>
+				<p>我是副标题我是副标题我是副标题我是副标题</p>
+				<a>222人已关注</a>
+			</div>
+			<div class="headBottom">精选</div> -->
+		</header>
+		
+		<div class="main">
+			
+			<section class="wrapper"></section>
+		</div>
+		<div class="picture">
+			<a href="http://www.meimei.yihaoss.top/sms/pic.html"><img src="img/93.png"></a>
+		</div>
+		<div class="bottom">
+			<a onclick="downLoad()" id="down"><img src="img/90.png"></a>
+		</div>
+		
+	</div>
+
+
+
+<script type="text/javascript" src="js/setfontsize.js"></script>
+<script type="text/javascript" src="js/zepto.js"></script>
+<script type="text/javascript" src="js/dropload.min.js"></script>
+<script type="text/javascript" src="js/wj.js"></script>
+<script type="text/javascript" src="js/down.js"></script>
+<script type="text/javascript">
+	$.ajax({
+		url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV1/messageLink&title=豌豆苗玩具世界',
+		type:'GET',
+		success:function(data){
+		}
+	})
+	// $(".btn").on("click",function(){
+	// 	$.ajax({
+	// 		url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV1/messageOpen&title=豌豆苗玩具世界',
+	// 		type:'GET',
+	// 		success:function(data){
+				
+	// 		}
+	// 	})
+	// })
+</script>
+</body>
+</html>

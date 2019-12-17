@@ -1,0 +1,145 @@
+body,html{
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling:touch;
+}
+
+/*header*/
+/*头部*/
+/*.header{
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #fff;
+    width: 100%;
+    height: 50px;
+    left:0;
+    font-family: "微软雅黑";
+}
+
+.header h1{
+    line-height:50px;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: normal;
+    color: #000;
+    width: 90%;
+
+}
+.left{
+    display: inline-block;
+    float: left;
+    padding: 1em 1em;
+    background: url(../images/icon_back.png) no-repeat left;
+    background-size: 100%;
+    margin-left: 15px;
+    margin-top: 12px;
+}
+*/
+
+
+/*首页*/
+.box{ width:100%; height:100%;position: relative;}
+
+.top{ width:100%; height:1rem; background-color:#ffffff;display: -webkit-box;}
+
+.logo{ 
+    width: 1.4rem;
+    margin-top: -0.2rem; 
+    padding-left: 0.3rem;
+}
+.logo img{
+    width: 100%;
+}
+.nav .ul1{display: -webkit-box;margin-left:1.3rem;margin-top: 0.4rem;}
+.nav .ul1 li a:hover{color:#000;}
+.nav .ul1 li a{ cursor:pointer;font-size: 0.16rem;margin-left: 0.4rem}
+/*.banner{*/
+    /*background:url(../images/banner.png) no-repeat -2.2rem 0;*/
+    /*height: 14rem;*/
+    /*background-size: 156%;*/
+    /*position: relative;*/
+/*}*/
+.banner{
+    background:url(../images/banner1.jpg) no-repeat 0 0;
+    height: 14rem;
+    background-size: 100%;
+    position: relative;
+}
+.banner a{
+    position: absolute;
+    bottom: 0.62rem;
+    left: 0.39rem;
+}
+.banner a img{
+    width: 1.05rem;
+}
+/*.center{*/
+    /*overflow: hidden;*/
+    /*position: relative;*/
+    /*background:url(../images/valuable.png) no-repeat -2.2rem 0;*/
+    /*height: 7.06rem;*/
+    /*background-size: 160%;*/
+    /*!*margin: 0px -123px 0 -111px;*!*/
+/*}*/
+.center{
+    position: relative;
+    background:url(../images/center1.jpg) no-repeat 0 0;
+    height: 5rem;
+    background-size: 100%;
+
+}
+.center a:nth-of-type(1){
+    position: absolute;
+    right: 0.65rem;
+    bottom: 1rem;
+}
+.center a:nth-of-type(1) img{
+    width:1rem
+}
+.center a:nth-of-type(2){
+    position: absolute;
+    right: 0.65rem;
+    bottom: 0.5rem;
+}
+.center a:nth-of-type(2) img{
+    width: 1rem
+}
+.center2{
+    position: relative;
+    background:url(../images/center2.jpg) no-repeat 0 0;
+    height: 9.4rem;
+    background-size: 100%;
+}
+.main{
+    overflow: hidden;
+    position: relative;
+    background:url(../images/about1.jpg) no-repeat -1rem 0;
+    height: 5.5rem;
+    background-size: 120%;
+}
+.map{
+    overflow: hidden;
+    position: relative;
+    background: url(../images/concat1.jpg) no-repeat -3.2rem 0;
+    height: 3.8rem;
+    background-size: 172%;
+}
+.lianxi{
+    overflow: hidden;
+    position: relative;
+    background:url(../images/contact2.jpg) no-repeat -2.2rem 0;
+    height: 5.4rem;
+    background-size: 160%;
+}
+.footer{width:100%;font-size:0.16rem;text-align: center;
+padding:0.2rem 0;background: #333;
+    color: #fff;}
+
+
+.wrapper{
+    width: 100%;
+}
+/*关于我们*/
+
+.main{ width:100%; background-color:#ffffff;}
+

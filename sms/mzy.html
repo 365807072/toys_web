@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/mzy.css">
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+</head>
+<body>
+	<div class="wrap">
+		<header><h1>舜鑫国际旅游（北京）有限公司租赁亲子平台</h1></header>
+		<section class="content">
+			<div class="main">
+				<div class="baby"><p>“感恩节万元大回馈”之梦追忆宝贝儿童亲子乐园</p></div>
+				<div class="pic">
+					<ul>
+						<li>
+							<p><img src="img/33.png"></p>
+							<p>梦追忆儿童亲子乐园滑梯，沙池，海洋球，充气城堡蹦床应有尽有。/p>
+						</li>
+						<li>
+							<p><img src="img/34.png"></p>
+						</li>
+						<li>
+							<p><img src="img/35.png"></p>
+						</li>
+						<li>
+							<p><img src="img/36.png"></p>
+						</li>
+					</ul>
+				</div>
+				<div class="test">
+					<p>地址：北京市昌平区--回龙观文化路89号雅酷儿童世界2层8号</br></br></p>
+					<p>最最最重要的是！</br></br>现在参加舜鑫国际旅游（北京）有限公司租赁“感恩节万元大回馈”活动，价值560元的季卡亲子游乐免费去玩！！</br></br></p>
+					<p>参与步骤：打开“舜鑫国际旅游（北京）有限公司租赁”客户端，搜索并关注群“同住回龙观”，参与发帖或互动即为参与“感恩节万元大回馈”活动。发帖越多互动越高礼品越丰厚！</br></br></p>
+					<p>关注微信公众号“舜鑫国际旅游（北京）有限公司租赁”，或者添加微信号“xiuxiuxiaobian”，教您领取更多不限量豪礼！</br></br></p>
+					
+					
+				</div>
+			</div>
+		</section>
+		
+		<a href="http://mp.weixin.qq.com/s/zSSVWBDL1qCYJes9nF8b0g" class="btn">更多豪礼</a>
+		
+	</div>
+
+
+<script type="text/javascript" src="js/zepto.js"></script>
+<script type="text/javascript" src="js/setfontsize.js"></script>
+<script type="text/javascript">
+	$.ajax({
+		url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV1/messageLink&title=梦追忆',
+		type:'GET',
+		success:function(data){
+		}
+	})
+	$(".btn").on("click",function(){
+		$.ajax({
+			url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV1/messageOpen&title=梦追忆',
+			type:'GET',
+			success:function(data){
+				
+			}
+		})
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>库存详情</title>
+	<link rel="stylesheet" type="text/css" href="css/inventory_cont.css">
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+	<link rel="stylesheet" type="text/css" href="css/dropload.css">
+</head>
+<body>
+	<div class="wrap">
+		<div class="head" id="head">
+			<p><input type="button" class="back" value="返回"></p>
+			<div class="top">
+				<ul>
+					<li>玩具名称/id</li>
+					<li>玩具编号</li>
+					<li>状态</li>
+					<li>玩具状况</li>
+					<li>所在位置</li>
+					<li>重量</li>
+					<li>尺寸</li>
+					<li>颜色</li>
+					<!-- <li>电池</li> -->
+					
+				</ul>
+			</div>
+		</div>
+		
+		<div class="main">
+			<div class="playint">
+				<ul>
+					<!-- <li>玩具名称</li>
+					<li>玩具id</li>
+					<li>租赁编号</li>
+					<li>状态</li>
+					<li>所在位置</li>
+					<li>重量</li>
+					<li>尺寸</li>
+					<li>颜色</li>
+					<li>备注</li> -->
+				</ul>
+			</div>
+		</div>
+	</div>
+<script type="text/javascript" src="js/setfontsize.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/dropload.js"></script>
+<script type="text/javascript">
+var postTime="";
+var stockId="";
+var businessId="";
+var toysNum="";
+var newtxt="";
+var wIndex="";
+var wBusidx="";
+var snewtxt="";
+var sIndex="";
+var sBusidx="";
+var cnewtxt="";
+var cIndex="";
+var cBusidx="";
+function GetQueryString(name){
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if(r!=null)return  unescape(r[2]); return null;
+}
+if(GetQueryString("business_id")!=null && GetQueryString("business_id").length>-1){
+
+	businessId=GetQueryString("business_id");
+}
+if(GetQueryString("toys_number")!=null && GetQueryString("toys_number").length>-1){
+
+	toysNum=GetQueryString("toys_number");
+}
+if(GetQueryString("stock_status")!=null && GetQueryString("stock_status").length>-1){
+
+	stockId=GetQueryString("stock_status");
+}
+
+
+	$(".back").on("click",function(){
+		if(toysNum!=""){
+			history.back(-1);
+			window.location.href='http://www.meimei.yihaoss.top/H5/check/inventory.html';
+		}else{
+			history.back(-1);
+		}
+	})
+
+
+$.ajax({
+	url:'http://api.baobaoshowshow.com/index.php?r=WebBaoShow/getEveryToysStockInfo&business_id='+businessId+'&toys_number='+toysNum+'&stock_status='+stockId,
+	type:'GET',
+	datatype:'json',
+	success:function(data){
+		var data=JSON.parse(data);
+		var contdata=data.data;
+		var coouthtml="";
+		var listshtml="";
+		console.log(businessId)
+		console.log(toysNum)
+		console.log(stockId)
+		postTime=$(".playint").find("tr:last").data("posttime");
+			for(var i in contdata){
+				listshtml+='<tr data-postTime='+contdata[i].post_create_time+'><td class="toyname" index='+contdata[i].business_id+' useridindex='+contdata[i].position+'>'+contdata[i].business_title+'</td><td class="toyid" index='+contdata[i].business_id+' useridindex='+contdata[i].position+'>'+contdata[i].toys_number+'</td><td>'+contdata[i].status_name+'</td><td>'+contdata[i].remark+'</td><td class="userid" index='+contdata[i].business_id+' idindex='+contdata[i].position+'>'+contdata[i].position+'</td><td><a class="weight" windex=1 wbusidx='+contdata[i].business_id+'>'+contdata[i].weight+'</a></td><td><a class="size" sindex=2 sbusidx='+contdata[i].business_id+'>'+contdata[i].size+'</a></td><td><a class="color" cindex=3 cbusidx='+contdata[i].business_id+'>'+contdata[i].color+'</a></td></tr>';
+			}
+			$(".playint").html(listshtml);
+	}
+})
+
+$(".playint").on("click",".toyname",function(){
+	var business_id=$(this).attr("index");
+	var userId=$(this).attr("useridindex");
+	window.location.href='play_cont.html?business_id='+business_id+'&login_user_id='+userId;
+});
+$(".playint").on("click",".toyid",function(){
+	var business_id=$(this).attr("index");
+	var userId=$(this).attr("useridindex");
+	window.location.href='play_cont.html?business_id='+business_id+'&login_user_id='+userId;
+});
+$(".playint").on("click",".userid",function(){
+	var user_id=$(this).attr("idindex");
+	window.location.href='playlist.html?login_user_id='+user_id;
+});
+//重量
+$(".playint").on("click",".weight",function(){
+	wIndex=$(this).attr("windex");
+	wBusidx=$(this).attr("wbusidx");
+	var td = $(this);
+	var txt = $.trim(td.text());
+	var input = $("<input type='text'value='" + txt + "'/>");
+	td.html(input);
+	input.click(function () { return false; });
+	//获取焦点
+	input.trigger("focus");
+	//文本框失去焦点后提交内容，重新变为文本
+	input.blur(function () {
+		newtxt = $(this).val();
+		//判断文本有没有修改
+		if (newtxt != txt) {
+			td.html(newtxt); 
+			
+		}
+		console.log(newtxt);
+		$.ajax({
+			url:'http://api.baobaoshowshow.com/index.php?r=WebBaoShow/upToysInfo&business_id='+wBusidx+'&toys_type='+wIndex+'&toys_new='+newtxt,
+			type:'GET',
+			datatype:'json',
+			success:function(data){
+				td.html(newtxt); 
+			}
+		})
+	});
+	
+});
+//尺寸
+$(".playint").on("click",".size",function(){
+	sIndex=$(this).attr("sindex");
+	sBusidx=$(this).attr("sbusidx");
+	var std = $(this);
+	var stxt = $.trim(std.text());
+	var sinput = $("<input type='text'value='" + stxt + "'/>");
+	std.html(sinput);
+	sinput.click(function () { return false; });
+	//获取焦点
+	sinput.trigger("focus");
+	//文本框失去焦点后提交内容，重新变为文本
+	sinput.blur(function () {
+		snewtxt = $(this).val();
+		//判断文本有没有修改
+		if (snewtxt != stxt) {
+			std.html(snewtxt); 
+			
+		}
+		console.log(snewtxt);
+		$.ajax({
+			url:'http://api.baobaoshowshow.com/index.php?r=WebBaoShow/upToysInfo&business_id='+sBusidx+'&toys_type='+sIndex+'&toys_new='+snewtxt,
+			type:'GET',
+			datatype:'json',
+			success:function(data){
+				std.html(snewtxt);
+			}
+		})
+	});
+	
+});
+//颜色
+$(".playint").on("click",".color",function(){
+	cIndex=$(this).attr("cindex");
+	cBusidx=$(this).attr("cbusidx");
+	var ctd = $(this);
+	var ctxt = $.trim(ctd.text());
+	var cinput = $("<input type='text'value='" + ctxt + "'/>");
+	ctd.html(cinput);
+	cinput.click(function () { return false; });
+	//获取焦点
+	cinput.trigger("focus");
+	//文本框失去焦点后提交内容，重新变为文本
+	cinput.blur(function () {
+		cnewtxt = $(this).val();
+		//判断文本有没有修改
+		if (cnewtxt != ctxt) {
+			ctd.html(cnewtxt); 
+			
+		}
+		console.log(cnewtxt);
+		$.ajax({
+			url:'http://api.baobaoshowshow.com/index.php?r=WebBaoShow/upToysInfo&business_id='+cBusidx+'&toys_type='+cIndex+'&toys_new='+cnewtxt,
+			type:'GET',
+			datatype:'json',
+			success:function(data){
+				ctd.html(cnewtxt);
+			}
+		})
+	});
+	
+});
+</script>
+</body>
+</html>

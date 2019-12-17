@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/a.css">
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+</head>
+<body>
+	<div class="wrap">
+		<header><h1>舜鑫国际旅游（北京）有限公司租赁亲子平台</h1></header>
+		<section class="content">
+			<div class="main">
+				<div class="baby"><p>“感恩有你”之米粒儿宝儿童乐园</p></div>
+				<div class="pic">
+					<ul>
+						<li>
+							<p><img src="img/1.png"></p>
+							<p>拥有880平米的超大场地，设备新颖别出心裁，还原中国风的民俗文化色彩。</p>
+						</li>
+						<li>
+							<p><img src="img/2.png"></p>
+							<p>乐园内采用的是最安全的游乐设施，真皮软包无棱棱角角，让孩子们尽情玩耍。</p>
+						</li>
+						<li>
+							<p><img src="img/3.png"></p>
+							<p>品牌宗旨：释放孩子天性，培养孩子性格，激发孩子潜能。</p>
+						</li>
+						<li>
+							<p><img src="img/4.png"></p>
+						</li>
+					</ul>
+				</div>
+				<div class="test">
+					<p>地址：北京市海淀区--西三旗三旗百汇物美2层</br></br></p>
+					<p>最最最重要的是！</br></br>现在游乐券开始免费送啦！！</br></br></p>
+					<p>参与步骤：打开“舜鑫国际旅游（北京）有限公司租赁”客户端，搜索并关注群“同住回龙观”，参与发帖或互动即为参与“感恩节万元大回馈”活动。发帖越多互动越高礼品越丰厚！</br></br></p>
+					<p>关注微信公众号“舜鑫国际旅游（北京）有限公司租赁”，或者添加微信号“xiuxiuxiaobian”，教您领取更多不限量豪礼！</br></br></p>
+					
+					
+				</div>
+			</div>
+		</section>
+		
+		<a href="http://mp.weixin.qq.com/s/zSSVWBDL1qCYJes9nF8b0g" class="btn">更多豪礼</a>
+		
+	</div>
+
+
+<script type="text/javascript" src="js/zepto.js"></script>
+<script type="text/javascript" src="js/setfontsize.js"></script>
+<script type="text/javascript">
+	$.ajax({
+		url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV1/messageLink&title=米粒儿宝',
+		type:'GET',
+		success:function(data){
+		}
+	})
+	$(".btn").on("click",function(){
+		$.ajax({
+			url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV1/messageOpen&title=米粒儿宝',
+			type:'GET',
+			success:function(data){
+				
+			}
+		})
+	})
+</script>
+</body>
+</html>

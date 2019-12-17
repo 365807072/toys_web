@@ -1,0 +1,203 @@
+html,body{
+	width: 100%;
+	height: 100%;
+}
+.wrap{
+	width: 100%;
+	height: 100%;
+}
+header{
+	width: 100%;
+}
+.head{
+	width: 100%;
+	height: 3.5rem;
+	background: url(../img/bgHead.png);
+	background-repeat: no-repeat;
+	position: relative;
+	padding-top: 0.2rem;
+	padding-bottom: 1rem;
+}
+.head p:nth-of-type(1){
+	width: 100%;
+	text-align: center;
+	font-size: 0.5rem;
+	color: #333;
+	margin-top: 1rem;
+}
+.head p:nth-of-type(2){
+	width: 100%;
+	text-align: center;
+	font-size: 0.3rem;
+	color: #333;
+	margin-top: 0.12rem;
+}
+.count{
+	display: block;
+	position: absolute;
+	bottom: 0.3rem;
+	right: 0.2rem;
+	color: #333;
+	font-size: 0.3rem;
+}
+.headBottom{
+	width: 100%;
+	height: 0.86rem;
+	background-color: #F5F5F5;
+	text-align: center;
+	line-height: 0.86rem;
+	font-size: 0.37rem;
+	color: #999;
+}
+.main{
+	width: 100%;
+	height: 100%;
+}
+.wrapper{
+	width: 100%;
+}
+.content{
+	width: 100%;
+	overflow: hidden;
+}
+.content dl.aa{
+	width: 100%;
+	height: 30%;
+	display: -webkit-box;
+	display: -moz-box;
+	display: box;
+	margin-top: 0.2rem;
+	padding-bottom: 0.2rem;
+}
+.content dl.aa dt{
+	width: 60%;
+	margin-left: 0.2rem;
+}
+.content dl.aa dt img{
+	width: 4.6rem;
+	height: 3.8rem;	
+}
+.content dl.aa dd{
+	width: 30%;
+	margin-left: 0.3rem;
+	padding-top: 0.2rem;
+}
+.content dl.aa dd h1{
+	line-height: 0.45rem;
+	color: #494949;
+	font-size: 0.35rem;
+	font-weight: 800px;
+}
+.content dl.aa dd p:nth-of-type(1){
+	display: block;
+	font-size: 0.26rem;
+	color: #999;
+	height: 0.9rem;
+	line-height: 0.45rem;
+	overflow: hidden;
+	margin-top: 0.2rem;
+}
+.content dl.aa dd p:nth-of-type(2){
+	margin-top: 0.3rem;
+}
+.content dl.aa dd p:nth-of-type(2) img{
+	width: 90%;
+}
+.content{
+	width: 100%;
+	border-top: 1px solid #e4e4e4;
+	padding-bottom: 0.2rem;
+	position: relative;
+}
+.content dl{
+	width: 100%;
+	display: -webkit-box;
+	display: -moz-box;
+	display: box;
+}
+.content dl dd.art{
+	width: 60%;
+	height: 0.78rem;
+	line-height: 0.6rem;
+	overflow: hidden;
+	margin-left: 0.2rem;
+	margin-top: 0.26rem;
+	margin-right: 0.2rem;
+}
+.content dl dd.on{
+	width: 96%;
+	margin-left: 0.2rem;
+	padding-top: 0.2rem;
+	padding-bottom: 0.32rem;
+}
+.content dl dd.on h1{
+	width: 96%;
+	font-size: 0.35rem;
+	color: #333;
+	line-height: 0.4rem;
+	padding-bottom: 0.1rem;
+	font-weight: 800px;
+	overflow: hidden;
+}
+.content dl dd.on p{
+	position: absolute;
+	color: #999;
+	padding-bottom: 0.1rem;
+	font-size: 0.25rem;
+}
+.content dl dd.on p span:nth-of-type(2) a{
+	margin-left: 0.3rem;
+	color: #999;
+}
+.content dl dd.art h1{
+	font-size: 0.35rem;
+	color: #333;
+	line-height: 0.42rem;
+	font-weight: 800px;
+}
+.content dl dd.art p{
+	position: absolute;
+	bottom: 0rem;
+	color: #999;
+	font-size: 0.25rem;
+}
+.content dl dd.art p a{
+	color: #999;
+}
+.content dl dd.art p span:nth-of-type(2){
+	margin-left: 0.3rem;
+}
+.content dl dt{
+	width: 32%;
+	padding-top: 0.04rem;
+}
+.content dl dt img{
+	width: 100%;
+	height: 1.7rem;
+	margin-top: 0.16rem;
+	object-fit: cover;
+}
+.content dl dt img.video{
+	width: 30%;
+	height: 10%;
+	margin: 0 auto;
+	margin-top: 0.4rem;
+	padding-bottom: 0.5rem;
+}
+#down{
+	position: fixed;
+	bottom: 0;
+	z-index: 999;
+}
+
+
+
+
+
+
+
+
+
+
+
+

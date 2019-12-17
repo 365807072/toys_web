@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>订单列表</title>
+	<link rel="stylesheet" type="text/css" href="css/order.css">
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+	<link rel="stylesheet" type="text/css" href="css/dropload.css">
+</head>
+<body>
+	<div class="wrap">
+		<div class="head" id="head">
+			<header>
+				<ul>
+                    <li><a href="https://api.baobaoshowshow.com/H5/check/check.html">订单表</a></li>
+                    <li><a href="https://api.baobaoshowshow.com/H5/check/memberlist.html">会员表</a></li>
+                    <li><a href="https://api.baobaoshowshow.com/H5/check/inventory.html">库存表</a></li>
+                    <li><a href="http://checkpic.baobaoshowshow.com/Others/getToyslist.html">玩具列表</a></li>
+                    <li><a href="http://checkpic.baobaoshowshow.com/Others/cardeditinfo.html">卡编辑页面</a></li>
+                    <li><a href="http://checkpic.baobaoshowshow.com/Others/edittoysorder.html">编辑玩具订单</a></li>
+                    <li><a href="http://checkpic.baobaoshowshow.com/Others/editservice.html">客服退款编辑</a></li>
+                </ul>
+			</header>
+			<form>
+				<input type="text" placeholder="输入订单id或用户id" class="idtxt"><input type="button" value="搜索" class="idbtn">
+				<input type="text" placeholder="输入订单号" class="numtxt"><input type="button" value="搜索" class="numbtn">
+				<select id="test" style="margin-left: 0.05rem;margin-top: 0.1rem">
+					<option index="0">选择消费</option>
+					<option index="1">待支付</option>
+					<option index="2">准备中</option>
+					<option index="5">送货中</option>
+					<option index="6">玩乐中</option>
+					<option index="7">已完成【平】</option>
+					<option index="8">退款中</option>
+					<option index="9">已退款</option>
+					<option index="10">已完成【用】</option>
+					<option index="11">已完成【】入库</option>
+				</select>
+				<input type="button" value="搜索" class="typebtn">
+			</form>
+			<div class="count">
+				<!-- <span>总共<a>34</a>页</span> -->
+			</div>
+			<div class="top">
+				<ul>
+					<li>订单号</li>
+					<li>用户名</li>
+					<li>用户id</li>
+					<li>玩具名称</li>
+					<li>地址备注</li>
+					<li>状态</li>
+					<li>订单手机号</li>
+					<li>配送时间</li>
+					<li>租赁期限</li>
+					<li>下单时间</li>
+					<li>结束时间</li>
+					<li>配送人员</li>
+					<li>备注</li>
+				</ul>
+			</div>
+		</div>
+		<div class="main">
+			<div class="middle">
+				<!-- <ul>
+					<li>34</li>
+					<li>fanfan</li>
+					<li>蹦床</li>
+					<li>的发送到发生开发</li>
+					<li>配送中</li>
+					<li>234567865432</li>
+					<li>当师傅光华大道发鼎折覆餗</li>
+					<li>2017.1.2</li>
+					<li>7</li>
+					<li>2017.1.15</li>
+					<li>2017.1.2</li>
+					<li>刘瑞</li>
+				</ul> -->
+			</div>
+		</div>
+	</div>
+
+<script type="text/javascript" src="js/setfontsize.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/dropload.js"></script>
+<script type="text/javascript">
+var postTime="";
+var coouthtml="";
+var postcreatTime="";
+var ajaxData="";
+var searchId="";
+var numId="";
+var checkIndex="";
+var last_post_time="";
+var userId="";
+var cardId="";
+var isSearch_type=1;
+var ajax_data={};
+var loadType = false; // 加载更多方法是否在使用
+
+	$(".middle").on("click",".address",function(){
+
+		alert($(this).html());
+	})
+
+	$(".middle").on("click",".toyname",function(){
+
+		alert($(this).html());
+	})
+
+	//进入玩具列表查看库存
+	// $(".toyId").on("click",function(){
+	// 	window.location.href='play_cont.html'
+	// })
+
+	window.onscroll=function(){
+	    var sl=-Math.max(document.body.scrollLeft,document.documentElement.scrollLeft);
+	    document.getElementById('head').style.left=sl+'px';
+	    $("#head").css({'position':'fixed','top':'0'});
+	    $(".main").css({'margin-top':'0.77rem'});
+	    $(".count").css({'position':'absolute','top':'0.3rem','right':'0.3rem'})
+	};
+
+	var dropload = $('.main').dropload({
+        scrollArea : window,
+        domUp : {
+	        domClass   : 'dropload-up',
+	        domRefresh : '<div class="dropload-refresh">↓下拉刷新</div>',
+	        domUpdate  : '<div class="dropload-update">↑释放更新</div>',
+	        domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中</div>'
+	    },
+	    domDown : {
+	        domClass   : 'dropload-down',
+	        domRefresh : '<div class="dropload-refresh">↑上拉加载更多</div>',
+	        domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中</div>',
+	        domNoData  : '<div class="dropload-noData">暂无数据</div>'
+	    },
+       
+        loadDownFn : function(me){
+
+        	setTimeout(function(){
+	        	is_search_type();
+		        // 每次数据加载完，必须重置
+		        me.resetload();
+	        },300)
+
+            
+        }
+    });
+
+    function is_search_type(){
+		last_post_time = $(".middle").find("tr:last").data("posttime");
+		console.log(last_post_time);
+		var searchId=$(".idtxt").val();
+		var numId=$(".numtxt").val();
+		var checkIndex=$("#test").find("option:selected").attr("index");
+
+    	switch(isSearch_type){
+            	case 1 : 
+            		ajax_data = {
+						searchId:searchId,
+						postTime:last_post_time
+            		}
+            		break;
+            	case 2 : 
+            		ajax_data = {
+						numId:numId,
+						postTime:last_post_time
+            		}
+            		break;
+            	case 3: 
+            		ajax_data = {
+						checkIndex:checkIndex,
+						postTime:last_post_time
+            		}
+            		break;
+        		default : 
+        			ajax_data = {
+    					postTime:last_post_time
+            		}
+            		break;
+
+
+            }
+            request(ajax_data);
+    }
+
+	$(".idbtn").on("click",function(){
+		$(".middle").html("");
+		$(".count").hide();
+		isSearch_type=1;
+		is_search_type();
+	})
+
+	$(".numbtn").on("click",function(){
+		$(".count").hide();
+		$(".middle").html("");
+		isSearch_type=2;
+		is_search_type();
+	})
+
+	$(".typebtn").on("click",function(){
+		$(".count").hide();
+
+		$(".middle").html("");
+		
+		isSearch_type=3;
+		is_search_type();
+	})
+
+	function request(opt){
+		if(!loadType){
+			loadType = true;
+			ajaxData={
+				post_create_time: opt.postTime,
+				search_id: opt.searchId,
+				order_num: opt.numId,
+				search_status: opt.checkIndex
+			}
+			$.ajax({
+				url:'https://api.baobaoshowshow.com/index.php?r=WebBaoShow/getLogisticsList',
+				type:'GET',
+				data:ajaxData,
+				datatype:'json',
+				success:function(data){
+					var data=JSON.parse(data);
+					var orderdata=data.data;
+					var orderhtml="";
+					var coouthtml="";
+					if(orderdata.length!=0){
+						for(var i in orderdata){
+							coouthtml='<span>总共<a>'+orderdata[0].total_count+'</a>条</span>';
+							orderhtml+='<tr data-postTime='+orderdata[i].post_create_time+'><td>'+orderdata[i].order_num+'</td><td>'+orderdata[i].nick_name+'</td><td>'+orderdata[i].user_id+'</td><td class="toyname">'+orderdata[i].business_title+'</td><td class="address">'+orderdata[i].order_address+'</td><td>'+orderdata[i].status_name+'</td><td>'+orderdata[i].order_mobile+'</td><td>'+orderdata[i].delivery_time+'</td><td>'+orderdata[i].rent_day+'</td><td>'+orderdata[i].order_time+'</td><td>'+orderdata[i].end_time+'</td><td>'+orderdata[i].delivery_people+'</td><td>'+orderdata[i].remark+'</td></tr>';
+						}
+						$(".count").html(coouthtml);
+						$(".middle").append(orderhtml);
+					}
+				},
+				complete:function(){
+					loadType = false;
+				}
+			})
+		}
+		
+	}
+</script>
+</body>
+</html>

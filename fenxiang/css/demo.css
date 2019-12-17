@@ -1,0 +1,117 @@
+html,body{
+	width: 100%;
+	height: 100%;
+	background-color: #fafafa;
+}
+.wrap{
+	width: 100%;
+	height: 100%;
+}
+.box{
+	width: 100%;
+	height: 100%;
+}
+.top{
+	width: 100%;
+}
+.bottom{
+	width: 100%;
+}
+.bottom img{
+	width: 100%;
+	
+	
+}
+.pp{
+	width: 100%; 
+	font-size: 12px;
+	font-weight: 700px;
+	position: absolute;
+	left: 0;
+	bottom: 52px;
+}
+.pp span{
+	display: block;
+	margin-left: 10px;
+}
+.mask{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	background: #000;
+	opacity: .8;
+	z-index: 100;
+	
+}
+.tipContainer {
+	display: none;
+	width: 100%;
+	position: fixed;
+	top: 0.15rem;
+	z-index: 1000;
+}
+
+.tipContainer img {
+	width: 1rem;
+	height: 1.3rem;
+	position: fixed;
+	top: 0.3rem;
+	left: 4.5rem;
+	margin-right: 0.18rem;
+}
+
+.tipContainer p {
+	font-size: 0.12rem;
+	color: #fff;
+}
+.tipContainer p:nth-of-type(1){
+	margin-top: 1.6rem;
+}
+.tipContainer p:nth-of-type(2){
+	margin-top: 1.6rem;
+}
+
+.tipContainer p em {
+	color: #ffd800;
+	font-style: inherit
+}
+.nice_icon {
+	position: fixed;
+	height: 50px;
+	bottom: 0;
+	width: 100%;
+	line-height: 50px;
+	overflow: hidden;
+	background-color: #000;
+	opacity: 0.7;
+}
+
+.nice_icon img.show_nice_icon {
+	margin: 12px 0 0 10px
+}
+
+.nice_icon .footer-logo {
+	width: 158px;
+	height: 55px;
+	margin: 12px 0 0 10px;
+	
+	background-repeat: no-repeat;
+	background-size: 158px 45px;
+	font-size: 0
+}
+#btn_immediately_download{
+	width: 1.53rem;
+	height: 0.53rem;
+	background-color: #ff7575;
+	position: absolute;
+	top: 11px;
+	right: 10px;
+	border-radius: 0.3rem;
+	color: #fff;
+	text-align: center;
+	line-height: 0.53rem;
+	cursor: pointer;
+}
+
+

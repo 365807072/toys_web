@@ -1,0 +1,273 @@
+html,body{
+	width: 100%;
+	height: 100%;
+	background-color: #f5f5f5;
+	font-family: "微软雅黑"
+}
+.wrap{
+	width: 100%;
+	height: 100%;
+}
+.main{
+	width: 100%;
+}
+.first{
+	width: 100%;
+	background-color: #fff;
+}
+.first p{
+	border-bottom: 1px solid #e4e4e4;
+	color: #333;
+	font-size: 0.35rem;
+	padding: 0.18rem 0;
+	padding-left: 0.2rem;
+}
+.first p input{
+	border:none;
+	width: 70%;
+	height: 0.6rem;
+	margin-left: 0.06rem;
+	line-height: 0.3rem;
+	font-size: 0.3rem;
+	margin-left: 0.2rem;
+}
+.first p label{
+	color: #333;
+}
+.first p span{
+	color:red;
+}
+.first p:nth-of-type(3) span{
+	padding-left: 1rem;
+}
+#yeartest{
+	width: 55%;
+	border:1px solid #e4e4e4;
+	height: 0.6rem;
+	font-size: 0.33rem;
+	margin-left: 0.2rem;
+}
+#yeartest option{
+	width: 3rem;
+}
+.middle{
+	width: 100%;
+	background-color: #fff;
+	margin-top: 0.2rem;
+}
+.middle p:nth-of-type(1){
+	border-bottom: 1px solid #e4e4e4;
+	color: #333;
+	font-size: 0.35rem;
+	padding: 0.18rem 0;
+	padding-left: 0.2rem;
+}
+.middle p input{
+	border:none;
+	width: 70%;
+	height: 0.6rem;
+	margin-left: 0.06rem;
+	line-height: 0.3rem;
+	font-size: 0.3rem;
+	margin-left: 0.2rem;
+}
+.middle p span{
+	color:red;
+}
+.middle p label{
+	color: #333;
+}
+
+ 
+.toystatue{
+	width: 100%;
+	background-color: #fff;
+	margin-top: 0.2rem;
+}
+.toystatue p{
+	border-bottom: 1px solid #e4e4e4;
+	color: #333;
+	font-size: 0.35rem;
+	padding: 0.18rem 0;
+	padding-left: 0.2rem;
+}
+.toystatue p input{
+	border:none;
+	width: 70%;
+	height: 0.6rem;
+	margin-left: 0.06rem;
+	line-height: 0.3rem;
+	font-size: 0.3rem;
+	margin-left: 0.2rem;
+}
+.toystatue p span{
+	color:red;
+}
+.toystatue p label{
+	color: #333;
+}
+#test{
+	width: 55%;
+	border:1px solid #e4e4e4;
+	height: 0.6rem;
+	font-size: 0.33rem;
+	margin-left: 0.2rem;
+}
+#test option{
+	width: 3rem;
+}
+.uppic{
+	width: 100%;
+	background-color: #fff;
+	margin-top: 0.2rem;
+	position: relative;
+}
+.uppic p{
+	color: #333;
+	font-size: 0.35rem;
+	padding-top: 0.15rem;
+	padding-left: 0.2rem;
+}
+.uppic p span{
+	color:red;
+}
+#file{
+	display: none;
+}
+#file1{
+	display: none;
+}
+#file2{
+	display: none;
+}
+#file3{
+	display: none;
+}
+#file4{
+	display: none;
+}
+.uppic label{
+	display: block;
+	height: 1.2rem;color: #333;
+}
+.uppic img{
+	width: 1rem;
+	height: 1rem;
+	float: left;
+	display: block;
+	margin-right: 0.3rem;
+}
+.bottom{
+	width: 100%;
+	background-color: #fff;
+	margin-top: 0.2rem;
+}
+.bottom p{
+	border-bottom: 1px solid #e4e4e4;
+	color: #333;
+	font-size: 0.35rem;
+	padding: 0.18rem 0;
+	padding-left: 0.2rem;
+}
+.bottom p input{
+	border:none;
+	width: 70%;
+	height: 0.6rem;
+	margin-left: 0.06rem;
+	line-height: 0.3rem;
+	font-size: 0.3rem;
+	margin-left: 0.2rem;
+}
+.bz{
+	border:none;
+	width: 70%;
+	height: 0.6rem;
+	margin-left: 0.06rem;
+	line-height: 0.3rem;
+	font-size: 0.3rem;
+	margin-left: 0.2rem;
+}
+.bottom p label{
+	color: #333;
+}
+.bottom p span{
+	color:red;
+}
+.btn{
+	width: 85%;
+	height: 1rem;
+	background-color: #FD6363;
+	display: block;
+	font-size: 0.45rem;
+	margin:0 auto;
+	color: #fff;
+	line-height: 1rem;
+	text-align: center;
+	margin-top: 0.3rem;
+	border-radius: 30px;
+	display: block;
+	border:none;
+	z-index: 9999;
+	opacity: 1;
+}
+.foot{
+	font-size: 0.3rem;
+	margin-top: 0.2rem;
+	padding:0 0.2rem;
+	color: #666;
+	padding-bottom: 1rem;
+	line-height: 0.5rem;
+}
+.top p{
+	display: -webkit-box;
+	margin-top:0.1rem;
+}
+.top p span{
+	display: block;
+}
+.top p span:nth-of-type(2){
+	margin-left: 0.1rem;
+}
+.dibu{
+	margin-top:0.4rem;
+}
+.dibu p{
+	display: -webkit-box;
+	margin-top:0.1rem;
+}
+.dibu p span{
+	display: block;
+}
+.dibu p span:nth-of-type(2){
+	margin-left: 0.1rem;
+}
+.wen{
+	margin-top:0.4rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

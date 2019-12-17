@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>订单列表</title>
+  <link rel="stylesheet" type="text/css" href="css/mobile.css">
+  <link rel="stylesheet" type="text/css" href="css/orderAll.css">
+  <link rel="stylesheet" type="text/css" href="css/dropload.css">
+  <link rel="stylesheet" type="text/css" href="css/swiper.min.css">
+</head>
+<body>
+  <div class="wrap">
+    
+    <header class="head" style="display: none">
+      <p style="position: relative;">
+        <span class="back"><img src="img/back.png"></span>
+        <span>订单</span>
+        <span class="liwu"><img src="img/liwu.png"></span>
+      </p>
+      
+    </header>
+    
+    
+    <div class="main">
+        <div class="content">
+            <div class="money" style="display: none"></div>
+            <div class="wrapper" style="display: none"></div>
+        </div>
+    </div>
+          
+        
+  </div>
+
+<script type="text/javascript" src='js/setfontsize.js'></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/dropload.js"></script>
+<script type="text/javascript" src="js/swiper.min.js"></script>
+<script type="text/javascript">
+var moneyData="";
+var moneyHtml="";
+var boxHtml="";
+var url = location.href;
+var userId="";
+var last_post_time="";
+var orderId="";
+var comorderId="";
+var reCombned="";
+var tuiCombined="";
+var isfenye = false;//判断是否分页
+var postTime="";
+var ajax_data={};
+var isSearch_type=1;
+var last_post_time="";
+var sourceOrder="";
+var orderCombeid="";
+var prizes='';
+var clentUserid;
+var phoneType;
+var len;
+
+//判断链接中是否含有字段
+if(url.indexOf("?") > 0){
+  if(GetQueryString("login_user_id")!=null && GetQueryString("login_user_id").length>-1){
+    
+    userId = GetQueryString("login_user_id");
+  }
+}
+function GetQueryString(name){
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if(r!=null)return  unescape(r[2]); return null;
+}
+
+
+window.onload=function getSystemType() {
+  var u = navigator.userAgent;
+  if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {//安卓手机
+    phoneType = 1;
+  } else if (u.indexOf('iPhone') > -1) {//苹果手机
+    phoneType = 2;
+  } else if (u.indexOf('Windows Phone') > -1) {//winphone手机
+    phoneType = 3;
+  }else{
+    phoneType = 4;
+  }
+}
+
+headOrder();
+
+$('.main').dropload({
+    scrollArea : window,
+    domUp : {
+        domClass   : 'dropload-up',
+        domRefresh : '<div class="dropload-refresh">下拉刷新</div>',
+        domUpdate  : '<div class="dropload-update">释放更新</div>',
+        domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中</div>'
+    },
+    domDown : {
+        domClass   : 'dropload-down',
+        domRefresh : '<div class="dropload-refresh">上拉加载更多</div>',
+        domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中</div>',
+        domNoData  : '<div class="dropload-noData">暂无更多玩具订单哦</div>'
+    },
+    loadUpFn : function(me){
+        setTimeout(function(){
+            isfenye=false;
+            is_search_type();
+            me.resetload();//每次数据加载完都要重置（dropload的方法）
+        },1000);  
+    },
+    loadDownFn : function(me){
+        setTimeout(function(){
+          isfenye=true;
+          is_search_type();
+          if(len<=10){
+             // me.lock();//锁定上拉下拉操作
+             me.noData();//无数据
+          }
+          me.resetload();//每次数据加载完都要重置（dropload的方法）
+        },1000);
+    },
+
+    threshold : 50
+});
+
+//无网络刷新
+$(".load").on("click",function(){
+
+  location.reload();
+})
+
+//去邀请页面
+$(".head").on("click",".liwu",function(){
+  if(phoneType==1){
+    window.call.callMethodToInvite();
+  }else if(phoneType==2){
+    callMethodToInvite();
+  }else{
+    window.call.callMethodToInvite();
+  }
+})
+
+//返回
+$(".head").on("click",".back",function(){
+  if(phoneType==1){
+    window.call.callMethodFinish();
+  }else if(phoneType==2){
+    callMethodFinish();
+  }else{
+    window.call.callMethodFinish();
+  }
+})
+
+//点击押金
+$(".content").on("click",".money",function(event){
+  event.stopPropagation();
+  if(phoneType==1){
+    window.call.callMethodToToysDdpostit();
+  }else if(phoneType==2){
+    callMethodToToysDdpostit();
+  }else{
+    window.call.callMethodToToysDdpostit();
+  }
+})
+
+//点击预约
+$(".content").on("click",".yuyue",function(event){
+  event.stopPropagation();
+  if(phoneType==1){
+    window.call.callMethodToInterestPage();
+  }else if(phoneType==2){
+    callMethodToInterestPage();
+  }else{
+    window.call.callMethodToInterestPage();
+  }
+})
+
+//点击卡
+$(".content").on("click",".toy1",function(){
+  orderId=$(this).attr('orindex');
+  prizes=$(this).attr('prizindex');
+  if(prizes==0){
+    if(phoneType==1){
+      window.call.callMethodToToysCartDetail(orderId);
+    }else if(phoneType==2){
+      callMethodToToysCartDetail(orderId);
+    }else{
+      window.call.callMethodToToysCartDetail(orderId);
+    }
+  }else{
+    return false;
+  }
+})
+
+//点击玩具
+$(".content").on("click",".toy",function(){
+  comorderId=$(this).attr('pihaoindex');
+  prizes=$(this).attr('prizindex');
+  if(prizes==0){
+    if(phoneType==1){
+      window.call.callMethodToToysOrderDetail(comorderId);
+    }else if(phoneType==2){
+      callMethodToToysOrderDetail(comorderId);
+    }else{
+      window.call.callMethodToToysOrderDetail(comorderId);
+    }
+  }else{
+    return false;
+  }
+})
+
+//点击去支付
+$(".content").on("click",".pay",function(){
+  sourceOrder=$(this).attr("souindex");
+  orderCombeid=$(this).attr("comindex");
+  if(sourceOrder==0){
+    if(phoneType==1){
+      window.call.callMethodToPayMoney(sourceOrder,orderCombeid);
+    }else if(phoneType==2){
+      callMethodToPayMoney(sourceOrder,orderCombeid);
+    }else{
+      window.call.callMethodToPayMoney(sourceOrder,orderCombeid);
+    }
+  }else if(sourceOrder==2){
+    if(phoneType==1){
+      window.call.callMethodToPayMoney(sourceOrder,orderCombeid);
+    }else if(phoneType==2){
+      callMethodToPayMoney(sourceOrder,orderCombeid);
+    }else{
+      window.call.callMethodToPayMoney(sourceOrder,orderCombeid);
+    }
+  }else{
+    return false;
+  }
+})
+
+//点击删除
+$(".content").on("click",".remove",function(){
+ 
+  reCombned=$(this).attr("reindex");
+   if(confirm('确定要删除吗?')){ 
+        $.ajax({
+            url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV77/cancelToysOrderV1',
+            type:'GET',
+            data:{
+              login_user_id:userId,
+              combined_order_id:reCombned
+            },
+            success:function(data){
+              var data=JSON.parse(data);
+              isfenye=false;
+              is_search_type();
+            }
+        })
+    } else{
+        return false;
+    }  
+})
+
+//取消订单
+$(".content").on("click",".tui",function(){
+ 
+    tuiCombined=$(this).attr("tuiindex");
+     if(confirm('确定要取消订单吗?')){
+     
+        $.ajax({
+          url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV77/toysOrderRefund',
+          type:'GET',
+          cache:false,
+          data:{
+            login_user_id:userId,
+            source:0,
+            refund_status:8,
+            combined_order_id:tuiCombined,
+          },
+          success:function(data){
+            var data=JSON.parse(data);
+            isfenye=false;
+            is_search_type();
+          }
+        })
+    }else{
+      return false;
+    }
+})
+
+
+
+window.confirm = function (message) {
+   if(phoneType==1){
+       var iframe = document.createElement("IFRAME");
+       iframe.style.display = "none";
+       iframe.setAttribute("src", '');
+       document.documentElement.appendChild(iframe);
+       var alertFrame = window.frames[0];
+       var result = alertFrame.window.confirm(message);
+       iframe.parentNode.removeChild(iframe);
+       return result;
+      
+    }else if(phoneType==2){
+       var iframe = document.createElement("IFRAME");
+       iframe.style.display = "none";
+       iframe.setAttribute("src", 'data:text/plain,');
+       document.documentElement.appendChild(iframe);
+       var alertFrame = window.frames[0];
+       var result = alertFrame.window.confirm(message);
+       iframe.parentNode.removeChild(iframe);
+       return result;
+    }
+};
+
+// window.alert = function(name){
+//     var iframe = document.createElement("IFRAME");
+//     iframe.style.display="none";
+//     iframe.setAttribute("src", 'data:text/plain');
+//     document.documentElement.appendChild(iframe);
+//     window.frames[0].window.alert(name);
+//     iframe.parentNode.removeChild(iframe);
+// }
+//预约和押金
+function headOrder(){
+  
+  $.ajax({
+    url:'https://api.baobaoshowshow.com/index.php?r=BabyShowV77/getToysOrderList',
+    type:'GET',
+    data:{
+      login_user_id:userId
+    },
+    datatype:'json',
+    success:function(data){
+      var data=JSON.parse(data);
+      var yajinData=data.data2;
+      
+      for(var i in yajinData){
+        var yajin=yajinData[i].toys_info;
+          moneyHtml+='<span class="jin"><a>'+yajin[0].business_title+'</a><a>'+yajin[0].sell_price+'</a></span>';
+          moneyHtml+='<span class="yuyue"></span>'
+      }
+      $(".money").html(moneyHtml);
+
+    },
+    complete:function(){
+         $(".head").show();
+         $(".money").show();
+      },
+    error:function(data){
+        var data=JSON.parse(data);
+        if(data.reCode==404){
+          wrapHtml+='<img src="img/error.png" class="load"/>'
+              $(".wrap").html(wrapHtml);
+        }
+    }
+  })
+}
+
+//列表展示
+function is_search_type(){
+    last_post_time = $(".wrapper").find(".box").last().data("posttime");
+    console.log(last_post_time);
+    
+    switch(isSearch_type){
+            case 1 : 
+                ajax_data = {
+                    userId:userId,
+                    postTime:last_post_time
+                }
+                break;
+        }
+        orderAll(ajax_data);
+}
+
+//客户端方法列表展示
+function getOrderequest(clentUserid){
+    last_post_time = $(".wrapper").find(".box").last().data("posttime");
+    console.log(last_post_time);
+    
+    switch(isSearch_type){
+            case 1 : 
+                ajax_data = {
+                    userId:clentUserid,
+                    postTime:last_post_time
+                }
+                break;
+        }
+        orderAll(ajax_data);
+}
+
+//列表展示
+function orderAll(opt){
+  
+  if(isfenye==true){
+    
+    ajaxData ={
+            post_create_time: opt.postTime,
+            login_user_id:opt.userId
+        }
+  }else{
+    ajaxData ={
+            login_user_id:opt.userId
+        }
+  }
+  $.ajax({
+    url:'https://api.baobaoshowshow.com/index.php?r=BabyShowV77/getToysOrderList',
+    type:'GET',
+    data:ajaxData,
+    datatype:'json',
+    success:function(data){
+      var data=JSON.parse(data);
+      moneyData=data.data;
+      boxHtml="";
+      console.log(moneyData);
+      len=moneyData.length<=10;
+      // if(moneyData.length<=10){
+      //   $(".dropload-down").hide();
+
+      // }
+      if(moneyData.length!=0){
+        for(var i in moneyData){
+          var yajin=moneyData[i].toys_info;
+          console.log(moneyData[i].is_card_status);
+          if(moneyData[i].is_card_status!=0){
+            boxHtml+='<div class="box" data-postTime='+moneyData[i].post_create_time+'>';
+            boxHtml+='<p><span>订单批号：</span><span>'+moneyData[i].combined_order_id+'</span></p>';
+            boxHtml+='<div class="toy1" orindex='+moneyData[i].is_card_status+' prizindex='+moneyData[i].is_prize+'>';
+            boxHtml+='<div class="left">';
+            boxHtml+='<ul>';
+            for(var j in yajin){
+              if(yajin[j].size_img_thumb){
+                boxHtml+='<li><a><img src="'+yajin[j].size_img_thumb+'"></a><img src="'+yajin[j].img_thumb+'"></li>';
+              }else{
+                boxHtml+='<li><img src="'+yajin[j].img_thumb+'"></li>';
+              }
+            }
+            boxHtml+='</ul>';
+            boxHtml+='</div>';
+            boxHtml+='<div class="right"><span>'+moneyData[i].toys_title+'</span><span><img src="img/34.png"></span></div>';
+            boxHtml+='</div>';
+          
+            if(moneyData[i].combined_status_now==1){
+              boxHtml+='<div class="statue"><ul><li><img src="img/45.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/57.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/61.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/60.png"></li></ul><span class="pay" souindex='+moneyData[i].order_status+' comindex='+moneyData[i].combined_order_id+'>去支付</span></div>'
+            }else if(moneyData[i].combined_status_now==2){
+              boxHtml+='<div class="statue"><ul><li><img src="img/44.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/58.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/61.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/60.png"></li></ul><span class="tui" tuiindex='+moneyData[i].combined_order_id+'>取消订单</span></div>'
+            }else if(moneyData[i].combined_status_now==8){
+              boxHtml+='<div class="statue"><ul><li><img src="img/44.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/57.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/66.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/64.png"></li></ul></div>'
+            }else if(moneyData[i].combined_status_now==9){
+              boxHtml+='<div class="statue"><ul><li><img src="img/44.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/57.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/65.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/63.png"></li></ul></div>'
+            }
+            else if(moneyData[i].combined_status_now==7){
+              boxHtml+='<div class="statue"><ul><li><img src="img/44.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/57.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/62.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/60.png"></li></ul></div>'
+            }
+            else if(moneyData[i].combined_status_now==12){
+              boxHtml+='<div class="statue"><ul><li><img src="img/44.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/57.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/61.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/59.png"></li></ul><span class="remove" reindex='+moneyData[i].combined_order_id+'>删除</span></div>'
+            }
+            boxHtml+='</div>';
+
+            
+            
+          }else{
+            boxHtml+='<div class="box" data-postTime='+moneyData[i].post_create_time+'>';
+            boxHtml+='<p><span>订单批号：</span><span>'+moneyData[i].combined_order_id+'</span></p>';
+            boxHtml+='<div class="toy" pihaoindex='+moneyData[i].combined_order_id+' prizindex='+moneyData[i].is_prize+'>';
+            boxHtml+='<div class="left">';
+            boxHtml+='<div class="swiper-container swiper-container2"><div class="swiper-wrapper">';
+            for(var j in yajin){
+              if(yajin[j].size_img_thumb){
+                boxHtml+='<div class="swiper-slide"><a><img src="'+yajin[j].size_img_thumb+'"></a><img src="'+yajin[j].img_thumb+'"></div>';
+              }else{
+                boxHtml+='<div class="swiper-slide"><img src="'+yajin[j].img_thumb+'"></div>';
+              }
+            }
+            boxHtml+='</div></div>';
+            boxHtml+='</div>';
+            boxHtml+='<div class="right"><span>'+moneyData[i].toys_title+'</span><span><img src="img/34.png"></span></div>';
+            boxHtml+='</div>';
+            
+
+            $(".toy1 ul li img").each(function(i){
+              var img = $(this);
+              var imgWidth;//图片的宽度
+
+              var imgHeight;//图片的高度
+              //这里做下说明，$("<img/>")这里是创建一个临时的img标签，类似js创建一个new Image()对象！
+              $("<img/>").attr("src", $(img).attr("src")).load(function() {
+              /*
+              如果要获取图片的真实的宽度和高度有三点必须注意
+              1、需要创建一个image对象：如这里的$("<img/>")
+              2、指定图片的src路径
+              3、一定要在图片加载完成后执行如.load()函数里执行
+              */
+                boxHeight=$(".toy1 ul li").height(); //获取盒子的高度x
+                boxWidth=$(".toy1 ul li").width(); //获取盒子的宽度
+                imgWidth = this.width;
+                imgHeight = this.height;
+                shown=imgWidth/imgHeight;
+                //如果真实的宽度大于浏览器的宽度就按照100%显示
+                if(shown>=2){
+                  newimgHeight =boxWidth/imgWidth*imgHeight;
+                  $(img).css("width",boxWidth).css("height",newimgHeight);
+                }
+                else if(shown<2){//如果小于浏览器的宽度按照原尺寸显示
+                  newimgWidth = boxHeight/imgHeight*imgWidth;
+                  $(img).css("width",newimgWidth).css("height",'auto');
+
+                }
+              });
+            });
+
+            if(moneyData[i].is_prize==1){
+              if(moneyData[i].combined_status_now==2){
+                boxHtml+='<div class="statue"><ul><li><img src="img/53.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/46.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/67.png"></li></ul></div>';
+              }else if(moneyData[i].combined_status_now==5){
+                boxHtml+='<div class="statue"><ul><li><img src="img/52.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/47.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/67.png"></li></ul></div>';
+              }else if(moneyData[i].combined_status_now==11){
+                boxHtml+='<div class="statue"><ul><li><img src="img/52.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/46.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/68.png"></li></ul></div>';
+              }
+            }else{
+              if(moneyData[i].combined_status_now==1){
+                boxHtml+='<div class="statue"><ul><li><img src="img/45.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/52.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/40.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/46.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/48.png"></li></ul><span class="pay" souindex='+moneyData[i].order_status+' comindex='+moneyData[i].combined_order_id+'>去支付</span></div>';
+              }else if(moneyData[i].combined_status_now==2){
+                boxHtml+='<div class="statue"><ul><li><img src="img/44.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/53.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/40.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/46.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/48.png"></li></ul></div>';
+              }else if(moneyData[i].combined_status_now==22){
+                boxHtml+='<div class="statue"><ul><li><img src="img/44.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/52.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/41.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/46.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/48.png"></li></ul></div>';
+              }else if(moneyData[i].combined_status_now==9){
+                boxHtml+='<div class="statue"><ul><li><img src="img/44.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/52.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/89.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/88.png"></li></ul></div>';
+              }else if(moneyData[i].combined_status_now==5){
+                boxHtml+='<div class="statue"><ul><li><img src="img/44.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/52.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/40.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/47.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/48.png"></li></ul></div>';
+              }else if(moneyData[i].combined_status_now==6){
+                boxHtml+='<div class="statue"><ul><li><img src="img/49.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/42.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/50.png"></li></ul></div>';
+              }
+              else if(moneyData[i].combined_status_now==14){
+                boxHtml+='<div class="statue"><ul><li><img src="img/49.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/42.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/50.png"></li></ul></div>';
+              }else if(moneyData[i].combined_status_now==10){
+                boxHtml+='<div class="statue"><ul><li><img src="img/48.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/43.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/50.png"></li></ul></div></div>';
+              }else if(moneyData[i].combined_status_now==7){
+                boxHtml+='<div class="statue"><ul><li><img src="img/48.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/42.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/51.png"></li></ul></div>';
+              }else if(moneyData[i].combined_status_now==11){
+                boxHtml+='<div class="statue"><ul><li><img src="img/48.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/42.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/51.png"></li></ul></div>';
+              }else if(moneyData[i].combined_status_now==8){
+                boxHtml+='<div class="statue"><ul><li><img src="img/44.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/52.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/89.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/87.png"></li></ul></div>';
+              }else if(moneyData[i].combined_status_now==33){
+                boxHtml+='<div class="statue"><ul><li><img src="img/44.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/52.png"></li><li style="width: 7%"><img src="img/54.png" style="width: 74%;margin-top: 0.2rem"></li><li><img src="img/86.png"></li></ul></div>';
+              }
+            }
+            
+            boxHtml+='</div>';
+          }
+          
+        }
+      }else{
+          if(isfenye==true){
+              boxHtml="<img src='img/82.png' class='pppic'>";
+              return false;
+          }else{
+            return true;
+          }
+      }
+
+      if(isfenye == true){
+          
+        aooendContent();
+      }else{
+        
+        htmlContent();
+      }
+
+      var swiper = new Swiper('.swiper-container2', {
+          freeMode: true,
+          freeModeMomentumRatio: 0.5,
+          slidesPerView: 'auto',
+      });
+
+    },
+    complete:function(){
+         $(".head").show();
+         $(".wrapper").show();
+         $(".money").show();
+      },
+    error:function(data){
+        var data=JSON.parse(data);
+        console.log(data);
+        if(data.reCode==404){
+            wrapHtml+='<img src="img/error.png" class="load"/>'
+            $(".wrap").html(wrapHtml);
+        }
+    }
+  })
+}
+
+//html 方法
+function htmlContent(){
+
+  $(".wrapper").html(boxHtml);
+}
+
+//append 方法
+function aooendContent(){
+
+  $(".wrapper").append(boxHtml);
+}
+</script>
+</body>
+</html>

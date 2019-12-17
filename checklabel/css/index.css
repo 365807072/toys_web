@@ -1,0 +1,105 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+html,body{
+	width: 100%;
+	height: 100%;
+}
+.wrap{
+	width: 100%;
+	height: 100%;
+}
+.box{
+	width: 100%;
+	height: 100%;
+}
+.main{
+	width: 100%;
+	font-size: 0.3rem;
+}
+.main p:nth-of-type(1){
+	height: 1rem;
+	background-color: #fff;
+	border-bottom: 1px solid #FD6363;
+	line-height: 1rem;
+	position: fixed;
+	top: 0;
+}
+.main p:nth-of-type(1) span:nth-of-type(2){
+	margin-left: -0.5rem;
+}
+.main p:nth-of-type(1) span:nth-of-type(3){
+	margin-left: -0.7rem;
+}
+.main p:nth-of-type(1) span:nth-of-type(4){
+	margin-left: -0.7rem;
+}
+.main p:nth-of-type(1) span:nth-of-type(5){
+	margin-left: -0.5rem;
+	text-align: left
+}
+.main p:nth-of-type(1) span:nth-of-type(6){
+	margin-left: -0.7rem;
+	text-align: left
+}
+.main p:nth-of-type(2){
+	margin-top: 1rem;
+}
+.main p{
+	display: -webkit-box;
+	border-bottom: 1px solid #ccc;
+	line-height: 0.5rem;
+	height: 4rem;
+}
+.main p span{
+	display: block;
+	-webkit-box-flex:1;
+	width: 2rem;
+
+}
+.main p span img{
+	width: 80%;
+	margin-top: 0.1rem;
+}
+.main p span:nth-of-type(2),p span:nth-of-type(3),p span:nth-of-type(4){
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.main p span:nth-of-type(5){
+	text-align: right;
+}
+.main p span:nth-of-type(5) a{
+	font-size: 0.38rem;
+}
+.main p span:nth-of-type(6){
+	text-align: right;
+}
+.main p span:nth-of-type(6) a{
+	font-size: 0.38rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

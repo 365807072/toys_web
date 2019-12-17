@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div class="onorand">抢购</div>
+  <input type="submit" value="支付" style="background:red">
+	<script type="text/javascript" src="js/zepto.js"></script>
+	<script type="text/javascript">
+		$(".onorand").on("click",function(){
+
+
+			$.ajax({
+  				url:"http://api.baobaoshowshow.com/index.php?r=BabyShowV1/wxLogin",
+    			type:"POST",
+    			data : {
+    				'uid' : "ouLbyswoMeJxVxd9KhL_s_w7_N1A",
+    				'nick_name' : "\u6162\u6162",
+    				'source' : 1,
+    				'unionid' : "oWt_Usw2apJTNVaqbOlxLH6nlZn8",
+    				'imgurl' : "http:\/\/wx.qlogo.cn\/mmopen\/dMoBbnpKkS0rh1Deb2akQplKG9yJ7nbxltSur4EibYEoSYE1hUAapT19FuDA3fGv1dRG6kkFqqYBoEh0NxcNLo6tK7k5LOiaud\/0"
+      			},
+    			success:function(data){
+    				alert(data);
+    			}
+      })
+
+      	})
+	</script>
+</body>
+</html>

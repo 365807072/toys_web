@@ -1,0 +1,222 @@
+html,body{
+	font-size: 14px;
+}
+header ul{
+	display: -webkit-box;
+	background-color: #6795B4;
+}
+header ul li{
+	margin:0 0.3rem;
+	font-weight: bold;
+	padding: 0.05rem 0;
+}
+header ul li a{
+	color: #fff;
+}
+.head{
+	width: 100%;
+	background-color: #fff;
+	z-index: 1;
+	height: 143px;
+}
+.head form{
+	margin-top: 0.1rem;
+} 
+.head form input{
+	margin-left: 0.05rem;
+}
+.head .idtxt{
+	margin-left: 0.1rem;
+}
+.top tr th{
+	width: 10%;
+}
+.count{
+	position: absolute;
+	right: 0.1rem;
+	top: 0.3rem;
+	font-size: 0.13rem;
+}
+.count a{
+	color: red;
+} 
+.head .top{
+	width: 100%;
+	font-weight: bold;
+	font-size: 15px;
+}
+/*.top tr td{
+	width: 0.6rem;
+	text-align: center;
+	vertical-align: middle;
+}*/
+
+.main{
+	width: 100%;
+	padding-bottom: 25px;
+	margin-top: 4px;
+}
+.main table{
+	margin-bottom: 35px;
+}
+.upload{
+	text-align: center;
+	height: 25px;
+	line-height: 25px;
+	position: fixed;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background: #fff;
+}
+.upload.loading span:nth-child(2){
+	display: block;
+}
+.upload span:nth-child(2),.upload.loading span:nth-child(1){
+	display: none;
+}
+.listsbox{
+	width: 100%;
+}
+.listsbox tr td{
+	height: 0.7rem;
+}
+.username{
+	color: orange;
+}
+.toyId{
+	color: blue;
+}
+.dropload-down{
+	position: fixed;
+	bottom: 0;
+	left: 3.5rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+html,body{
+	font-size: 14px;
+}
+header ul{
+	display: -webkit-box;
+	background-color: #6795B4;
+}
+header ul li{
+	margin:0 0.3rem;
+	font-weight: bold;
+	padding: 0.05rem 0;
+}
+header ul li a{
+	color: #fff;
+}
+.head{
+	width: 100%;
+	background-color: #fff;
+	z-index: 1;
+	height: 143px;
+}
+.head form{
+	margin-top: 0.1rem;
+} 
+.head form input{
+	margin-left: 0.05rem;
+}
+.head .idtxt{
+	margin-left: 0.1rem;
+}
+.top tr th{
+	width: 10%;
+}
+.count{
+	position: absolute;
+	right: 0.1rem;
+	top: 0.3rem;
+	font-size: 0.13rem;
+}
+.count a{
+	color: red;
+} 
+.head .top{
+	width: 100%;
+	font-weight: bold;
+	font-size: 15px;
+}
+/*.top tr td{
+	width: 0.6rem;
+	text-align: center;
+	vertical-align: middle;
+}*/
+
+.main{
+	width: 100%;
+	padding-bottom: 25px;
+	margin-top: 4px;
+}
+.main table{
+	margin-bottom: 35px;
+}
+.upload{
+	text-align: center;
+	height: 25px;
+	line-height: 25px;
+	position: fixed;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background: #fff;
+}
+.upload.loading span:nth-child(2){
+	display: block;
+}
+.upload span:nth-child(2),.upload.loading span:nth-child(1){
+	display: none;
+}
+.listsbox{
+	width: 100%;
+}
+.listsbox tr td{
+	height: 0.7rem;
+}
+.username{
+	color: orange;
+}
+.toyId{
+	color: blue;
+}
+.dropload-down{
+	position: fixed;
+	bottom: 0;
+	left: 3.5rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

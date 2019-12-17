@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>库存列表</title>
+	<link rel="stylesheet" type="text/css" href="css/inventory.css">
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+	<link rel="stylesheet" type="text/css" href="css/dropload.css">
+</head>
+<body>
+	<div class="wrap">
+		<div class="head" id="head">
+			<header>
+				<ul>
+                    <li><a href="https://api.baobaoshowshow.com/H5/check/check.html">订单表</a></li>
+                    <li><a href="https://api.baobaoshowshow.com/H5/check/memberlist.html">会员表</a></li>
+                    <li><a href="https://api.baobaoshowshow.com/H5/check/inventory.html">库存表</a></li>
+                    <li><a href="http://checkpic.baobaoshowshow.com/Others/getToyslist.html">玩具列表</a></li>
+                    <li><a href="http://checkpic.baobaoshowshow.com/Others/cardeditinfo.html">卡编辑页面</a></li>
+                    <li><a href="http://checkpic.baobaoshowshow.com/Others/edittoysorder.html">编辑玩具订单</a></li>
+                    <li><a href="http://checkpic.baobaoshowshow.com/Others/editservice.html">客服退款编辑</a></li>
+                </ul>
+			</header>
+			<form>
+				<input type="text" placeholder="输入玩具id" class="idtxt">
+				<input type="text" placeholder="输入玩具名称" class="nametxt">
+				<input type="text" placeholder="输入玩具编号" class="numtxt">
+				<select id="test">
+                    <option index="0">正常</option>
+                    <option index="2">隐藏</option>
+                </select>
+				<input type="button" value="搜索" class="btn">
+				
+			</form>
+			<div class="count">
+				<!-- <span>总共<a>34</a>页</span> -->
+			</div>
+			<div class="top">
+				<ul>
+					<li>玩具图片</li>
+					<li>玩具名称/id</li>
+					<li>玩具总库存</li>
+					<li>可用库存</li>
+					<li>租赁中</li>
+					<li>损坏维修</li>	
+					<li>零件组成</li>
+					<li>功能说明</li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="main">
+			<div class="lists">
+				<!-- <ul>
+					<li>蹦床</li>
+					<li>32</li>
+					<li>10</li>
+					<li>6</li>
+					<li class="toyType">5</li>
+				</ul> -->
+			</div>
+		</div>
+	</div>
+	<div class="upload">
+        <span>上拉加载更多内容</span>
+        <span>内容加载中...</span>
+    </div>
+<script type="text/javascript" src="js/setfontsize.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/dropload.js"></script>
+<script type="text/javascript" src="js/inventory.js"></script>
+</body>
+</html>

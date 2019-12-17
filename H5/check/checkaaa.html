@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台操作</title>
+    <link rel="stylesheet" type="text/css" href="css/check.css">
+    <link rel="stylesheet" type="text/css" href="css/mobile.css">
+    <link rel="stylesheet" type="text/css" href="css/dropload.css">
+    <link rel="stylesheet" type="text/css" href="css/laydate.css">
+    
+</head>
+<body>
+    <div class="wrap">
+        <div class="head" id="head">
+            <header>
+                <ul>
+                    <li><a href="check.html">订单表</a></li>
+                    <li><a href="memberlist.html">会员表</a></li>
+                    <li><a href="inventory.html">库存表</a></li>
+                    <li><a href="http://checkpic.baobaoshowshow.com/Toys/getlogisticslist.html">物流表</a></li>
+                    <li><a href="http://checkpic.baobaoshowshow.com/Others/toysstorehouse.html">仓库表</a></li>
+                    <li><a href="http://checkpic.baobaoshowshow.com/Others/cardeditinfo.html">卡编辑页面</a></li>
+                    <li><a href="http://checkpic.baobaoshowshow.com/Others/edittoysorder.html">编辑玩具订单</a></li>
+                    <li><a href="http://checkpic.baobaoshowshow.com/Others/editservice.html">客服退款编辑</a></li>
+                </ul>
+            </header>
+            <form id="search_form">
+                <input type="text" name="" placeholder="输入订单id或用户id" class="idtxt">
+                <input type="text" name="" placeholder="输入订单号" class="numtxt">
+                <input type="text" name="" placeholder="输入用户名" class="nametxt">
+                <input type="text" name="" placeholder="输入玩具id" class="playtxt">
+                <input type="text" name="" placeholder="输入订单批号" class="numbertxt">
+                <input type="text" name="" placeholder="下单开始时间" id="startTime" class="timestart laydate-icon" onclick="laydate({elem: '#startTime',istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">---<input type="text" name="" placeholder="下单结束时间" id="endTime" class="timeend laydate-icon" onclick="laydate({elem: '#endTime',istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+                <select id="test">
+                    <option index="0">选择消费</option>
+                    <option index="1">待支付</option>
+                    <option index="2">准备中</option>
+                    <option index="5">送货中</option>
+                    <option index="6">玩乐中</option>
+                    <option index="10">待取回</option>
+                    <option index="7">待入库</option>
+                    <option index="8">退款中</option>
+                    <option index="9">已退款</option>
+                    <option index="11">已入库</option>
+                    <option index="12">过期筛选</option>
+                </select>
+                <input type="button" value="搜索" class="btn">
+            </form>
+            
+            
+            <!-- <div class="count">
+            
+                <span>总共<a>34</a>页</span>
+            </div> -->
+            <table class="top" border="1">
+                <tr>
+                    <th width="10%" align="center">订单id/号/批号</th>
+                    <th width="5%" align="center">订单权限</th>
+                    <th width="10%" align="center">用户id/昵称/手机号</th>
+                    <th width="5%" align="center">状态</th>
+                    <th width="5%" align="center">支付金额</th>
+                    <th width="10%" align="center">玩具id/名称/编号</th>
+                    <th width="10%" align="center">修改时间/过期时间</th>
+                    <th width="10%" align="center">收货信息</th>
+                    <th width="5%" align="center">备注</th>
+                </tr>
+            </table>
+        </div>
+            
+        
+        <div class="main">
+            <table class="listsbox" border="1"></table>
+            
+        </div>
+    </div>
+    <div class="upload">
+        <span>上拉加载更多内容</span>
+        <span>内容加载中...</span>
+    </div>
+<script type="text/javascript" src="js/setfontsize.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/dropload.js"></script>
+<script type="text/javascript" src="js/laydate.js"></script>
+
+<script type="text/javascript">
+var postTime="";
+var coouthtml="";
+var postcreatTime="";
+var ajaxData="";
+var postTime1="";
+var postTime2="";
+var postTime3="";
+var postTime4="";
+var searchId="";
+var numId="";
+var nameId="";
+var timeStart="";
+var timeEnd="";
+var checkIndex="";
+var last_post_time="";
+var userId="";
+var cardId="";
+var isSearch_type=1;
+var ajax_data={};
+var combinedOrder_id="";
+var playId="";
+
+var loadType = false; // 加载更多方法是否在使用
+$(".orderId").on("click",function(){
+    
+    if($(".listsadd").css("display")=="none"){
+        $(".listsadd").show();
+    }else{
+        $(".listsadd").hide();
+    }
+});
+
+function browserRedirect() {
+    var sUserAgent = navigator.userAgent.toLowerCase();
+    var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+    var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+    var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+    var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+    var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+    var bIsAndroid = sUserAgent.match(/android/i) == "android";
+    var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+    var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+    // document.writeln("您的浏览设备为：");
+    if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+        // document.writeln("phone");
+        $(".listsbox").on("click",".username",function(){
+                var userName=$(this).attr("userindex");
+                window.location.href='playlist.html?login_user_id='+userName;
+        })
+        $(".listsbox").on("click",".toyId",function(){
+            var business=$(this).attr("idindex");
+            var user=$(this).attr("uindex");
+            window.location.href='play_cont.html?business_id='+business+'&login_user_id='+user;
+        })
+    } else {
+        var touchtime = new Date().getTime();
+        $(".listsbox").on("click",".username",function(){
+            
+            if( new Date().getTime() - touchtime < 500 ){
+                console.log("dblclick");
+
+                var userName=$(this).attr("userindex");
+                window.location.href='playlist.html?login_user_id='+userName;
+            }else{
+                touchtime = new Date().getTime();
+                console.log("click")
+            }
+            
+        })
+        $(".listsbox").on("click",".toyId",function(){
+             if( new Date().getTime() - touchtime < 500 ){
+                console.log("dblclick");
+                var business=$(this).attr("idindex");
+                var user=$(this).attr("uindex");
+                window.location.href='play_cont.html?business_id='+business+'&login_user_id='+user;
+            }else{
+                touchtime = new Date().getTime();
+                console.log("click")
+            }
+            
+        })
+    }
+}
+
+browserRedirect();
+// var touchtime = new Date().getTime();
+// $(".listsbox").on("click",".username",function(){
+    
+//     if( new Date().getTime() - touchtime < 500 ){
+//         console.log("dblclick");
+
+//         var userName=$(this).attr("userindex");
+//         window.location.href='playlist.html?login_user_id='+userName;
+//     }else{
+//         touchtime = new Date().getTime();
+//         console.log("click")
+//     }
+    
+// })
+
+
+
+
+window.onscroll=function(){
+    var sl=-Math.max(document.body.scrollLeft,document.documentElement.scrollLeft);
+    document.getElementById('head').style.left=sl+'px';
+    $("#head").css({'position':'fixed','top':'0','height':'129px'});
+    $(".main").css({'margin-top':'129px'});
+};
+
+is_search_type();
+
+function is_search_type(){
+    last_post_time = $(".listsbox").find("tr:last").data("posttime");
+    searchId=$(".idtxt").val();
+    numId=$(".numtxt").val();
+    playId=$(".playtxt").val();
+    nameId=$(".nametxt").val();
+    timeStart=$(".timestart").val();
+    timeEnd=$(".timeend").val();
+    console.log(timeEnd);
+    checkIndex=$("#test").find("option:selected").attr("index");
+    combinedOrder_id=$(".numbertxt").val();
+
+    switch(isSearch_type){
+            case 1 : 
+                ajax_data = {
+                    searchId:searchId,
+                    numId:numId,
+                    nameId:nameId,
+                    timeStart:timeStart,
+                    timeEnd:timeEnd,
+                    checkIndex:checkIndex,
+                    combinedOrder_id:combinedOrder_id,
+                    playId:playId,
+                    postTime:last_post_time
+                }
+                break;
+        }
+        request(ajax_data);
+}
+
+$(".btn").on("click",function(){
+    $(".listsbox").html("");
+    // $(".count").hide();
+    
+    isSearch_type=1;
+    is_search_type();
+})
+
+function request(opt){
+    console.log(223);
+    if(!loadType){ // 不使用
+        loadType = true;
+        ajaxData={
+            post_create_time: opt.postTime,
+            search_id: opt.searchId,
+            order_num: opt.numId,
+            start_time: opt.timeStart,
+            end_time: opt.timeEnd,
+            search_status: opt.checkIndex,
+            nick_name: opt.nameId,
+            combined_order_id:opt.combinedOrder_id,
+            search_business_id:opt.playId
+        }
+        $('.upload').addClass('loading');
+        $.ajax({
+            url:'https://api.baobaoshowshow.com/index.php?r=WebBaoShow/getToysOrderManageListV1',
+            type:'get',
+            data:ajaxData,
+            datatype:'json',
+            success:function(data){
+                $('.upload').removeClass('loading');
+                var daTa=JSON.parse(data);
+                var checkData=daTa.data;
+                var listshtml="";
+                var coouthtml="";
+                if(checkData.length != 0){
+                    
+                    // coouthtml+='<span>总共<a>'+checkData[0].total_count+'</a>条</span>'
+                    for(var i in checkData){
+                        if(checkData[i].business_star==""){
+                        	listshtml+='<tr class="uilist" data-postTime='+checkData[i].post_create_time+'><td class="orderId" width="10%" align="center">'+checkData[i].order_info+'</td><td width="5%" align="center">'+checkData[i].card_type+'</td><td width="10%" align="center" class="username" userindex='+checkData[i].user_id+'>'+checkData[i].user_info+'</td><td width="5%" align="center">'+checkData[i].status_name+'</td><td width="5%" align="center">'+checkData[i].total_price+'</td><td style="position:relative;" width="10%" align="center"  class="toyId" idindex='+checkData[i].business_id+' uindex='+checkData[i].user_id+'>'+checkData[i].business_info+'</td><td width="10%" align="center">'+checkData[i].combined_time+'</td><td width="10%" align="center">'+checkData[i].order_user_info+'</td><td width="5%" align="center"><a style="display:block" href="http://checkpic.baobaoshowshow.com/Others/toysremarkup?order_id='+checkData[i].order_id+'">编辑</a>'+checkData[i].remark+'</td></tr>';
+                        }else{
+                        	listshtml+='<tr class="uilist" data-postTime='+checkData[i].post_create_time+'><td class="orderId" width="10%" align="center">'+checkData[i].order_info+'</td><td width="5%" align="center">'+checkData[i].card_type+'</td><td width="10%" align="center" class="username" userindex='+checkData[i].user_id+'>'+checkData[i].user_info+'</td><td width="5%" align="center">'+checkData[i].status_name+'</td><td width="5%" align="center">'+checkData[i].total_price+'</td><td style="position:relative;" width="10%" align="center"  class="toyId" idindex='+checkData[i].business_id+' uindex='+checkData[i].user_id+'><a style="position:absolute;right:0;top:0"><img style="display:inline-block;width:0.15rem;height:0.15rem" src="'+checkData[i].business_star+'"></a>'+checkData[i].business_info+'</td><td width="10%" align="center">'+checkData[i].combined_time+'</td><td width="10%" align="center">'+checkData[i].order_user_info+'</td><td width="5%" align="center"><a style="display:block" href="http://checkpic.baobaoshowshow.com/Others/toysremarkup?order_id='+checkData[i].order_id+'">编辑</a>'+checkData[i].remark+'</td></tr>';
+                        }
+                    }
+                    // $(".count").html(coouthtml);
+                    $(".listsbox").append(listshtml);
+
+                }
+            },
+            complete:function(){
+                loadType = false;
+            }
+        })
+
+
+}
+}
+
+function debounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+        var context = this, args = arguments;
+        var later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+};
+ 
+var myEfficientFn = debounce(function() {
+    if($(window).scrollTop()+$(window).height()-129 >= $('.main').height()){
+        is_search_type();
+    }
+    
+}, 250);
+ 
+// 绑定监听
+window.addEventListener('scroll', myEfficientFn);
+</script>
+</body>
+</html>

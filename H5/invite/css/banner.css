@@ -1,0 +1,90 @@
+html,body{
+	width: 100%;
+	height: 100%; 
+	background-color: #fff9dc;
+}
+.wrap{
+	width: 100%;
+	height: 100%;
+}
+.head{
+	width: 100%;
+}
+.head_bg img{
+	width: 100%;
+}
+.invite{
+    width: 45%;
+    text-align: center;
+    margin: -0.75rem auto;
+}
+.invite a{
+	color: #fff;
+	font-size: 0.35rem;
+}
+.main{
+	width: 100%;
+	margin-top: 1.4rem;
+	padding-bottom: 0.5rem
+}
+.box{
+	width: 80%;
+	height: 2rem;
+	margin: 0 auto;
+	position: relative;
+}
+.box span:nth-of-type(1){
+	position: absolute;
+	left: 0.3rem;
+	top: 0.64rem;
+}
+.box span:nth-of-type(2){
+	width: 50%;
+	position: absolute;
+	right: 0.6rem;
+	top: 0.6rem;
+	font-size: 0.3rem;
+
+}
+.box span:nth-of-type(1) a{
+	display: block;
+}
+.box span:nth-of-type(1) a:nth-of-type(1){
+	font-size: 0.3rem;
+}
+.box span:nth-of-type(1) a:nth-of-type(2){
+	font-size: 0.27rem;
+}
+.foot{
+	width: 80%;
+	padding-bottom: 0.8rem;
+	margin: 0.5rem auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

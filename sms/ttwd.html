@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/ttwd.css">
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+</head>
+<body>
+	<div class="wrap">
+		<header><h1>舜鑫国际旅游（北京）有限公司租赁亲子平台</h1></header>
+		<section class="content">
+			<div class="main">
+				<div class="baby"><p>“感恩节万元大回馈”之天天舞蹈</p></div>
+				<div class="pic">
+					<ul>
+						<li>
+							<p><img src="img/13.png"></p>
+							<p>教学老师，舞蹈专业院校 中国舞专业 学习深造5年。</p>
+						</li>
+						<li>
+							<p><img src="img/14.png"></p>
+							<p>天天舞蹈教学环境温馨，教学设备齐全，师资力量雄厚。</p>
+						</li>
+						<li>
+							<p><img src="img/15.png"></p>
+							<p>每位教师都拥有10年的教学经验，因材施教，课堂专业性强，趣味性浓。</p>
+						</li>
+						<li>
+							<p><img src="img/16.png"></p>
+						</li>
+					</ul>
+				</div>
+				<div class="test">
+					<p>地址：北京市昌平区--回龙观上北鑫座3号楼1单元301</br></br></p>
+					<p>最最最重要的是！</br></br>现在参加舜鑫国际旅游（北京）有限公司租赁“感恩节万元大回馈”活动，价值700元的10节舞蹈精品课免费去上！！</br></br></p>
+					<p>参与步骤：打开“舜鑫国际旅游（北京）有限公司租赁”客户端，搜索并关注群“同住回龙观”，参与发帖或互动即为参与“感恩节万元大回馈”活动。发帖越多互动越高礼品越丰厚！</br></br></p>
+					<p>关注微信公众号“舜鑫国际旅游（北京）有限公司租赁”，或者添加微信号“xiuxiuxiaobian”，教您领取更多不限量豪礼！</br></br></p>
+					
+					
+				</div>
+			</div>
+		</section>
+		
+		<a href="http://mp.weixin.qq.com/s/zSSVWBDL1qCYJes9nF8b0g" class="btn">更多豪礼</a>
+		
+	</div>
+
+
+<script type="text/javascript" src="js/zepto.js"></script>
+<script type="text/javascript" src="js/setfontsize.js"></script>
+<script type="text/javascript">
+	$.ajax({
+		url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV1/messageLink&title=天天舞蹈',
+		type:'GET',
+		success:function(data){
+		}
+	})
+	$(".btn").on("click",function(){
+		$.ajax({
+			url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV1/messageOpen&title=天天舞蹈',
+			type:'GET',
+			success:function(data){
+				
+			}
+		})
+	})
+</script>
+</body>
+</html>

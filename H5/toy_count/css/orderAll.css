@@ -1,0 +1,244 @@
+*{  
+    -webkit-touch-callout:none;  /*系统默认菜单被禁用*/   
+    -webkit-user-select:none; /*webkit浏览器*/   
+    -khtml-user-select:none; /*早期浏览器*/   
+    -moz-user-select:none;/*火狐*/   
+    -ms-user-select:none; /*IE10*/   
+    user-select:none;   
+} 
+input{  
+    -webkit-user-select:auto; /*webkit浏览器*/     
+}
+textarea{
+    -webkit-user-select:auto; /*webkit浏览器*/
+}
+html,body{
+    width: 100%;
+    height: 100%;
+    background-color: #F5F5F5;
+    font-family: "黑体";
+    -webkit-tap-highlight-color:rgba(255,255,255,0);
+}
+.wrap{
+    width: 100%;
+    height: 100%;
+}
+.head{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+}
+.head p{
+    
+    height: 1rem;
+    background-color: #fff;
+    display: -webkit-box;
+}
+.head p span{
+    display: block;
+    margin-top:0.25rem;
+}
+.head p span img{
+    width: 30%;
+}
+.head p span:nth-of-type(1){
+    padding-left: 0.2rem;
+}
+.head p span:nth-of-type(2){
+    position: absolute;
+    right: 3.5rem;
+    font-size: 0.3rem;
+    color: #333;
+}
+.head p span:nth-of-type(3) img{
+    width: 5%;
+    position: absolute;
+    right: 0.2rem;
+}
+.money{
+    z-index: 999;
+    margin:0.2rem 0.2rem 0.2rem 0.2rem;
+    display: -webkit-box;
+}
+.money span{
+    display: block;
+    -webkit-box-flex:1;
+}
+.jin{
+    width: 100%;
+    height: 1.1rem;
+    margin: 0 auto;
+    background:url(../img/71.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: relative;
+    margin-right: 0.1rem;
+}
+.jin a{
+    display: block;
+    position: absolute;
+    right: 0.3rem;
+}
+.jin a:nth-of-type(1){
+    position: absolute;
+    top: 0.25rem;
+    color: #999;
+    font-size: 0.25rem;
+}
+.jin a:nth-of-type(2){
+    position: absolute;
+    top: 0.57rem;
+    color: #333;
+    font-size: 0.25rem;
+}
+.yuyue{
+    width: 100%;
+    height: 1.1rem;
+    margin: 0 auto;
+    background:url(../img/70.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: relative;
+    margin-left: 0.1rem;
+}
+.yuyue a{
+    position: absolute;
+    right: 0.2rem;
+    width: 0.4rem;
+    height: 0.4rem;
+    top: 0.35rem;
+}
+.main{
+    width: 100%;
+    padding-top: 1rem;
+    -webkit-overflow-scrolling: touch;
+}
+.content{
+    width: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.wrapper{
+    width: 100%;
+    -webkit-overflow-scrolling: touch
+}
+.box{
+    width:100%;
+    background: #fff;
+    position: relative;
+    margin-bottom: 0.2rem;
+}
+.box p{
+    line-height: 0.8rem;
+    font-size: 0.25rem;
+    padding: 0 0.2rem;
+    border-bottom: 1px solid #f5f5f5;
+}
+.toy{
+    display: -webkit-box;
+    border-bottom: 1px solid #f5f5f5;
+    height: 1.6rem;
+    padding: 0.2rem 0.1rem;
+}
+.toy1{
+    display: -webkit-box;
+    border-bottom: 1px solid #f5f5f5;
+    height: 1.6rem;
+    padding: 0.2rem 0.1rem;
+}
+.toy1 ul li img{
+    width: 30%;
+}
+.left{
+    width: 64%;
+}
+.left .swiper-slide{
+    position: relative;
+    width: 1.8rem;
+    height: 1.8rem;
+    line-height: 0.8rem;
+}
+.left .swiper-slide img{
+    display: inline;
+    width: 88%;
+}
+.left .swiper-slide a{
+    position: absolute;
+    left: 1.42rem;
+    top: -0.28rem;
+    width: 0.35rem;
+    height: 0.35rem;
+}
+.pic{
+    width: 1rem;
+    height: 1rem;
+    display: block;
+}
+.right{
+    width: 37.3%;
+    display: -webkit-box;
+    position: relative;
+}
+.right span{
+    display: block;
+}
+.right span:nth-of-type(1){
+    font-size: 0.26rem;
+    color:#999;
+    line-height: 1.2rem;
+    position: absolute;
+    right: 0.6rem;
+}
+.right span:nth-of-type(2){
+    position: absolute;
+    right: 0rem;
+}
+.right span:nth-of-type(2) img{
+    width: 33%;
+    margin-left: 0.2rem;
+    margin-top: 0.45rem;
+    
+}
+.statue{
+    position: relative;
+}
+.statue ul{
+    display: -webkit-box;
+    padding: 0.2rem 0.2rem;
+}
+.statue ul li{
+    display: block;
+    width: 8%;
+}
+.statue ul li img{
+    margin: 0 auto;
+}
+.statue span{
+    display: block;
+    height: 0.5rem;
+    background: #fc6262;
+    position: absolute;
+    right: 0.2rem;
+    bottom: 0.4rem;
+    padding: 0 0.18rem;
+    line-height: 0.5rem;
+    color: #fff;
+    font-size: 0.24rem;
+    border-radius: 4px;
+}
+.pppic{
+    width: 50%;
+    margin:3.3rem auto;
+}
+.dropload-down{
+    text-align: center;
+    line-height: 50px;
+}
+
+
+
+
+
+

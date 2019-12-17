@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>上传图片和修改</title>
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+	<style type="text/css">
+		body,html{
+			width: 100%;
+			height: 100%;
+		}
+		form input{
+			display: block;
+			margin-bottom: 0.1rem;
+			margin-left:0.2rem; 
+		}
+
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<form action='http://api.baobaoshowshow.com/index.php?r=WebBaoShow/upToysParts' method='POST'>
+			<textarea name="business_parts" style="margin-left: 0.2rem;width: 40%;height: 1rem;" class="area"></textarea>
+			<input type='hidden' value='' id="tet" name="business_id">
+			<input type='submit' value="确定">
+		</form>
+		<form action='http://api.baobaoshowshow.com/index.php?r=BabyShowV77/toysupimgs' method='POST' enctype='multipart/form-data'>
+			<input type="file" name="img1" value="">
+			<input type="file" name="img2" value="">
+			<input type="file" name="img3" value="">
+			<input type="file" name="img4" value="">
+			<input type="file" name="img5" value="">
+			<input type="file" name="img6" value="">
+			<input type='submit' value="确定">
+			<input type='hidden' value='' id="txt" name="business_id">
+		</form>
+		<div class="pic">
+		</div>
+	</div>
+	<script type="text/javascript" src='js/jquery.min.js'></script>
+	<script type="text/javascript" src="js/setfontsize.js"></script>
+	<script type="text/javascript">
+		var businessId='';
+		function GetQueryString(name){
+		    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		    var r = window.location.search.substr(1).match(reg);
+		    if(r!=null)return  unescape(r[2]); return null;
+		}
+		if(GetQueryString("business_id")!=null && GetQueryString("business_id").length>-1){
+
+			businessId=GetQueryString("business_id");
+
+			$("#txt").val(businessId);
+			$("#tet").val(businessId);
+		}
+		$.ajax({
+			url:'https://api.baobaoshowshow.com/index.php?r=BabyShowV77/toyspicparts&business_id='+businessId,
+			type:'get',
+			success:function(data){
+
+				var res=JSON.parse(data);
+				var boxdata=res.data;
+				var boxhtml='';
+				var boximg=boxdata.img;
+				var wenzi=boxdata.business_parts;
+				$(".area").html(wenzi);
+				boxhtml+='<div>'
+				for(var i in boximg){
+					boxhtml+='<div style="position:relative;display:-webkit-box"><div class="left" style="width:80%;padding-left:0.2rem;"><img src='+boximg[i]+'></div><input type="button" class="btn" value="删除" style="margin-left:0.2rem;" imgindex='+boximg[i]+'></div>';
+				}
+				boxhtml+='</div>';
+				$(".pic").html(boxhtml);
+				$(".btn").on("click",function(){
+					var imgIndex=$(this).attr("imgindex");
+					var fgnl=confirm("确定删除?");
+						if (fgnl==true){  
+							console.log(businessId);
+							console.log(imgIndex);
+							$.ajax({
+								url:'https://api.baobaoshowshow.com/index.php?r=BabyShowV77/toysupimgsdel&business_id='+businessId+'&img_del='+imgIndex,
+								type:'GET',
+								datatype:'json',
+								success:function(data){
+									alert(data);
+									window.location.reload();
+								}
+							})
+						}else{  
+							return false;  
+						} 
+				})
+			}
+		})
+	</script>
+</body>
+</html>

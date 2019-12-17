@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>租赁玩具详情</title>
+	<link rel="stylesheet" type="text/css" href="css/play_cont.css">
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+</head>
+<body>
+<div class="wrap">
+	<div class="top" id="top">
+		<p><input type="button" class="back" value="返回"  onclick="javascript:history.back(-1);"></p>
+		<ul>
+			<li>玩具名称</li>
+			<li>玩具id</li>
+			<li>租赁状态</li>
+			<li>起租时间</li>
+			<li>结束时间</li>
+			<li>租赁期限</li>
+			<li>租赁权限</li>
+			<li>租赁用户</li>
+			<li>租赁用户id</li>
+		</ul>
+	</div>
+	<div class="main">
+		<div class="box">
+			<!-- <ul>
+				<li>玩具名称</li>
+				<li>玩具id</li>
+				<li>租赁状态</li>
+				<li>起租时间</li>
+				<li>结束时间</li>
+				<li>租赁期限</li>
+				<li>租赁权限</li>
+				<li>租赁用户</li>
+				<li>租赁用户id</li>
+			</ul> -->
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript" src="js/setfontsize.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+var businessId="";
+var userId="";
+function GetQueryString(name){
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if(r!=null)return  unescape(r[2]); return null;
+}
+if(GetQueryString("business_id")!=null && GetQueryString("business_id").length>-1){
+	businessId=GetQueryString("business_id");
+}
+if(GetQueryString("login_user_id")!=null && GetQueryString("login_user_id").length>-1){
+	userId=GetQueryString("login_user_id");
+}
+$.ajax({
+	url:'http://api.baobaoshowshow.com/index.php?r=WebBaoShow/getUserOrderDetail&business_id='+businessId+'&login_user_id='+userId,
+	type:'get',
+	datatype:'json',
+	success:function(data){
+		var data=JSON.parse(data);
+		var boxdata=data.data;
+		console.log(boxdata);
+		if(boxdata==""){
+			$('.box').hide();
+		}else{
+			var boxhtml="";
+			boxhtml+='<ul><li>'+boxdata.business_title+'</li><li>'+boxdata.business_id+'</li><li>'+boxdata.status_name+'</li><li>'+boxdata.order_time+'</li><li>'+boxdata.end_time+'</li><li>'+boxdata.rent_day+'</li><li>'+boxdata.card_type+'</li><li>'+boxdata.nick_name+'</li><li>'+boxdata.user_id+'</li></ul>';
+			$('.box').html(boxhtml);
+		}
+		
+	}
+
+})
+</script>
+</body>
+</html>

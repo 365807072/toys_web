@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+	<style type="text/css">
+		html,body{
+			width: 100%;
+			height: 100%;
+		}
+		.wrap{
+			width: 100%;
+			height: 100%;
+		}
+		.head{
+			width: 100%;
+			height: 120px;
+			background-color: #FD6363;
+			line-height: 120px;
+			color: #fff;
+			text-align: center;
+			font-size: 40px;
+		}
+		.box{
+			padding: 0 40px;
+			margin-top: 70px;
+			margin-bottom: 20px;
+		}
+		.box p:nth-of-type(1){
+			font-size: 65px;
+			line-height: 120px;
+		}
+		.box p:nth-of-type(2) img{
+			width: 100%;
+		}
+		.content p:nth-of-type(2){
+			font-size: 45px;
+			margin-top: 10px;
+			line-height: 60px;
+		}
+		.content p:nth-of-type(3){
+			font-size: 45px;
+			margin-top: 10px;
+			line-height: 60px;
+		}
+		.content p:nth-of-type(4) img{
+			width: 100%;
+			margin-top: 50px;
+		}
+		.down p:nth-of-type(3){
+			font-size: 45px;
+			margin-top: 10px;
+			line-height: 60px;
+		}
+		.down p:nth-of-type(3) a{
+			color: #4247ff;
+		}
+		.down p:nth-of-type(2) img{
+			width: 100%;
+		}
+		.foot{
+			width: 100%;
+			margin-top: 100px;
+			padding-bottom: 150px;
+		}
+		.foot p{
+			font-size: 48px;
+			color: #999999;
+		}
+		.foot p:nth-of-type(1){
+			text-align: center;
+		}
+		.foot p:nth-of-type(2),.foot p:nth-of-type(3),.foot p:nth-of-type(4),.foot p:nth-of-type(5),.foot p:nth-of-type(6){
+			padding: 0 40px;
+			margin: 0 auto;
+			margin-top: 30px;
+		}
+		.foot p:nth-of-type(6){
+			text-align: center;
+		}
+		.btn{
+			position: fixed;
+			bottom: 10px;
+			left: 34%;
+			width: 35%;
+			height: 68px;
+			background-color: #fff25d;
+			border-radius: 20px;
+			font-size: 45px;
+			color: #333;
+			line-height: 68px;
+			text-align: center;
+			padding: 10px;
+		}
+		.pic{
+			width: 100%;
+		}
+		.pic img{
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="head">
+			<p>操作步骤</p>
+		</div>
+
+		<div class="main">
+			<div class="pic">
+				<img src="img/1.jpg">
+			</div>
+			<div class="box content">
+				<p>第一步：找到入口</p>
+				<p>安装“舜鑫国际旅游（北京）有限公司租赁”APP，打开首页找到推荐位的“玩具列表”</p>
+				<p>或：点击首页右上角“搜索”按钮，输入“豌豆苗玩具世界”并勾选类型为“群”，点击进入后找到“玩具”按钮即可。</p>
+				<p><img src="img/101.jpg"></p>
+			</div>
+			<div class="box">
+				<p>第二步：选择玩具</p>
+				<p><img src="img/102.jpg"></p>
+			</div>
+			<div class="box">
+				<p>第三步：去支付</p>
+				<p><img src="img/103.jpg"></p>
+			</div>
+			<div class="box">
+				<p>第四步：填写收货地址及支付</p>
+				<p><img src="img/104.jpg"></p>
+			</div>
+			<div class="box down">
+				<p>第五步：查看订单及物流详情</p>
+				<p><img src="img/105.jpg"></p>
+				<p>注意：更新舜鑫国际旅游（北京）有限公司租赁至最新版本后，才可使用玩具租赁相关功能，如您找不到玩具租赁的入口，那么可直接在这里下载最新版：<a href="http://www.meimei.yihaoss.top/download.php">点我更新</a> </p>
+			</div>
+		</div>
+
+		<div class="foot">
+			<p>-免费租活动说明-</p>
+			<p>1、被邀请人使用优惠码和玩具服务后，双方都获得7天免租+1次免配送费福利</p>
+			<p>2、如果是月卡或年卡会员，则会员时间延长7天和增加1次免配送费！此福利每邀请成功1人，可叠加1次，无上限</p>
+			<p>3、被邀请人也可任意邀请其他人，邀请成功后，同样享受此福利</p>
+			<p>4、成功后，23小时内系统将自动记录和增加福利至受益人账户</p>
+			<p>微信客服：xiuxiuxiaobian<br>客服电话：    13373920077</p>
+		</div>
+
+		
+		<a href="http://www.meimei.yihaoss.top/sms/invite.html" class="btn">邀请好友免费租</a>
+		
+	</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+	
+	$.ajax({
+		url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV1/messageLink&title=操作步骤',
+		type:'GET',
+		success:function(data){
+		}
+	})
+
+	$(".btn").on("click",function(){
+		$.ajax({
+			url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV1/messageOpen&title=操作步骤',
+			type:'GET',
+			success:function(data){
+				
+			}
+		})
+	})
+</script>
+</body>
+</html>v 

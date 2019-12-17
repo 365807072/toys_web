@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/a.css">
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+</head>
+<body>
+	<div class="wrap">
+		<header><h1>舜鑫国际旅游（北京）有限公司租赁亲子平台</h1></header>
+		<section class="content">
+			<div class="main">
+				<div class="baby"><p>“感恩节万元大回馈”之金宝宝婴儿游泳馆</p></div>
+				<div class="pic">
+					<ul>
+						<li>
+							<p><img src="img/9.png"></p>
+							<p>成立于2007年，是回龙观首家专业婴幼儿游泳馆。</p>
+						</li>
+						<li>
+							<p><img src="img/10.png"></p>
+							<p>为广大会员提供优质的服务，专注于婴儿健身事业的推广。</p>
+						</li>
+						<li>
+							<p><img src="img/11.png"></p>
+							<p>引进先进的经营理念，聘请经验丰富的育儿专家以及专业的工作人员，提供全程的新生儿游泳，婴幼儿理发等服务。</p>
+						</li>
+						<li>
+							<p><img src="img/12.png"></p>
+						</li>
+					</ul>
+				</div>
+				<div class="test">
+					<p>地址：北京市昌平区——回龙观龙腾街龙腾四区4号楼3门底商</br></br></p>
+					<p>最最最重要的是！</br></br>现在参加舜鑫国际旅游（北京）有限公司租赁“感恩节万元大回馈”活动，免费游泳三次！！</br></br></p>
+					<p>参与步骤：打开“舜鑫国际旅游（北京）有限公司租赁”客户端，搜索并关注群“同住回龙观”，参与发帖或互动即为参与“感恩节万元大回馈”活动。发帖越多互动越高礼品越丰厚！</br></br></p>
+					<p>关注微信公众号“舜鑫国际旅游（北京）有限公司租赁”，或者添加微信号“xiuxiuxiaobian”，教您领取更多不限量豪礼！</br></br></p>
+					
+					
+				</div>
+			</div>
+		</section>
+		
+		<a href="http://mp.weixin.qq.com/s/zSSVWBDL1qCYJes9nF8b0g" class="btn">更多豪礼</a>
+		
+	</div>
+
+
+<script type="text/javascript" src="js/zepto.js"></script>
+<script type="text/javascript" src="js/setfontsize.js"></script>
+<script type="text/javascript">
+	$.ajax({
+		url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV1/messageLink&title=金宝宝',
+		type:'GET',
+		success:function(data){
+		}
+	})
+	$(".btn").on("click",function(){
+		$.ajax({
+			url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV1/messageOpen&title=金宝宝',
+			type:'GET',
+			success:function(data){
+				
+			}
+		})
+	})
+</script>
+</body>
+</html>

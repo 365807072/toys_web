@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>玩具详情</title>
+	<link rel="stylesheet" type="text/css" href="css/playlist.css">
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+	<link rel="stylesheet" type="text/css" href="css/dropload.css">
+</head>
+<body>
+	<div class="wrap">
+		<div class="head" id="head">
+			<p class="headpp"><!-- <input type="button" class="back" value="返回"  onclick="javascript:history.back(-1);"><span>押金</span> --></p>
+			<table class="top" border="1">
+                <tr>
+                    <th width="10%" align="center">订单id/号/批号</th>
+                    <th width="5%" align="center">订单权限</th>
+                    <th width="10%" align="center">用户id/昵称/手机号</th>
+                    <th width="5%" align="center">状态</th>
+                    <th width="5%" align="center">支付金额</th>
+                    <th width="10%" align="center">玩具id/名称/编号</th>
+                    <th width="10%" align="center">修改/过期时间</th>
+                    <th width="10%" align="center">下单/结束/预约时间</th>
+                    <th width="10%" align="center">收货信息</th>
+                    <th width="5%" align="center">备注</th>
+                </tr>
+            </table>
+		</div>
+		<div class="main">
+			<table class="box" border="1"></table>
+		</div>
+	</div>
+	<div class="upload">
+        <span>上拉加载更多内容</span>
+        <span>内容加载中...</span>
+    </div>
+<script type="text/javascript" src="js/setfontsize.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/dropload.min.js"></script>
+<script type="text/javascript">
+function GetQueryString(name){
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if(r!=null)return  unescape(r[2]); return null;
+}
+if(GetQueryString("login_user_id")!=null && GetQueryString("login_user_id").length>-1){
+	userId=GetQueryString("login_user_id");
+}
+var postTime="";
+var loadType = false; // 加载更多方法是否在使用
+
+window.onscroll=function(){
+    var sl=-Math.max(document.body.scrollLeft,document.documentElement.scrollLeft);
+    document.getElementById('head').style.left=sl+'px';
+    $("#head").css({'position':'fixed','top':'0'});
+    $(".main").css({'margin-top':'0.5rem'});
+};
+//进入会员卡页面
+$(".box").on("click",".member",function(){
+	var mtxt=$(this).html();
+	if(mtxt=="会员"){
+
+		userId=$(this).attr("index");
+		cardId=$(this).attr("cardIndex");
+		window.location.href='member_cont.html?login_user_id='+userId+'&card_id='+cardId;
+	}
+})
+
+request()
+function request(){
+    console.log(223);
+    if(!loadType){ // 不使用
+        loadType = true;
+		
+        $('.upload').addClass('loading');
+        $.ajax({
+            url:'https://api.baobaoshowshow.com/index.php?r=WebBaoShow/getToysOrderManageListV1&search_id='+userId+'&post_create_time='+postTime,
+            type:'get',
+            datatype:'json',
+            success:function(data){
+                $('.upload').removeClass('loading');
+                var daTa=JSON.parse(data);
+                var checkData=daTa.data;
+                var moneyData=daTa.data2;
+                var zmoneyData=daTa.data3;
+                console.log(moneyData)
+                var listshtml="";
+                var coouthtml="";
+                var moneyhtml="";
+                moneyhtml+='<ul class="headaaa"><input type="button" class="back" value="返回"  onclick="javascript:history.back(-1);"><li><span style="margin-left:0.1rem;color:#fff;font-size:18px;line-height:0.2rem;">押金总额'+zmoneyData+'</span></li><li><span style="margin-left:0.1rem;color:#fff;font-size:18px;line-height:0.2rem;">押金可用'+moneyData+'</span></li></ul>';
+                $(".head .headpp").html(moneyhtml)
+                postTime = checkData[checkData.length-1].post_create_time;	
+                console.log(checkData.length)
+                if(checkData.length != 0){
+                    
+                   
+                    for(var i in checkData){
+                        if(checkData[i].business_star==""){
+
+
+                            listshtml+='<tr class="uilist" data-postTime='+checkData[i].post_create_time+'><td class="orderId" width="10%" align="center">'+checkData[i].order_info+'</td><td width="5%" align="center">'+checkData[i].card_type+'</td><td width="10%" align="center" class="username" userindex='+checkData[i].user_id+'>'+checkData[i].user_info+'</td><td width="5%" align="center">'+checkData[i].status_name+'</td><td width="5%" align="center">'+checkData[i].total_price+'</td><td width="10%" align="center"  class="toyId" idindex='+checkData[i].business_id+' uindex='+checkData[i].user_id+'>'+checkData[i].business_info+'</td><td width="10%" align="center">'+checkData[i].combined_time+'</td><td width="10%" align="center">'+checkData[i].combined_time_s+'</td><td width="10%" align="center">'+checkData[i].order_user_info+'</td><td width="5%" align="center"><a style="display:block" href="http://checkpic.baobaoshowshow.com/Others/toysremarkup?order_id='+checkData[i].order_id+'">编辑</a>'+checkData[i].remark+'</td></tr>';
+                        }else{
+                            listshtml+='<tr class="uilist" data-postTime='+checkData[i].post_create_time+'><td class="orderId" width="10%" align="center">'+checkData[i].order_info+'</td><td width="5%" align="center">'+checkData[i].card_type+'</td><td width="10%" align="center" class="username" userindex='+checkData[i].user_id+'>'+checkData[i].user_info+'</td><td width="5%" align="center">'+checkData[i].status_name+'</td><td width="5%" align="center">'+checkData[i].total_price+'</td><td width="10%" align="center" style="position:relative;" class="toyId" idindex='+checkData[i].business_id+' uindex='+checkData[i].user_id+'><a style="position:absolute;right:0;bottom:0"><img style="display:inline-block;width:0.15rem;height:0.15rem" src="'+checkData[i].business_star+'"></a>'+checkData[i].business_info+'</td><td width="10%" align="center">'+checkData[i].combined_time+'</td><td width="10%" align="center">'+checkData[i].combined_time_s+'</td><td width="10%" align="center">'+checkData[i].order_user_info+'</td><td width="5%" align="center"><a style="display:block" href="http://checkpic.baobaoshowshow.com/Others/toysremarkup?order_id='+checkData[i].order_id+'">编辑</a>'+checkData[i].remark+'</td></tr>';
+                        }
+                    }
+                    // $(".count").html(coouthtml);
+                    $(".box").append(listshtml);
+
+                }else{
+                	console.log(2);
+                }
+            },
+            complete:function(){
+                loadType = false;
+            }
+        })
+
+
+}
+}
+function debounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+        var context = this, args = arguments;
+        var later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+};
+ 
+var myEfficientFn = debounce(function() {
+    if($(window).scrollTop()+$(window).height()-129 >= $('.main').height()){
+        request();
+    }
+    
+}, 250);
+ 
+// 绑定监听
+window.addEventListener('scroll', myEfficientFn);
+</script>
+</body>
+</html>

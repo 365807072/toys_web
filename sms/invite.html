@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>邀请</title>
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+	<link rel="stylesheet" type="text/css" href="css/invite.css">
+</head>
+<body>
+	<div class="wrap">
+		<header class="header">
+			<span><img src="img/xq_1.png" class="left"></span>
+			<span>宝贝详情</span>
+			<span></span>
+		</header>
+		<div class="head">
+			<img src="img/1.jpg">
+		</div>
+		<div class="main">
+			<div class="box">
+				<input type='number' placeholder="您本人ID" id="tet">
+				<p class="down"><a>注册为舜鑫国际旅游（北京）有限公司租赁用户后,可在个人中心获取。</a><a href="http://www.meimei.yihaoss.top/download.php?from=singlemessage&isappinstalled=0">立即获取</a></p>
+			</div>
+			<div class="box1">
+				<input type='number' placeholder="请填写手机号" id="txt">
+				<p>填写本人手机号</p>
+			</div>
+		</div>
+
+		<div class="bottom">
+			<button id="btn">提交</button>
+		</div>
+
+		<div class="foot">
+			<p>-活动说明-</p>
+			<p>1、被邀请人使用优惠码和玩具服务后，双方都获得7天免租+1次免配送费福利</p>
+			<p>2、如果是月卡或年卡会员，则会员时间延长7天和增加1次免配送费！此福利每邀请成功1人，可叠加1次，无上限</p>
+			<p>3、被邀请人也可任意邀请其他人，邀请成功后，同样享受此福利</p>
+			<p>4、成功后，23小时内系统将自动记录和增加福利至受益人账户</p>
+			<p>微信客服：xiuxiuxiaobian<br>客服电话：    13373920077</p>
+		</div>
+	</div>
+
+<script type="text/javascript" src="js/setfontsize.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+	var url = location.href;
+	var tetVal="";
+	var txtVal="";
+
+	//地址中带有参数
+	if(url.indexOf("?") > 0){
+		if(GetQueryString("login_user_id")!=null && GetQueryString("login_user_id").length>-1){
+			console.log("login_user_id");
+			$("#tet").val(GetQueryString("login_user_id"));
+			tetVal = $("#tet").val();
+			document.getElementById('tet').disabled = true;
+		}
+		if(GetQueryString("uid")!=null && GetQueryString("uid").length>-1){
+			$("#txt").val(GetQueryString("uid"));
+			txtVal = $("#txt").val();
+			document.getElementById('txt').disabled = true;
+
+		}
+		if(GetQueryString("title")!=null && GetQueryString("title").length>-1){
+			$(".header").show();
+			$(".header").on("click",".left",function(){
+				window.location.href="http://www.meimei.yihaoss.top/play/play.html?login_user_id="+txtVal+"&is_order=0";
+			})
+		}
+	}
+
+	function GetQueryString(name){
+	    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+	    var r = window.location.search.substr(1).match(reg);
+	    if(r!=null)return  unescape(r[2]); return null;
+	}
+
+	
+	
+	$.ajax({
+		url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV1/messageLink&title=邀请码',
+		type:'GET',
+		success:function(data){
+		}
+	})
+	
+	if(tetVal){
+		$(".down").hide();
+	}
+	 
+	//判断login_user_id
+	$("#btn").on("click",function(){
+		txtVal = $("#txt").val();
+		tetVal = $("#tet").val();
+		//	判断是否输入值
+		
+		if(txtVal==""&&tetVal==""){
+			alert("请输入本人ID和邀请人ID");
+		}else if( tetVal==""){
+			alert("请输入本人ID");
+		}else if(txtVal==""){
+			alert("请输入手机号");
+		}else if(txtVal && /^1[3|4|5|8]\d{9}$/.test(txtVal)){
+				$.ajax({
+					url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV1/messageOpen&title=邀请码',
+					type:'GET',
+					success:function(data){
+						
+					}
+				})
+				$.ajax({
+					url:'http://api.baobaoshowshow.com/index.php?r=WebBaoShow/getInvitation&login_user_id='+tetVal+'&mobile='+txtVal,
+					type:'GET',
+					datatype:'json',
+					success:function(data){
+						var Data=JSON.parse(data);
+						
+						if(Data.success==true){
+							alert(Data.reMsg);
+							windwo.reload();
+						}else{
+							alert(Data.reMsg);
+						}
+						
+					},
+					error:function(){
+						alert("未能提交成功，请重新提交");
+						
+					}
+				})
+				
+		}else{
+			alert("请输入正确的手机号")
+		}
+	})
+</script>
+</body>
+</html>

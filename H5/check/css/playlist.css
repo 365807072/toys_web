@@ -1,0 +1,82 @@
+html,body{
+	font-size: 14px;
+}
+
+.head{
+	width: 100%;
+	background-color: #fff;
+	z-index: 1;
+}
+.head p{
+	width: 100%;
+	height: 0.2rem;
+	background-color: #6795B4;
+}
+.back{
+	margin-left: 0.1rem;
+	margin-top: 0.04rem;
+}
+.top{
+	width: 100%;
+	font-weight: bold;
+	z-index: 1;
+	background-color: #fff;
+}
+.headaaa{
+	display: -webkit-box;
+}
+.headaaa li{
+	margin:0 0.3rem;
+	font-weight: bold;
+}
+.headaaa li span{
+	color: #fff;
+}
+.top p{
+	
+	padding: 0.05rem 0;
+}
+.main{
+	width: 100%;
+	font-size: 16px;
+	padding-bottom: 70px;
+}
+.box tr td{
+	height: 0.7rem;
+	word-break: break-all
+}
+.upload{
+	text-align: center;
+	height: 25px;
+	line-height: 25px;
+	position: fixed;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background: #fff;
+}
+.upload.loading span:nth-child(2){
+	display: block;
+}
+.upload span:nth-child(2),.upload.loading span:nth-child(1){
+	display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

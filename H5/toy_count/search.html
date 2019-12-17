@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>搜索</title>
+  <link rel="stylesheet" type="text/css" href="css/mobile.css">
+  <link rel="stylesheet" type="text/css" href="css/search.css">
+  <link rel="stylesheet" type="text/css" href="css/dropload.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="head" style="display: none">
+      <form action="javascript:return true;"><input type="search" id="keyword" name="symbols" autocomplete="off" /></form> 
+      <span class="cancel">取消</span>
+    </header>
+    <div class="box" style="display: none">
+      <div class="history">
+        <!-- <p>
+          <span>历史搜索</span>
+          <span><a></a><a>清空</a></span>
+        </p>
+        <p class="historyCount">
+          <span>熊猫车</span>
+          <span>神奇轨道</span>
+          <span>车</span>
+          <span>熊猫</span>
+          <span>神奇轨道</span>
+          <span>B.Toys绕珠</span>
+        </p> -->
+      </div>
+
+      <div class="hot">
+        <!-- <p>热门搜索</p>
+        <ul>
+          <li><span><img src="img/76.png"></span><span>熊猫车</span></li>
+          <li><span><img src="img/77.png"></span><span>伟易达神奇轨道车</span></li>
+          <li><span><img src="img/78.png"></span><span>费雪小猴子儿童游玩</span></li>
+          <li><span><img src="img/79.png"></span><span>小泰克三合一滑梯</span></li>
+          <li><span><img src="img/80.png"></span><span>B.toys绕珠</span></li>
+        </ul> -->
+      </div>
+    </div>
+    <div class="main" style="display: none">
+      <div class="content" style="display: none">
+          <div class="wrapper"></div>
+      </div>
+    </div>
+  </div>
+
+<script type="text/javascript" src="js/setfontsize.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/dropload.js"></script>
+<script type="text/javascript">
+var inputval;
+var postTime;
+var ajax_data={};
+var isSearch_type=1;
+var last_post_time;
+var url = location.href;
+var userId;
+var isfenye=false;
+var phoneType;
+var mainHtml="";
+var listDate="";
+var len;
+// if(url.indexOf("?") > 0){
+//   if(GetQueryString("login_user_id")!=null && GetQueryString("login_user_id").length>-1){
+    
+//     userId = GetQueryString("login_user_id");
+//   }
+// }
+// function GetQueryString(name){
+//     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+//     var r = window.location.search.substr(1).match(reg);
+//     if(r!=null)return  unescape(r[2]); return null;
+// }
+getSystemType();
+//监听键盘搜索键
+ 
+
+//获取input的焦点
+$("#keyword").focus(function(){
+  $(".content").hide();
+  $(".box").show();
+  $(".history").show();
+  req();
+}) 
+
+//点击历史记录的清空
+$(".history").on("click",".clear",function(){
+  if(phoneType==1){
+      userId=window.call.callMethodGetLoginUserId();
+      
+    }else if(phoneType==2){
+      userId=callMethodGetLoginUserId();
+    }else{
+      userId=window.call.callMethodGetLoginUserId();
+    }
+  if(confirm('确定要清空?')){ 
+       
+        $.ajax({
+            url:'https://api.baobaoshowshow.com/index.php?r=BabyShowV77/delToysSearch&login_user_id='+userId,
+            async : false,
+            cache:false,
+            type:'GET',
+            success:function(data){
+              var data=JSON.parse(data);
+              console.log(data);
+              
+              req();
+            }
+          })
+    }else{
+      return false;
+    }
+});
+
+$("#keyword").on('keypress',function(e) {
+    var keycode = e.keyCode;  
+    var searchName = $(this).val();  
+    if(keycode=='13') {  
+        e.preventDefault(); 
+        //请求搜索接口  
+        inputval=$("#keyword").val();
+        $(".box").hide();
+        $(".content").show();
+        $(".content").html("");
+        isfenye=false;
+        is_search_type();
+        $(".main").show();
+        $(".dropload-down").show();
+    }  
+});
+
+//点击历史记录进行搜索
+$(".history").on("click",".historylist",function(){
+  inputval=$(this).attr("valindex");
+  $("#keyword").val(inputval)
+  $(".content").show();
+  $(".box").hide();
+  $(".content").html("");
+  isfenye=false;
+  is_search_type();
+  $(".main").show();
+  $(".dropload-down").show();
+})
+
+//点击热搜进行搜索
+$(".hot").on("click",".hotlist",function(){
+  inputval=$(this).attr("hotindex");
+  $("#keyword").val(inputval);
+  $(".content").show();
+  $(".box").hide();
+  isfenye=false;
+  is_search_type();
+  $(".content").html("");
+  $(".main").show();
+  $(".dropload-down").show();
+})
+
+//无网络情况点击刷新
+$(".load").on("click",function(){
+
+  location.reload();
+})
+
+//取消按钮
+$(".head .cancel").on("click",function(e){
+  e.preventDefault();
+  if(phoneType==1){
+    window.call.callMethodFinish();
+  }else if(phoneType==2){
+    callMethodFinish();
+  }else{
+    window.call.callMethodFinish();
+  }
+})
+var cc="";
+//购物车/预约按钮/取消预约
+$(".content").on("click",".shop",function(event){
+  event.stopPropagation();
+  stopDefault();
+  businesId=$(this).attr("bussindex");
+  isStock=$(this).attr("kindex");
+  cc=$(this);
+  if(phoneType==1){
+    returnType=window.call.callMethodIsLogin();
+    
+  }else if(phoneType==2){
+    returnType=callMethodIsLogin();
+  }else{
+    returnType=window.call.callMethodIsLogin();
+  }
+  
+  if(returnType==0){
+    if(phoneType==1){
+      window.call.callMethodToLoginPage();
+    }else if(phoneType==2){
+      callMethodToLoginPage();
+    }else{
+      window.call.callMethodToLoginPage();
+    }
+  }else{
+    if(isStock==1){
+      if(phoneType==1){
+        userId=window.call.callMethodGetLoginUserId();
+        
+      }else if(phoneType==2){
+        userId=callMethodGetLoginUserId();
+      }else{
+        userId=window.call.callMethodGetLoginUserId();
+      }
+      $.ajax({
+          url:'https://api.baobaoshowshow.com/index.php?r=BabyShowV77/publicToysCart',
+          type:'GET',
+          data: {
+            login_user_id:userId,
+            business_id:businesId
+          },
+          cache:false,
+          success:function(data){
+            var data=JSON.parse(data);
+            
+            if(data.success==false){
+              if(phoneType==1){
+              
+                window.call.showToast(data.reMsg+"");
+              }else if(phoneType==2){
+                
+                showToast(data.reMsg+"");
+                
+              }else{
+                
+                window.call.showToast(data.reMsg+"");
+              }
+            }else{
+              number=data.data.cart_number;
+            }
+            
+            if(phoneType==1){
+              window.call.callMethodChangeNumber(number+"");
+            }else if(phoneType==2){
+              callMethodChangeNumber(number+"");
+            }else{
+              window.call.callMethodChangeNumber(number+"");
+            }
+                         
+          },
+          error:function(data){
+            var data=JSON.parse(data);
+            if(phoneType==1){
+              
+              window.call.showToast(data.reMsg+"");
+            }else if(phoneType==2){
+              
+              showToast(data.reMsg+"");
+              
+            }else{
+              
+              window.call.showToast(data.reMsg+"");
+            }
+          }
+
+        })
+    }else if(isStock==2){
+      if(phoneType==1){
+        userId=window.call.callMethodGetLoginUserId();
+        
+      }else if(phoneType==2){
+        userId=callMethodGetLoginUserId();
+      }else{
+        userId=window.call.callMethodGetLoginUserId();
+      }
+      if(confirm('确定预约这个宝贝么?')){
+        $.ajax({
+          url:'https://api.baobaoshowshow.com/index.php?r=BabyShowV77/ToysUserAppointmentAdd',
+          type:'GET',
+          cache:false,
+          data:{
+            login_user_id:userId,
+            business_id:businesId
+          },
+          success:function(data){
+            var data=JSON.parse(data);
+            if(data.success==false){
+              if(phoneType==1){
+                window.call.showToast(data.reMsg+"");
+              }else if(phoneType==2){
+                showToast(data.reMsg+"");
+              }else{
+                window.call.showToast(data.reMsg+"");
+              }
+            }else{
+              if(data.is_appoint==3){
+              var aa='<img src="img/69.png">';
+              cc.html(aa);
+              }else if(data.is_appoint==2){
+                var aa='<img src="img/75.png">';
+                cc.html(aa);
+              }
+              else if(data.is_appoint==1){
+                var aa='<img src="img/32.png">';
+                cc.html(aa);
+              }
+            }
+            isfenye=false;
+            is_search_type();
+          },
+          error:function(data){
+            if(phoneType==1){
+                
+              window.call.showToast(data.reMsg+"");
+            }else if(phoneType==2){
+              
+              showToast(data.reMsg+"");
+              
+            }else{
+              
+              window.call.showToast(data.reMsg+"");
+            }
+          }
+        })
+      }else{
+        return false;
+      }
+    }else if(isStock==3){
+      if(phoneType==1){
+        userId=window.call.callMethodGetLoginUserId();
+        
+      }else if(phoneType==2){
+        userId=callMethodGetLoginUserId();
+      }else{
+        userId=window.call.callMethodGetLoginUserId();
+      }
+      if(confirm('确定不预约了么?')){
+        $.ajax({
+          url:'https://api.baobaoshowshow.com/index.php?r=BabyShowV77/ToysUserAppointmentDel',
+          data:{
+            login_user_id: userId,
+            business_id:businesId
+          },
+          async : false,
+          cache:false,
+          type:'GET',
+          success:function(data){
+            var data=JSON.parse(data);
+            if(data.success==false){
+              if(phoneType==1){
+                window.call.showToast(data.reMsg+"");
+              }else if(phoneType==2){
+                showToast(data.reMsg+"");
+              }else{
+                window.call.showToast(data.reMsg+"");
+              }
+            }else{
+              if(data.is_appoint==3){
+              var aa='<img src="img/69.png">';
+              cc.html(aa);
+              }else if(data.is_appoint==2){
+                var aa='<img src="img/75.png">';
+                cc.html(aa);
+              }
+              else if(data.is_appoint==1){
+                var aa='<img src="img/32.png">';
+                cc.html(aa);
+              }
+            }
+            isfenye=false;
+            is_search_type();
+          },
+          error:function(data){
+            if(phoneType==1){
+                
+              window.call.showToast(data.reMsg+"");
+            }else if(phoneType==2){
+              
+              showToast(data.reMsg+"");
+              
+            }else{
+              
+              window.call.showToast(data.reMsg+"");
+            }
+          }
+        })
+      }else{
+        return false;
+      }
+    }
+  }
+})
+
+//玩具详情
+$(".content").on("click",".toylist",function(event){
+  event.stopPropagation();
+  stopDefault();
+  busin=$(this).attr("busindex");
+  if(phoneType==1){
+    window.call.callMethodToToysDetail(busin);
+  }else if(phoneType==2){
+    callMethodToToysDetail(busin);
+  }else{
+    window.call.callMethodToToysDetail(busin);
+  }
+})
+resfesh();
+function resfesh(){
+  $('.main').dropload({
+      scrollArea : window,
+      domUp : {
+          domClass   : 'dropload-up',
+          domRefresh : '<div class="dropload-refresh">下拉刷新</div>',
+          domUpdate  : '<div class="dropload-update">释放更新</div>',
+          domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中</div>'
+      },
+      domDown : {
+          domClass   : 'dropload-down',
+          domRefresh : '<div class="dropload-refresh">上拉加载更多</div>',
+          domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中</div>',
+          domNoData  : '<div class="dropload-noData">暂无更多玩具哦</div>'
+      },
+      loadUpFn : function(me){
+        setTimeout(function(){
+          $(".head").css("position","fixed","top","0","left","0");
+          isfenye=false;
+          is_search_type();
+          me.resetload();//每次数据加载完都要重置（dropload的方法）
+        },1000);
+      },
+      loadDownFn : function(me){
+        
+        setTimeout(function(){
+          $(".head").css("position","fixed","top","0","left","0");
+          
+          isfenye=true;
+          is_search_type();
+          if(len<=10){
+             me.noData();//无数据
+          }
+          me.resetload();//每次数据加载完都要重置（dropload的方法）
+        },1000);
+      },
+      threshold : 50
+  });
+}
+
+//玩具列表
+function is_search_type(){
+    last_post_time = $(".main").find("dl:last").data("posttime");
+    console.log(last_post_time);
+    if(phoneType==1){
+      userId=window.call.callMethodGetLoginUserId();
+      
+    }else if(phoneType==2){
+
+      userId=callMethodGetLoginUserId();
+    }else{
+      userId=window.call.callMethodGetLoginUserId();
+    }
+    switch(isSearch_type){
+            case 1 : 
+                ajax_data = {
+                    userId:userId,
+                    inputval:inputval,
+                    postTime:last_post_time
+                }
+                break;
+        }
+        searchGetrequest(ajax_data);
+}
+//玩具列表
+function searchGetrequest(opt){
+  if(phoneType==1){
+      userId=window.call.callMethodGetLoginUserId();
+      
+    }else if(phoneType==2){
+      userId=callMethodGetLoginUserId();
+    }else{
+      userId=window.call.callMethodGetLoginUserId();
+    }
+    
+  if(isfenye==true){
+    
+    ajaxData={
+            post_create_time: opt.postTime,
+            login_user_id:opt.userId,
+            search_title:opt.inputval
+        }
+  }else{
+
+    ajaxData={
+            login_user_id:opt.userId,
+            search_title:opt.inputval
+        }
+  }
+
+  $.ajax({
+    url:'https://api.baobaoshowshow.com/index.php?r=BabyShowV77/getToysCategoryList',
+    type:'GET',
+    data:ajaxData,
+    datatype:'json',
+    success:function(data){
+      // $('.upload').removeClass('loading');
+      var data=JSON.parse(data);
+      listDate=data.data;
+      mainHtml="";
+      // last_post_time = $(".main").find("dl:last").data("posttime");
+      // var last_post_time=$(".main").find("dl:last").data("posttime");
+      len=listDate.length;
+      if(listDate.length != 0){
+        for(var i in listDate){
+          if(listDate[i].size_img_thumb){
+            if(listDate[i].is_appoint==1){
+              mainHtml+='<dl class="toylist" data-postTime='+listDate[i].post_create_time+' busindex='+listDate[i].business_id+'><dt><img src="'+listDate[i].img_thumb+'"></dt><a class="xing"><img src="'+listDate[i].size_img_thumb+'"></a><dd><p>'+listDate[i].business_title+'</p><p><span>'+listDate[i].age+'</span></p><p><span>￥</span>'+listDate[i].sell_price+'</p><span class="shop" bussindex='+listDate[i].business_id+' kindex='+listDate[i].is_appoint+'><img src="img/32.png"></span></dd></dl>';
+            }else if(listDate[i].is_appoint==2){
+              mainHtml+='<dl class="toylist" busindex='+listDate[i].business_id+' data-postTime='+listDate[i].post_create_time+'><dt><img src="'+listDate[i].img_thumb+'"></dt><a class="xing"><img src="'+listDate[i].size_img_thumb+'"></a><dd><p>'+listDate[i].business_title+'</p><p><span>'+listDate[i].age+'</span></p><p><span>￥</span>'+listDate[i].sell_price+'</p><span class="shop" bussindex='+listDate[i].business_id+' kindex='+listDate[i].is_appoint+'><img src="img/75.png"></span></dd></dl>';
+            }else if(listDate[i].is_appoint==3){
+              mainHtml+='<dl class="toylist" busindex='+listDate[i].business_id+' data-postTime='+listDate[i].post_create_time+'><dt><img src="'+listDate[i].img_thumb+'"></dt><a class="xing"><img src="'+listDate[i].size_img_thumb+'"></a><dd><p>'+listDate[i].business_title+'</p><p><span>'+listDate[i].age+'</span></p><p><span>￥</span>'+listDate[i].sell_price+'</p><span class="shop" bussindex='+listDate[i].business_id+' kindex='+listDate[i].is_appoint+'><img src="img/69.png"></span></dd></dl>';
+            }
+            
+          }else{
+            if(listDate[i].is_appoint==1){
+              mainHtml+='<dl class="toylist" busindex='+listDate[i].business_id+' data-postTime='+listDate[i].post_create_time+'><dt><img src="'+listDate[i].img_thumb+'"></dt><dd><p>'+listDate[i].business_title+'</p><p><span>'+listDate[i].age+'</span></p><p><span>￥</span>'+listDate[i].sell_price+'</p><span class="shop" bussindex='+listDate[i].business_id+' kindex='+listDate[i].is_appoint+'><img src="img/32.png"></span></dd></dl>';
+            }else if(listDate[i].is_appoint==2){
+              mainHtml+='<dl class="toylist" busindex='+listDate[i].business_id+' data-postTime='+listDate[i].post_create_time+'><dt><img src="'+listDate[i].img_thumb+'"></dt><dd><p>'+listDate[i].business_title+'</p><p><span>'+listDate[i].age+'</span></p><p><span>￥</span>'+listDate[i].sell_price+'</p><span class="shop" bussindex='+listDate[i].business_id+' kindex='+listDate[i].is_appoint+'><img src="img/75.png"></span></dd></dl>';
+            }else if(listDate[i].is_appoint==3){
+              mainHtml+='<dl class="toylist" busindex='+listDate[i].business_id+' data-postTime='+listDate[i].post_create_time+'><dt><img src="'+listDate[i].img_thumb+'"></dt><dd><p>'+listDate[i].business_title+'</p><p><span>'+listDate[i].age+'</span></p><p><span>￥</span>'+listDate[i].sell_price+'</p><span class="shop" bussindex='+listDate[i].business_id+' kindex='+listDate[i].is_appoint+'><img src="img/69.png"></span></dd></dl>';
+            }
+          }
+          
+        }
+
+      }
+
+      if(isfenye == true){
+        //ajaxData = {login_user_id:login_user_id,post_create_time:lastpost_create_time};
+        
+        $(".content").append(mainHtml);
+      }else{
+        //ajaxData = {login_user_id:login_user_id};
+        
+        $(".content").html(mainHtml);
+
+      }
+    
+      $(".toylist dt img").each(function(i){
+        var img = $(this);
+        var imgWidth;
+        var imgHeight;
+        $("<img/>").attr("src", $(img).attr("src")).load(function() {
+          boxHeight=$(".toylist dt").height();
+          boxWidth=$(".toylist dt").width();
+          imgWidth = this.width;
+          imgHeight = this.height;
+          shown=imgWidth/imgHeight;
+          if(shown>=2){
+            newimgHeight =boxWidth/imgWidth*imgHeight;
+            $(img).css("width",boxWidth).css("height",newimgHeight);
+          }
+          else if(shown<2){
+            newimgWidth = boxHeight/imgHeight*imgWidth;
+            $(img).css("width",newimgWidth).css("height",boxHeight);
+          }
+        });
+      });
+
+    },
+    complete:function(){
+           
+           $("#loading").hide();
+           $(".main").show();
+           // $(".mui-pull-caption").hide();
+        },
+        error:function(data){
+          var data=JSON.parse(data);
+          if(data.reCode==404){
+        wrapHtml+='<img src="img/error.png" class="load"/>'
+            $(".wrap").html(wrapHtml)
+      }
+        }
+  })
+}
+
+req();
+function req(){
+  if(phoneType==1){
+      userId=window.call.callMethodGetLoginUserId();
+      
+    }else if(phoneType==2){
+     
+      // returnType=callMethodIsLogin();
+      userId=callMethodGetLoginUserId();
+      
+    }else{
+      userId=window.call.callMethodGetLoginUserId();
+    }
+  $.ajax({
+    url:'https://api.baobaoshowshow.com/index.php?r=BabyShowV77/getToysSearchList&login_user_id='+userId,
+    type:'GET',
+    async : true,
+    cache:false,
+    success:function(data){
+      var data=JSON.parse(data);
+      console.log(data);
+      var historyData=data.data.own;
+      var historyHtml="";
+      if(historyData){
+        historyHtml+='<p><span>'+historyData.search_title_name+'</span><span class="clear"><img src="img/clear.png"></span></p>';
+        historyHtml+='<p>';
+        for(var i in historyData.search_info){
+          historyHtml+='<span class="historylist" valindex='+historyData.search_info[i].search_title+'>'+historyData.search_info[i].search_title+'</span>'
+        }
+        historyHtml+='</p>';
+      }else{
+        $(".history").hide();
+      }
+      
+      $(".history").html(historyHtml);
+
+      var hotData=data.data.hot;
+      console.log(hotData)
+      var hotHtml="";
+      hotHtml+='<p>'+hotData.search_title_name+'</p>';
+      hotHtml+='<ul><li class="hotlist" hotindex='+hotData.search_info[0].search_title+'><span><img src="img/76.png"></span><span>'+hotData.search_info[0].search_title+'</span></li><li class="hotlist" hotindex='+hotData.search_info[1].search_title+'><span><img src="img/77.png"></span><span>'+hotData.search_info[1].search_title+'</span></li><li class="hotlist" hotindex='+hotData.search_info[2].search_title+'><span><img src="img/78.png"></span><span>'+hotData.search_info[2].search_title+'</span></li><li class="hotlist" hotindex='+hotData.search_info[3].search_title+'><span><img src="img/79.png"></span><span>'+hotData.search_info[3].search_title+'</span></li><li class="hotlist" hotindex='+hotData.search_info[4].search_title+'><span><img src="img/80.png"></span><span>'+hotData.search_info[4].search_title+'</span></li></ul>';
+      
+      $(".hot").html(hotHtml)
+      
+    },
+    complete:function(){
+           
+           $("#loading").hide();
+           $(".head").show();
+           $(".box").show();
+        },
+        error:function(data){
+          var data=JSON.parse(data);
+          if(data.reCode==404){
+        wrapHtml+='<img src="img/error.png" class="load"/>'
+            $(".wrap").html(wrapHtml)
+      }
+        }
+  })
+}
+
+//阻止浏览器的默认行为 
+function stopDefault( e ) { 
+    //阻止默认浏览器动作(W3C) 
+    if ( e && e.preventDefault ) 
+        e.preventDefault(); 
+    //IE中阻止函数器默认动作的方式 
+    else
+        window.event.returnValue = false; 
+    return false; 
+}
+
+function getSystemType() {
+  var u = navigator.userAgent;
+  if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {//安卓手机
+    phoneType = 1;
+  } else if (u.indexOf('iPhone') > -1) {//苹果手机
+    phoneType = 2;
+  } else if (u.indexOf('Windows Phone') > -1) {//winphone手机
+    phoneType = 3;
+  }else{
+    phoneType = 4;
+  }
+}
+
+//弹窗除网址
+window.confirm = function (message) {
+    if(phoneType==1){
+       var iframe = document.createElement("IFRAME");
+       iframe.style.display = "none";
+       iframe.setAttribute("src", '');
+       document.documentElement.appendChild(iframe);
+       var alertFrame = window.frames[0];
+       var result = alertFrame.window.confirm(message);
+       iframe.parentNode.removeChild(iframe);
+       return result;
+      
+    }else if(phoneType==2){
+       var iframe = document.createElement("IFRAME");
+       iframe.style.display = "none";
+       iframe.setAttribute("src", 'data:text/plain,');
+       document.documentElement.appendChild(iframe);
+       var alertFrame = window.frames[0];
+       var result = alertFrame.window.confirm(message);
+       iframe.parentNode.removeChild(iframe);
+       return result;
+    }
+  
+};
+
+</script>
+</body>
+</html>

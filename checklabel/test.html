@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta charset="UTF-8">
+	<title>标签</title>
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+	<link rel="stylesheet" type="text/css" href="css/text.css">
+</head>
+<body>
+	<div class="wrapper">
+		<div class="describe">
+			<h1>描述:</h1>
+		</div>
+		<div class="label">
+			<div class="head"></div>
+			<div class="box"></div>
+		</div>
+		<div class="wrap"><!-- method ='POST' action="" http://www.meimei.yihaoss.top/php/backAddLabel.php-->
+			<a id="btn">添加</a>
+			<a id="bnt">重置</a>
+			
+		</div>
+			
+		
+	</div>
+
+<script type="text/javascript" src="setfontsize.js"></script>
+<script type="text/javascript" src="zepto.js"></script>
+<script type="text/javascript">
+		
+
+$(function(){
+    var WindURL=location.href;
+    var img_id=WindURL.substring(WindURL.indexOf("?")+1);
+
+ 
+		$.ajax({
+			url:"http://www.meimei.yihaoss.top/php/backLabelList.php",
+			type:"get",
+			success:function(e){
+				
+				//先渲染页面
+				var result = JSON.parse(e);
+				//console.log(result);
+				var ohtml="";
+				var headhtml=""
+				var arr=result.data;
+				headhtml="<h1>标签:</h1>";
+				$(".head").html(headhtml);
+				for(var i in arr){
+					//console.log(arr);
+					var arr1=arr[i].category_label;
+					//console.log(arr1);
+					ohtml+="<div class='main'>";
+					ohtml+="<h1 class='big_lable'><input type='checkbox' name='label[]' value='"+arr[i].label_id+"' id='"+arr[i].label_id+"'>"+arr[i].label_name+"</h1>";
+					for(var j in arr1){
+						//console.log(arr1[i].label_name);
+						ohtml+="<span><input type='checkbox' name='label[]' value='"+arr1[j].label_id+"' id='"+arr1[j].label_id+"'><a>"+arr1[j].label_name+"</a></span></br>";
+					}
+					ohtml+="<div>";
+				}
+				$(".box").html(ohtml)
+				//等页面加载完执行判断
+				$.ajax({
+					url:'http://www.meimei.yihaoss.top/php/backLabelDetail.php?img_id='+img_id,
+					type:"POST",
+					success:function(data){
+							data = JSON.parse(data).data;
+							
+							$.each(data,function(k,v){
+								if(k == "label_info"){
+									$.each(v,function(a,b){
+										$("#"+b.label_id).attr("checked",true);
+									});
+								}
+							});
+							
+					}
+				});
+				//添加按钮	
+				$("#btn").on("click",function(){
+
+					var label=[];
+
+					//这个函数用于查找选中框的ID
+					function findID(cb){
+						//先查找所有选中的input
+						var inputs  = $(".label").find("input");
+						//判断所有的input  如果是选中的就记录她的ID
+						for(var i=0;i<inputs.length;i++){
+							if(inputs[i].checked == true){
+								label.push(inputs[i].value);
+							}
+						}
+						cb && cb();
+					}
+					
+					findID();
+
+					$.ajax({
+		                url:"http://www.meimei.yihaoss.top/php/backAddLabel.php",
+		                type:'POST',
+		                dataType:'json',
+		                data:{img_id:img_id,label:label},
+		                
+		                success:function(){
+		                	
+		                	alert("添加成功");
+		                }
+		            });
+					
+					
+				});
+				$("#bnt").on("click",function(){
+					var inputs  = $(".label").find("input");
+					//判断所有的input  如果是选中的就记录她的ID
+					for(var i=0;i<inputs.length;i++){
+						inputs[i].checked = false;
+					}
+				});
+			}
+		});
+
+
+
+		
+});
+</script>
+</body>
+</html>
+
+
+
+

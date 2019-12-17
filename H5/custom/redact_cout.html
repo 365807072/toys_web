@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>发布客服交接</title>
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+	<link rel="stylesheet" type="text/css" href="css/redact_cout.css">
+</head>
+<body>
+	
+	<div class="wrap">
+
+		<header>
+			<ul>
+	            <li><input type="button" class="back" value="返回"  onclick="javascript:history.back(-1);"></li>
+	        </ul>
+		</header>
+		
+		<div class="box">
+			<span>线上交接人</span>
+			<select class="line">
+				<!-- <option>韦杰</option> -->
+			</select>
+			<span>仓库交接人</span>
+			<select class="house">
+				<!-- <option>韦杰</option> -->
+			</select>
+		</div>
+		
+		<div class="box3">
+			<span>处理记录</span>
+			<textarea class="result"></textarea>
+		</div>
+		<div class="box4">
+			<span>问题状态：</span>
+			<label>未解决</label>
+			<input type="radio" name="status" value="2">
+			<label>已解决</label>
+			<input type="radio" name="status" value="1">
+			<br>
+			<span>问题级别：</span>
+			<label>一般</label>
+			<input type="radio" name="problem_level" value="2">
+			<label>紧急</label>
+			<input type="radio" name="problem_level" value="1">
+			<br>
+			<span>问题类型：</span>
+			<label>玩具坏</label>
+			<input type="radio" name="problem_type" value="1">
+			<label>玩具脏</label>
+			<input type="radio" name="problem_type" value="2">
+			<label>玩具送到少零件</label>
+			<input type="radio" name="problem_type" value="3">
+			<label>用户赔付</label>
+			<input type="radio" name="problem_type" value="4">
+			<label>其他</label>
+			<input type="radio" name="problem_type" value="5">
+		</div>
+		<div class="box5"></div>
+		
+	</div>
+	<script type="text/javascript" src="js/setfontsize.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/redact_cout.js"></script>
+</body>
+</html>

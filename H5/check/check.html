@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台操作</title>
+    <link rel="stylesheet" type="text/css" href="css/check.css">
+    <link rel="stylesheet" type="text/css" href="css/mobile.css">
+    <link rel="stylesheet" type="text/css" href="css/dropload.css">
+    <link rel="stylesheet" type="text/css" href="css/laydate.css">
+    
+</head>
+<body>
+    <div class="wrap">
+        <div class="head" id="head">
+            <header>
+                <ul>
+                    <li><a href="https://api.baobaoshowshow.com/H5/check/check.html">订单表</a></li>
+                    <li><a href="https://api.baobaoshowshow.com/H5/check/memberlist.html">会员表</a></li>
+                    <li><a href="https://api.baobaoshowshow.com/H5/check/inventory.html">库存表</a></li>
+                    <li><a href="http://checkpic.baobaoshowshow.com/Others/getToyslist.html">玩具列表</a></li>
+                    <li><a href="http://checkpic.baobaoshowshow.com/Others/cardeditinfo.html">卡编辑页面</a></li>
+                    <li><a href="http://checkpic.baobaoshowshow.com/Others/edittoysorder.html">编辑玩具订单</a></li>
+                    <li><a href="http://checkpic.baobaoshowshow.com/Others/editservice.html">客服退款编辑</a></li>
+                </ul>
+            </header>
+            <form id="search_form">
+                <input type="text" name="" placeholder="输入订单id或用户id" class="idtxt">
+                <input type="text" name="" placeholder="输入手机号" class="phonetxt">
+                <input type="text" name="" placeholder="输入订单号" class="numtxt">
+                <input type="text" name="" placeholder="输入用户名" class="nametxt">
+                <input type="text" name="" placeholder="输入玩具id" class="playtxt">
+                <input type="text" name="" placeholder="输入玩具编号" class="toynumtxt">
+                <input type="text" name="" placeholder="输入玩具标题" class="toystitletxt">
+                <input type="text" name="" placeholder="输入订单批号" class="numbertxt">
+                <input type="text" name="" placeholder="输入邀请码" class="invitetxt">
+                <input type="text" name="" placeholder="下单开始时间" id="startTime" class="timestart laydate-icon" onclick="laydate({elem: '#startTime',istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">---<input type="text" name="" placeholder="下单结束时间" id="endTime" class="timeend laydate-icon" onclick="laydate({elem: '#endTime',istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+                <select id="test">
+                    <option index="0">选择消费</option>
+                    <option index="1">待支付</option>
+                    <option index="2">准备中</option>
+                    <option index="14">待出库</option>
+                    <option index="17">重新配送</option>
+                    <option index="5">送货中</option>
+                    <option index="6">玩乐中</option>
+                    <option index="10">待取回</option>
+                    <option index="7">待入库</option>
+                    <option index="8">退款中</option>
+                    <option index="9">已退款</option>
+                    <option index="11">已入库</option>
+                    <option index="12">过期筛选</option>
+                    <option index="13">退换玩具</option>
+                </select>
+                <input type="button" value="搜索" class="btn">
+            </form>
+            
+            <!-- <div class="count">
+            
+                <span>总共<a>34</a>页</span>
+            </div> -->
+            <table class="top" border="1" width="100%">
+                <tr>
+                    <td  align="center">订单id/号/批号</td>
+                    <td  align="center">订单权限</td>
+                    <td  align="center">用户id/昵称/手机号</td>
+                    <td  align="center">状态</td>
+                    <td  align="center">支付金额</td>
+                    <td  align="center">玩具id/名称/编号</td>
+                    <td  align="center">修改/下单/过期时间</td>
+                    <td  align="center">收货信息</td>
+                    <td  align="center">备注</td>
+                </tr>
+            </table>
+        </div>
+            
+        
+        <div class="main">
+            <table class="listsbox" border="1" width="100%"></table>
+            
+        </div>
+    </div>
+    <div class="upload">
+        <span><img src="img/jiazaizhong.gif"></span>
+    </div>
+<script type="text/javascript" src="js/setfontsize.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/dropload.js"></script>
+<script type="text/javascript" src="js/check.js"></script>
+<script type="text/javascript" src="js/laydate.js"></script>
+</body>
+</html>

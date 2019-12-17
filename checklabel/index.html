@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta charset="UTF-8">
+	<title>后台操作</title>
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+</head>
+<body>
+	<div class="wrap">
+		<div class="box">
+			<!-- <table >
+				<tr>
+					<th>用户名</th>
+					<th>图片</th>
+					<th>标题</th>
+					<th>描述</th>
+					<th>标签</th>
+					<th>删除</th>
+				</tr>
+				<tr>
+					<td>用户名</td>
+					<td>图片</td>
+					<td>标题</td>
+					<td>描述</td>
+					<td><a href="demo.html">标签</a></td>
+					<td>删除</td>
+				</tr>
+				
+			
+			</table> -->
+			<!-- <div class="main">
+				<p>
+					<span>用户名</span>
+					<span>图片</span>
+					<span>标题</span>
+					<span>描述</span>
+					<span>标签</span>
+					<span>删除</span>
+				</p>
+			</div> -->
+			
+		</div>
+	</div>
+
+<script type="text/javascript" src="jquery1.7.js"></script>
+<script type="text/javascript" src="zepto.js"></script>
+<script type="text/javascript" src="setfontsize.js"></script>
+<script type="text/javascript" src="iscroll.js"></script>
+<script type="text/javascript">
+	//获取url
+    var post_create_time = GetRequest().post_create_time , page_size = GetRequest().page_size;
+    function GetRequest() { 
+        var url = location.search; //获取url中"?"符后的字串 
+        var theRequest = new Object(); 
+        if (url.indexOf("?") != -1) { 
+            var str = url.substr(1); 
+            strs = str.split("&"); 
+            for(var i = 0; i < strs.length; i ++) { 
+                theRequest[strs[i].split("=")[0]]=(strs[i].split("=")[1]); 
+            } 
+        } 
+        return theRequest; 
+    }
+
+	$.ajax({
+		url:"http://www.meimei.yihaoss.top/php/backListingList.php",
+		type:"get",
+		success:function(data){
+			var result = JSON.parse(data);
+			var ahtml="";
+			var arr=result.data;
+			//console.log(result);
+			ahtml="<div class='main'>";
+			ahtml+="<p><span>用户名</span><span>图片</span><span>标题</span><span>描述</span><span>标签</span><span>删除</span></p>";
+			for(var i in arr){
+			
+				var pic=arr[i].img;
+				ahtml+="<p id="+arr[i].img_id+" data_id="+arr[i].img_id+"><span>"+arr[i].user_name+"</span><span>";
+				
+				for(var j in pic){
+					
+					var img=pic[j].img;
+					ahtml+="<img src="+img+">";
+				}
+				//console.log(arr[i].img_id);
+				ahtml+="</span><span>"+arr[i].img_title+"</span><span>"+arr[i].description+"</span><span><a class='jump' index="+arr[i].img_id+">标签</a></span><span><a class='delte'>删除</a></td></p>";
+			}
+
+			$(".box").html(ahtml);
+			$(".jump").on("click",function(){
+				var imgId=$(this).attr("index");
+				var imghtml="";
+				imghtml=$(".box").html();
+				var url = location.href;
+				var Top= document.body.scrollTop;
+				window.sessionStorage.setItem("content", imghtml);
+				window.sessionStorage.setItem("content_url", url);
+				window.sessionStorage.setItem("content_top", Top);
+				window.location.href='demo.html?'+imgId;
+			});
+			
+
+			//删除
+			$("p").on("click",".delte",function(){
+
+				var img_id = $(this).parents("p").attr("id");
+				if(confirm("确定删除吗")){
+			       $.ajax({
+						url:"http://www.meimei.yihaoss.top/php/backDelListing.php?img_id="+img_id,
+						type:"POST",
+						success:function(img_id){
+							alert("删除成功");
+							window.location.reload();
+							
+						}
+					}); 
+			    }else{
+			        window.location.reload();
+			    }
+				// $.ajax({
+				// 	url:"http://www.meimei.yihaoss.top/php/backDelListing.php?img_id="+img_id,
+				// 	type:"POST",
+				// 	success:function(img_id){
+				// 		alert("删除成功");
+				// 		window.location.reload();
+						
+				// 	}
+				// });
+
+			})
+
+		}
+	})
+
+	window.onload=function(){
+		var newUrl=location.href;
+		
+		var urlval=window.sessionStorage.getItem("content_url");
+		if(newUrl==urlval){
+			var content_html=window.sessionStorage.getItem("content");
+			var offsetTop=window.sessionStorage.getItem("content_top");
+			
+			$(".box").append(content_html);
+			$(document).scrollTop(offsetTop);
+		}
+	}
+
+
+
+		
+		
+
+</script>
+</body>
+</html>

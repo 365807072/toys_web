@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta charset="UTF-8">
+    <title>舜鑫国际旅游（北京）有限公司租赁</title>
+    <link rel="stylesheet" type="text/css" href="css/mobile.css">
+    <link rel="stylesheet" type="text/css" href="css/appInvite.css">
+    <link rel="stylesheet" type="text/css" href="css/swiper.min.css">
+</head>
+<body>
+    <div class="wrap">
+        <div class="head">
+            <span class="userLeft" id='category'>
+                <a><img src="img/78.png"></a>
+                <a>舜鑫国际旅游（北京）有限公司租赁</a>
+            </span>
+            <span class="callRight" id='callRight'>
+                <span style="width: 4rem;margin-left: 0.42rem" class="cont">
+                </span>
+            </span>
+        </div>
+        
+
+        <div class="main">
+            <!-- <div class="wrapper">
+                <div class="userbox">
+                    <span>
+                        <a><img src="img/userimg.png" class="useraa"></a>
+                        <a></a>
+                    </span>
+                    <span>
+                        <a><img src="img/userimg.png" class="useraa"></a>
+                        <a></a>
+                    </span>
+                    <span>
+                        <a><img src="img/userimg.png" class="useraa"></a>
+                        <a></a>
+                    </span>
+                    <span>
+                        <a><img src="img/userimg.png" class="useraa"></a>
+                        <a></a>
+                    </span>
+                </div>
+            </div>
+            <div class="box1">
+                <input type='number' placeholder="输入手机号,接受邀请" id="txt">
+                <button id="teambtn">接受邀请</button>
+            </div> -->
+            <div class="picdiv">
+                
+            </div>
+        </div>
+
+        <div class="bottom">
+            <img src="img/45.png">
+        </div>
+
+        <div class="boximg">
+            <span><img src="img/15.png"></span>
+            <span><img src="img/16.png"></span>
+        </div>
+
+        <div class="mask" style="display:none"></div>
+        <div class="tipContainer">
+            <img src="img/download_tip_1.png" alt="在浏览器中打开" width="74" height="112"/>
+            <p class="android_download_tip">戳右上角，选择“<em>在浏览器中打开</em>”即可完成下载 等你哦！</p>
+            <p class="ios_download_tip">戳右上角，选择“<em>在Safari中打开</em>”，即可下载或打开</p>
+        </div>
+        
+    </div>
+    
+<script type="text/javascript" src="js/setfontsize.js"></script>
+<script type="text/javascript" src="js/iscroll.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/swiper.min.js"></script>
+<script type="text/javascript">
+    var url = location.href;
+    var leader="";
+    var username="";
+    var userboxhtml="";
+    var luserId="";
+    var pay="";
+    var loguserid="";
+    var kkong="";
+    var host="";
+    var now="";
+    var endDate="";
+    var leftTime="";
+    var leftsecond="";
+    var day1="";
+    var hour="";
+    var minute="";
+    var second="";
+    var cc="";
+    var unpay="";
+    var jieguohtml="";
+    var headHtml="";
+    var allHtml="";
+    var auserId=""
+    var allowHtml='';
+    var userLefthtml = '';
+    var callRighthtml = '';
+    var contHtml = '';
+    var picdivHtml = '';
+ 
+    function GetQueryString(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
+    //地址中带有参数
+    if(url.indexOf("?") > 0){
+        if(GetQueryString("login_user_id")!=null && GetQueryString("login_user_id").length>-1){
+            
+            
+            leader = GetQueryString("login_user_id");
+        }
+    }
+    if(url.indexOf("?") > 0){
+        if(GetQueryString("success_ing")!=null && GetQueryString("success_ing").length>-1){
+            
+            
+            kkong = GetQueryString("success_ing");
+        }
+    }
+
+    var mySwiper = new Swiper('#topNav', {
+        slidesPerView: 3.5,
+        paginationClickable: true,
+        spaceBetween: 10,
+        freeMode: true,
+        slidesPerView: 'auto',
+        observer:true,//修改swiper自己或子元素时，自动初始化swiper
+        observeParents:true,//修改swiper的父元素时，自动初始化swiper
+    });
+
+    var swiper = new Swiper('.swiper-container2', {
+        slidesPerView: 1,
+        paginationClickable: true,
+        spaceBetween: 10,
+        observer:true,//修改swiper自己或子元素时，自动初始化swiper
+        observeParents:true,//修改swiper的父元素时，自动初始化swiper
+    });
+
+    //渲染页面
+    $.ajax({
+        url:'https://api.baobaoshowshow.com/index.php?r=BabyShowV7/ToysActivityShareInfo&login_user_id='+leader,
+        type:'GET',
+        async: true,
+        datatype:'json',
+        success:function(res){
+            var data=JSON.parse(res);
+            console.log(data);
+            var inTeamData=data.data;
+            console.log(inTeamData);
+            userLefthtml +='<a><img src="'+inTeamData.avatar+'"></a></b><a>'+inTeamData.nick_name+'</a>';
+            $(".userLeft").html(userLefthtml);
+            console.log(data.title)
+            contHtml+=data.title;
+            $(".cont").html(contHtml);
+
+            picdivHtml+="<img src="+data.img+">";
+            $(".picdiv").html(picdivHtml);
+
+
+            //邀请人移动
+            setTimeout(cateSet,4600);
+            var cateSet=$("#category").animate({marginRight:'5rem'},500); 
+            
+            $("#callRight").show("fast").animate({left:'2.4rem'},1500);
+            $(".callRight").show();
+        }
+    })
+
+    $(".boximg").on("click",function(){
+
+        window.location.href='http://www.meimei.yihaoss.top/download.php';
+    })
+
+    //点击接受邀请
+    $("#teambtn").on("click",function(){
+        
+
+        txtVal = $("#txt").val();
+
+        //  判断是否输入值
+        if(txtVal && /^[0-9]{11}$/.test(txtVal)){
+            
+        }else{
+            alert("请输入正确的手机号");
+            return false;
+        }
+        if(txtVal==""){
+            alert("请输入手机号");
+            return false;
+        }
+        else{
+            teamZu();
+        }   
+    })
+
+    //填入手机号走接口
+    function teamZu(){
+        $.ajax({
+            url:'https://api.baobaoshowshow.com/index.php?r=BabyShowV77/ToysActivityaddSolo&login_user_id='+leader+'&mobile='+txtVal,
+            type:'GET',
+            datatype:'json',
+            success:function(data){
+                var res=JSON.parse(data)
+                console.log(res.success);
+                if(res.success==true){
+                    alert("已成功接收邀请,去下载舜鑫国际旅游（北京）有限公司租赁购买年卡获得好礼吧");
+                    window.location.href=updateUrl(window.location.href,'v'); //传入自定义的变量名
+                    // $("#bnt").show();
+                    // $("#teambtn").hide();
+                }else{
+                    alert(res.reMsg)
+                    window.location.href=updateUrl(window.location.href,'v'); //传入自定义的变量名
+                }
+                
+            },
+            error:function(data){
+                var res=JSON.parse(data)
+                alert(res.reMsg);
+                
+            }
+        })
+    }
+
+    function isWeiXin(){
+       var ua = window.navigator.userAgent.toLowerCase();
+       if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+           return true;
+       }else{
+           return false;
+       }
+    }
+
+    $("#bnt").on("click",function(){
+        
+        window.location.href='http://www.meimei.yihaoss.top/download.php';
+
+    })
+
+    $(".invite").on("click",function(){
+
+        window.location.href="http://www.meimei.yihaoss.top/question/question.html";
+    })
+
+    $("#btn").on("click",function(){
+        alert("添加微信客服:185-1539-4818");
+    })
+
+
+
+    //弹窗除网址
+    window.alert = function(name){
+        var iframe = document.createElement("IFRAME");
+        iframe.style.display="none";
+        iframe.setAttribute("src", 'data:text/plain,');
+        document.documentElement.appendChild(iframe);
+        window.frames[0].window.alert(name);
+        iframe.parentNode.removeChild(iframe);
+    }
+
+    function updateUrl(url,key){
+        var key= (key || 't') +'=';  //默认是"t"
+        var reg=new RegExp(key+'\\d+');  //正则：t=1472286066028
+        var timestamp=+new Date();
+        if(url.indexOf(key)>-1){ //有时间戳，直接更新
+            return url.replace(reg,key+timestamp);
+        }else{  //没有时间戳，加上时间戳
+            if(url.indexOf('\?')>-1){
+                var urlArr=url.split('\?');
+                if(urlArr[1]){
+                    return urlArr[0]+'?'+key+timestamp+'&'+urlArr[1];
+                }else{
+                    return urlArr[0]+'?'+key+timestamp;
+                }
+            }else{
+                if(url.indexOf('#')>-1){
+                    return url.split('#')[0]+'?'+key+timestamp+location.hash;
+                }else{
+                    return url+'?'+key+timestamp;
+                }
+            }
+        }
+    }
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+s

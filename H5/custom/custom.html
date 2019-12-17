@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>客服交接系统</title>
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+	<link rel="stylesheet" type="text/css" href="css/laydate.css">
+	<link rel="stylesheet" type="text/css" href="css/custom.css">
+</head>
+<body>
+	<div class="wrap">
+		<header class="head">
+
+            <ul>
+                
+                <li>一级页面：</li>
+                <li><a href="redact.html">添加客服问题</a></li>
+                
+            </ul>
+           
+			<form id="search_form">
+                <input type="text" name="" placeholder="输入用户名/Id" class="nametxt">
+                <input type="text" name="" placeholder="交接开始时间" id="startTime" class="timestart laydate-icon" onclick="laydate({elem: '#startTime',istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">---<input type="text" name="" placeholder="交接结束时间" id="endTime" class="timeend laydate-icon" onclick="laydate({elem: '#endTime',istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+                <select id="text">
+                    <option index="0">选择状态</option>
+                    <option index="1">已解决</option>
+                    <option index="2">未解决</option>
+                </select>
+                <select id="level">
+                    <option index="0">选择状态</option>
+                    <option index="1">紧急</option>
+                    <option index="2">一般</option>
+                </select>
+                <input type="button" value="搜索" class="btn">
+            </form>
+            <table class="top" border="1" width="100%">
+                <tr>
+                    <td  align="center" width="10%">用户名/ID</td>
+                    <td  align="center" width="15%">交接记录</td>
+                    <td  align="center" width="10%">事件进度</td>
+                    <td  align="center" width="10%">线上/仓库交接人</td>
+                    <td  align="center" width="10%">交接时间</td>
+                    <td  align="center" width="5%">总/未解决问题数量</td>
+                    <td  align="center" width="10%">操作</td>
+                </tr>
+            </table>
+		</header>
+        <div class="main">
+            <table class="box" border="1" width="100%">
+                <!-- <tr>
+                    <td  align="center">用户名/ID</td>
+                    <td  align="center">交接记录</td>
+                    <td  align="center">交接进度</td>
+                    <td  align="center">线上交接人</td>
+                    <td  align="center">仓库交接人</td>
+                    <td  align="center">上次交接记录</td>
+                </tr> -->
+            </table>
+        </div>
+	</div>
+    <div class="upload">
+        <span>上拉加载更多内容</span>
+        <span>内容加载中...</span>
+    </div>
+
+<script type="text/javascript" src="js/setfontsize.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/laydate.js"></script>
+<script type="text/javascript" src="js/custom.js"></script>
+</body>
+</html>  

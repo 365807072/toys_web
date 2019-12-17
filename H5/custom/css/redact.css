@@ -1,0 +1,31 @@
+html,body{
+	width: 100%;
+	height: 100%;
+}
+.wrap{
+	width: 100%;
+	height: 100%;
+	font-size: 0.1rem;
+}
+.line,.house{
+	font-size: 0.1rem;
+}
+.box,.box1,.box2,.box3,.box4{
+	margin-bottom: 0.1rem;
+}
+textarea{
+	width: 2rem;
+	height: 0.5rem;
+}
+button{
+	padding: 0.01rem 0.05rem;
+}
+header ul{
+	background-color: #6795B4;
+	display: -webkit-box;
+}
+header ul li{
+	margin:0 0.1rem;
+	font-weight: bold;
+	padding: 0.05rem 0;
+}

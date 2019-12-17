@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
+    <title>舜鑫国际旅游（北京）有限公司租赁官网-租玩具就用玩具租赁APP舜鑫国际旅游（北京）有限公司租赁-舜鑫国际旅游（北京）有限公司</title>
+    <meta name="keywords" content="租玩具,玩具租赁,电动童车,儿童玩具,舜鑫国际旅游（北京）有限公司租赁,宝宝秀秀,亲子app,育儿应用,早教手机软件,邹臣亭,舜鑫国际旅游（北京）有限公司,母婴社区" />
+    <meta name="description" content="舜鑫国际旅游（北京）有限公司租赁提供千种万件小泰克,费雪,bright stars,play skool,智高,澳贝,伟易达等国内外知名品牌玩具用于租赁玩具给宝贝们,致力于实现每个孩子都可以拥有自己的玩具城堡王国。" />
+    <link rel="stylesheet" type="text/css" href="css/mobile.css"/>
+    <link rel="stylesheet" type="text/css" href="css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="css/gstyle.css">
+    <link rel="stylesheet" type="text/css" href="css/certify2.css">
+    <script type="text/javascript" src="js/setfontsize.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/swiper.min.js"></script>
+
+</head>
+<body>
+    <div class="box">
+        <div class="top">
+            <div class="logo">
+                <img src="images/logo.png";>
+            </div>
+
+            <div class="nav">
+                <ul class="ul1">
+                    <li><a href="http://www.meimei.yihaoss.top/newindex.html">首页</a></li>
+                    <li><a href="http://www.meimei.yihaoss.top/about.html">关于我们</a></li>
+                    <li><a href="http://www.meimei.yihaoss.top/contact.html">联系我们</a></li>
+                    <li><a href="http://www.meimei.yihaoss.top/service.html">隐私政策</a></li>
+                </ul>
+            </div>
+
+        </div>
+        
+        <div class="banner">
+            <!-- <img src="images/banner.png";> -->
+            <!--<a href='http://www.meimei.yihaoss.top/download.php'><img src="images/down.png"></a>-->
+        </div>
+        
+        <!--<div class="center">-->
+            <!-- <img src="images/valuable.png"> -->
+            <!--<a href="http://www.meimei.yihaoss.top/fenxiang/postbardetial.html?img_id=110584&user_id=2354"><img src="images/fanwei.png"></a>-->
+            <!--<a href="http://www.meimei.yihaoss.top/question/question.html"><img src="images/zulin.png"></a>-->
+        <!---->
+            <div id="certify">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="images/469.png" /></div>
+                        <div class="swiper-slide"><img src="images/869.png" /></div>
+                        <div class="swiper-slide"><img src="images/1488.png" /></div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        <!--</div>-->
+        <div class="center2">
+
+        </div>
+        <div class="footer">
+            <p class="p1">舜鑫国际旅游（北京）有限公司租赁-原宝宝秀秀-最美的亲子社区</p>
+            <p class="p2">舜鑫国际旅游（北京）有限公司   京ICP备14007169号</p>
+        </div>
+         
+       
+    </div>
+<script>
+    certifySwiper = new Swiper('#certify .swiper-container', {
+        watchSlidesProgress: true,
+        slidesPerView: 'auto',
+        centeredSlides: true,
+        loop: true,
+        loopedSlides:5,
+        autoplay: true,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            //clickable :true,
+        },
+        on: {
+            progress: function(progress) {
+                for (i = 0; i < this.slides.length; i++) {
+                    var slide = this.slides.eq(i);
+                    var slideProgress = this.slides[i].progress;
+                    modify = 1;
+                    if (Math.abs(slideProgress) > 1) {
+                        modify = (Math.abs(slideProgress) - 1) * 0.3 + 1;
+                    }
+                    translate = slideProgress * modify * 260 + 'px';
+                    scale = 1 - Math.abs(slideProgress) / 5;
+                    zIndex = 999 - Math.abs(Math.round(10 * slideProgress));
+                    slide.transform('translateX(' + translate + ') scale(' + scale + ')');
+                    slide.css('zIndex', zIndex);
+                    slide.css('opacity', 1);
+                    if (Math.abs(slideProgress) > 3) {
+                        slide.css('opacity', 0);
+                    }
+                }
+            },
+            setTransition: function(transition) {
+                for (var i = 0; i < this.slides.length; i++) {
+                    var slide = this.slides.eq(i)
+                    slide.transition(transition);
+                }
+
+            }
+        }
+
+    })
+</script>
+</body>
+</html>

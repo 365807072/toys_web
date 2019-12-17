@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/qyms.css">
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+</head>
+<body>
+	<div class="wrap">
+		<header><h1>舜鑫国际旅游（北京）有限公司租赁亲子平台</h1></header>
+		<section class="content">
+			<div class="main">
+				<div class="baby"><p>“感恩节万元大回馈”之奇艺美术</p></div>
+				<div class="pic">
+					<ul>
+						<li>
+							<p><img src="img/29.png"></p>
+							<p>奇艺美术保护孩子的想象力，从小接触艺术的熏陶，拥有开拓的思维。</p>
+						</li>
+						<li>
+							<p><img src="img/30.png"></p>
+							<p>其中包括了知识、观察、创意、创造和审美着5大项学习内容，通过这个让孩子提升自己的观察力、创造力和审美能力。</p>
+						</li>
+						<li>
+							<p><img src="img/31.png"></p>
+							<p>特色教学：不同年龄的小班制教学。</p>
+						</li>
+						<li>
+							<p><img src="img/32.png"></p>
+						</li>
+					</ul>
+				</div>
+				<div class="test">
+					<p>地址：北京市昌平区--回龙观西大街冠庭中心10号楼2单元701室</br></br></p>
+					<p>最最最重要的是！</br></br>现在参加舜鑫国际旅游（北京）有限公司租赁“感恩节万元大回馈”活动，价值360元的美术精品课免费去上！！</br></br></p>
+					<p>参与步骤：打开“舜鑫国际旅游（北京）有限公司租赁”客户端，搜索并关注群“同住回龙观”，参与发帖或互动即为参与“感恩节万元大回馈”活动。发帖越多互动越高礼品越丰厚！</br></br></p>
+					<p>关注微信公众号“舜鑫国际旅游（北京）有限公司租赁”，或者添加微信号“xiuxiuxiaobian”，教您领取更多不限量豪礼！</br></br></p>
+					
+					
+				</div>
+			</div>
+		</section>
+		
+		<a href="http://mp.weixin.qq.com/s/zSSVWBDL1qCYJes9nF8b0g" class="btn">更多豪礼</a>
+		
+	</div>
+
+
+<script type="text/javascript" src="js/zepto.js"></script>
+<script type="text/javascript" src="js/setfontsize.js"></script>
+<script type="text/javascript">
+	$.ajax({
+		url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV1/messageLink&title=奇艺美术',
+		type:'GET',
+		success:function(data){
+		}
+	})
+	$(".btn").on("click",function(){
+		$.ajax({
+			url:'http://api.baobaoshowshow.com/index.php?r=BabyShowV1/messageOpen&title=奇艺美术',
+			type:'GET',
+			success:function(data){
+				
+			}
+		})
+	})
+</script>
+</body>
+</html>
